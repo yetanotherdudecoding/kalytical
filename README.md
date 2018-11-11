@@ -9,5 +9,5 @@ Reasons to do this:
 
 
 
-![Proposed Architecture](https://bitbucket.org/zerodown524/kalitical/src/initial/resources/kalitical_proposed_architecture.jpeg)
+![Proposed Architecture](resources/kalitical_proposed_architecture.jpeg)
 
