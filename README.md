@@ -9,4 +9,4 @@ Reasons to do this:
 
 
 
-![Proposed Architecture](http:https://bitbucket.org/zerodown524/kalitical/src/resources/kalitical_proposed_architecture.jpeg)
+![Proposed Architecture](https://bitbucket.org/zerodown524/kalitical/src/initial/resources/kalitical_proposed_architecture.jpeg)
