@@ -9,4 +9,5 @@ Reasons to do this:
 
 
 
-![Proposed Architecture](https://bitbucket.org/zerodown524/kalitical/src/initial/resources/kalitical_proposed_architecture.jpeg)
+![Proposed Architecture](https://drive.google.com/file/d/16w6PWeI49l-yatyF3Gda8_1Q40rx7Bqx/view?usp=sharing)
+
