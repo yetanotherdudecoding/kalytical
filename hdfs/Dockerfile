@@ -13,7 +13,8 @@ ENTRYPOINT ["sh", "-c", "/entrypoint.sh"]
 
 #Master namenode webui
 EXPOSE 50070
-#Namenode IPC
+#Namenode IPC - bare minimum for external hosts to connect to hdfs
+EXPOSE 9000
 EXPOSE 8020
 #Insecure webui
 EXPOSE 50075
