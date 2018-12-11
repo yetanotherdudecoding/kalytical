@@ -7,4 +7,9 @@ bin/hdfs namenode -format
 bin/hdfs namenode &
 bin/hdfs datanode &
 
+TODO
+Set UID and GID - to not use root account for runtime
+Find clear route to persistence
 
+Future
+Clustering and auto join

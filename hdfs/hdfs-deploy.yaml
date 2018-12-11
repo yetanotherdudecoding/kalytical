@@ -1,0 +1,44 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: hdfs-service
+  namespace: bsavoy
+spec:
+  type: ClusterIP
+  selector:
+    app: hdfs
+  ports:
+  - protocol: TCP
+    port: 9000
+    
+#https://ambari.apache.org/1.2.3/installing-hadoop-using-ambari/content/reference_chap2_1.html
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: hdfs-deployment
+  namespace: bsavoy
+  labels:
+    app: hdfs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hdfs
+  template:
+    metadata:
+      labels:
+        app: hdfs
+    spec:
+      containers:
+      - name: hdfs-og
+        image: instance-2:8080/hdfs:20181211.0
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "2048Mi"
+          requests:
+            cpu: "500m"
+            memory: "1024Mi"
+      imagePullSecrets:
+      - name: regcred
