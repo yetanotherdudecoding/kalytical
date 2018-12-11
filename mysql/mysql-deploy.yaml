@@ -1,0 +1,43 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mysql-service
+  namespace: bsavoy
+spec:
+  type: ClusterIP
+  selector:
+    app: mysql
+  ports:
+  - protocol: TCP
+    port: 3306
+    
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: mysql-deployment
+  namespace: bsavoy
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql-og
+        image: instance-2:8080/mysql:20181211.0
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "2048Mi"
+          requests:
+            cpu: "500m"
+            memory: "1024Mi"
+      imagePullSecrets:
+      - name: regcred
