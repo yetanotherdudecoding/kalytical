@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: hdfs-service
-  namespace: bsavoy
+  namespace: ${K8S_NAMESPACE}
 spec:
   type: ClusterIP
   selector:
@@ -17,7 +17,7 @@ kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
   name: hdfs-deployment
-  namespace: bsavoy
+  namespace: ${K8S_NAMESPACE}
   labels:
     app: hdfs
 spec:
