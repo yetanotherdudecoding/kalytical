@@ -19,7 +19,7 @@ Reasons to do this:
 
 		Developers will be able to experiment with the entire stack on their local machine
           
-                All critical assets required for an advaned analytics platform will be brought under a single umbrella for easier visibility/management
+		All critical assets required for an advaned analytics platform will be brought under a single umbrella for easier visibility/management
 
 
 

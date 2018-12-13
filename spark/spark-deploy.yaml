@@ -1,38 +1,49 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: hdfs-service
+  name: spark-job-service
   namespace: bsavoy
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
-    app: hdfs
+    app: spark
   ports:
   - protocol: TCP
-    port: 9000
-    
-#https://ambari.apache.org/1.2.3/installing-hadoop-using-ambari/content/reference_chap2_1.html
+    port: 7070
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: spark-ui-service
+  namespace: bsavoy
+spec:
+  type: NodePort
+  selector:
+    app: spark
+  ports:
+  - protocol: TCP
+    port: 8080
 ---
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-  name: hdfs-deployment
+  name: spark-deployment
   namespace: bsavoy
   labels:
-    app: hdfs
+    app: spark
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hdfs
+      app: spark
   template:
     metadata:
       labels:
-        app: hdfs
+        app: spark
     spec:
       containers:
-      - name: hdfs-og
-        image: instance-2:8080/hdfs:201812110
+      - name: spark-og
+        image: instance-2:8080/spark:201812130
         resources:
           limits:
             cpu: "1000m"
