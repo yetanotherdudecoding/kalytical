@@ -10,7 +10,19 @@ spec:
   ports:
   - protocol: TCP
     port: 9000
-    
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: hdfs-service
+  namespace: ${K8S_NAMESPACE}
+spec:
+  type: ClusterIP
+  selector:
+    app: hdfs
+  ports:
+  - protocol: TCP
+    port: 50075
 #https://ambari.apache.org/1.2.3/installing-hadoop-using-ambari/content/reference_chap2_1.html
 ---
 kind: Deployment
