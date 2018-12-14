@@ -21,4 +21,12 @@
         <name>dfs.replication</name>
         <value>1</value>
     </property>
+    <property>
+        <name>hadoop.proxyuser.sdc.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.sdc.groups</name>
+        <value>*</value>
+    </property>
 </configuration>

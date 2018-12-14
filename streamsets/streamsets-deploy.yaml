@@ -1,0 +1,78 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sdc-service
+  namespace: bsavoy
+spec:
+  type: NodePort
+  selector:
+    app: sdc
+  ports:
+  - protocol: TCP
+    port: 18630
+    nodePort: 30530
+    
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: sdc-deployment
+  namespace: bsavoy
+  labels:
+    app: sdc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sdc
+  template:
+    metadata:
+      labels:
+        app: sdc
+    spec:
+      containers:
+      - name: sdc-og
+        image: instance-2:8080/sdc:201812140
+        volumeMounts:
+        - name: sdc-data
+          mountPath: /data
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "4096Mi"
+          requests:
+            cpu: "500m"
+            memory: "1024Mi"
+      volumes:
+      - name: sdc-data
+        persistentVolumeClaim:
+          claimName: sdc-data-pvc
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: sdc-data-pv
+  namespace: bsavoy
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    namespace: bsavoy
+    name: sdc-data-pvc
+  hostPath:
+   path: /k8s-pvs/sdc_data
+   type: Directory
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: sdc-data-pvc
+  namespace: bsavoy
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
