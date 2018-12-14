@@ -1,48 +1,37 @@
-kind: Service
-apiVersion: v1
-metadata:
-  name: spark-job-service
-  namespace: bsavoy
-spec:
-  type: NodePort
-  selector:
-    app: spark
-  ports:
-  - protocol: TCP
-    port: 7070
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: spark-ui-service
+  name: jupyter-service
   namespace: bsavoy
 spec:
   type: NodePort
   selector:
-    app: spark
+    app: jupyter
   ports:
   - protocol: TCP
     port: 8080
+    targetPort: 30800
 ---
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-  name: spark-deployment
+  name: jupyter-deployment
   namespace: bsavoy
   labels:
-    app: spark
+    app: jupyter
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: spark
+      app: jupyter
   template:
     metadata:
       labels:
-        app: spark
+        app: jupyter
     spec:
       containers:
-      - name: spark-og
+      - name: jupyter-og
         image: ${DOCKER_REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}
         resources:
           limits:
