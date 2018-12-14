@@ -2,36 +2,36 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: jupyter-service
+  name: jupyter-service-${NB_ID}
   namespace: bsavoy
 spec:
   type: NodePort
   selector:
-    app: jupyter
+    app: jupyter-${NB_ID}
   ports:
   - protocol: TCP
-    port: 8080
+    port: 8888
     targetPort: 30800
 ---
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-  name: jupyter-deployment
+  name: jupyter-deployment-${NB_ID}
   namespace: bsavoy
   labels:
-    app: jupyter
+    app: jupyter-${NB_ID}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: jupyter
+      app: jupyter-${NB_ID}
   template:
     metadata:
       labels:
-        app: jupyter
+        app: jupyter-${NB_ID}
     spec:
       containers:
-      - name: jupyter-og
+      - name: jupyter-${NB_ID}
         image: ${DOCKER_REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}
         resources:
           limits:
