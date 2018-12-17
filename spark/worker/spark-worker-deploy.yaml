@@ -1,0 +1,31 @@
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: spark-worker-deployment-${SPARK_MASTER_URL}
+  namespace: ${K8S_NAMESPACE}
+  labels:
+    app: spark-worker-${SPARK_MASTER_URL}
+spec:
+  replicas: ${REPLICAS}
+  selector:
+    matchLabels:
+      app: spark-worker-${SPARK_MASTER_URL}
+  template:
+    metadata:
+      labels:
+        app: spark-worker-${SPARK_MASTER_URL}
+    spec:
+      containers:
+      - name: spark-${SPARK_MASTER_URL}
+        image: ${DOCKER_REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}
+        env:
+        - name: SPARK_MASTER_URL
+          value: "${SPARK_MASTER_URL}://7077"
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "2048Mi"
+          requests:
+            cpu: "500m"
+            memory: "1024Mi"
