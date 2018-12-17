@@ -9,7 +9,7 @@ spec:
     app: spark
   ports:
   - protocol: TCP
-    port: 7070
+    port: 7077
 ---
 kind: Service
 apiVersion: v1
