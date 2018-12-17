@@ -20,7 +20,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: ${SPARK_MASTER_URL}-spark-master
+    app: spark-master-${SPARK_MASTER_URL}
   ports:
   - protocol: TCP
     port: 8080
