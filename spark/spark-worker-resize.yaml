@@ -46,10 +46,6 @@ spec:
       containers:
       - name: spark-master-${SPARK_MASTER_URL}
         image: ${DOCKER_REGISTRY}/${MASTER_IMAGE_NAME}:${BUILD_NUMBER}
-        - name: PYSPARK_PYTHON
-          value: "python3"
-        - name: PYSPARK_DRIVER_PYTHON
-          value: "python3"
         resources:
           limits:
             cpu: "1000m"
@@ -81,10 +77,6 @@ spec:
         env:
         - name: SPARK_MASTER_URL
           value: "${SPARK_MASTER_URL}-spark-master:7077"
-        - name: PYSPARK_PYTHON
-          value: "python3"
-        - name: PYSPARK_DRIVER_PYTHON
-          value: "python3"
         resources:
           limits:
             cpu: "1000m"
