@@ -76,7 +76,7 @@ spec:
         image: ${DOCKER_REGISTRY}/${WORKER_IMAGE_NAME}:${BUILD_NUMBER}
         env:
         - name: SPARK_MASTER_URL
-          value: "${SPARK_MASTER_URL}:7077"
+          value: "${SPARK_MASTER_URL}-spark-master:7077"
         resources:
           limits:
             cpu: "1000m"
