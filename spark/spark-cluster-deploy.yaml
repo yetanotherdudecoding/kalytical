@@ -10,7 +10,6 @@ spec:
   ports:
   - protocol: TCP
     port: 7077
-    nodePort: 30707
 ---
 kind: Service
 apiVersion: v1
@@ -24,7 +23,19 @@ spec:
   ports:
   - protocol: TCP
     port: 8080
-    nodePort: 30888
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ${SPARK_MASTER_URL}-spark-app-ui
+  namespace: ${K8S_NAMESPACE}
+spec:
+  type: NodePort
+  selector:
+    app: spark-master-${SPARK_MASTER_URL}
+  ports:
+  - protocol: TCP
+    port: 4040
 ---
 kind: Deployment
 apiVersion: extensions/v1beta1
