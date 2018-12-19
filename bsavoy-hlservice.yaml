@@ -1,0 +1,10 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: bsavoy
+  namespace: bsavoy
+spec:
+  clusterIP: None
+  selector:
+    app: spark-worker-spark-cluster-01
