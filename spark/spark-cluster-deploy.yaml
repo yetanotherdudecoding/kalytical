@@ -104,4 +104,4 @@ spec:
         resources:
           limits:
             cpu: "${WORKER_SHAPE_CPU}000m"
-            memory: "${WORKER_SHAPE_MEM}i"
+            memory: "${WORKER_SHAPE_MEM}Mi"
