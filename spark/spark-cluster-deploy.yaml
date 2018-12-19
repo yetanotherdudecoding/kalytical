@@ -100,8 +100,8 @@ spec:
         - name: SPARK_WORKER_MEMORY
           value: "${WORKER_SHAPE_MEM}"
         - name: SPARK_WORKER_CORES
-          value: "${WORKER_SHAPE_CPU}"
+          value: "${WORKER_SHAPE_CPU}M"
         resources:
           limits:
             cpu: "${WORKER_SHAPE_CPU}000m"
-            memory: "${WORKER_SHAPE_MEM}Mi"
+            memory: "${WORKER_SHAPE_MEM}i"
