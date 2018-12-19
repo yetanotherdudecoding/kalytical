@@ -4,7 +4,7 @@ metadata:
   name: hdfs-service
   namespace: ${K8S_NAMESPACE}
 spec:
-  type: nodePort
+  type: NodePort
   selector:
     app: hdfs
   ports:
@@ -18,12 +18,12 @@ metadata:
   name: hdfs-ui-service
   namespace: ${K8S_NAMESPACE}
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: hdfs
   ports:
   - protocol: TCP
-    port: 50075
+    port: 50070
 #https://ambari.apache.org/1.2.3/installing-hadoop-using-ambari/content/reference_chap2_1.html
 ---
 kind: Deployment

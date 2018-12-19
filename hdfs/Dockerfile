@@ -1,4 +1,4 @@
-FROM instance-2:8080/openjdk:8-jdk
+FROM instance-1.us-east1-b.c.sandbox-224519.internal:8080:8080/openjdk:8-jdk
 USER root
 WORKDIR /opt
 RUN apt-get update -y && apt-get install vim net-tools telnet -y
