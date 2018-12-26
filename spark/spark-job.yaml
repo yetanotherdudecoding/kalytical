@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: spark-job-${JOB_NAME}-${BUILD_NUMBER}
+spec:
+  template:
+    spec:
+      containers:
+      - name: spark-submitter-${JOB_NAME}-${BUILD_NUMBER}
+        image: ${SUBMIT_POD_IMAGE}
+        env:
+        - name: SPARK_SUBMIT_ARGS
+          value: "${SUBMIT_PARAMS}"
+      restartPolicy: Never
+  backoffLimit: 4
