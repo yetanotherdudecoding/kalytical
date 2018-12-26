@@ -43,6 +43,7 @@ spec:
     spec:
       containers:
       - name: spark-master-${SPARK_MASTER_URL}
+        subdomain: spark-cluster-${SPARK_MASTER_URL}
         image: ${DOCKER_REGISTRY}/${MASTER_IMAGE_NAME}:${BUILD_NUMBER}
         env:
         - name: PYSPARK_PYTHON
@@ -76,6 +77,7 @@ spec:
     spec:
       containers:
       - name: spark-worker-${SPARK_MASTER_URL}
+        subdomain: spark-cluster-${SPARK_MASTER_URL}
         image: ${DOCKER_REGISTRY}/${WORKER_IMAGE_NAME}:${BUILD_NUMBER}
         env:
         - name: SPARK_MASTER_URL
