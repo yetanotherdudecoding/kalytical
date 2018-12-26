@@ -1,3 +1,10 @@
+#!/bin/bash
+
+if [ "root" != "$(whoami)" ]; then
+        echo "This script is intended to be run as root"
+        exit 0
+fi
+
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
@@ -15,6 +22,9 @@ sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
 yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
 systemctl disable firewalld && systemctl stop firewalld
+cat << EOF | sudo /usr/bin/tee /etc/sysconfig/docker
+INSECURE_REGISTRY="--insecure-registry=0.0.0.0/0"
+EOF
 systemctl enable docker && systemctl start docker
 
 cat <<EOF >  /etc/sysctl.d/k8s.conf
@@ -32,7 +42,7 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 sleep 30
 kubectl taint nodes --all node-role.kubernetes.io/master-
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
-
+kubectl apply -f spark/spark-rbac.yaml
 echo "##########################################"
 echo "Remember to add --insecure-registry=0.0.0.0/0 parameter for testing/dev"
 

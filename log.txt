@@ -1,7 +1,0 @@
-mysql, hdfs working as kubernetes deployments - no dependencies between them yet (i.e. no data moving)
-Continue working on nexus, streamsets, kafka, spark in that order. 
-Draft master deployment
-Begin moving data through platform
-Finish implementing zeppelin and hive, 
-Firm up demo data pipelines then commit to configuration
-Test and release
