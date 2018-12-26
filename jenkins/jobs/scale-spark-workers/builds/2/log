@@ -1,5 +1,0 @@
-Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
-Building in workspace /var/jenkins_home/workspace/scale-spark-workers
-$ kubectl config --kubeconfig=/var/jenkins_home/workspace/scale-spark-workers/.kube2564960886883052930config set-cluster k8s --server=https://instance-8:6443 --insecure-skip-tls-verify=true
-ERROR: No credentials defined to setup Kubernetes CLI
-Finished: FAILURE

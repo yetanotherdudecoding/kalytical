@@ -1,14 +1,0 @@
-Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
-Building in workspace /var/jenkins_home/workspace/build-spark-k8s-native-images
-[build-spark-k8s-native-images] $ /bin/sh -xe /tmp/jenkins6644792659811340071.sh
-+ curl https://github.com/apache/spark/archive/v2.3.1.tar.gz -o spark_2.3.1.tar.gz
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   120    0   120    0     0    674      0 --:--:-- --:--:-- --:--:--   674
-+ tar -xzf spark_2.3.1.tar.gz
-
-gzip: stdin: not in gzip format
-tar: Child returned status 1
-tar: Error is not recoverable: exiting now
-Build step 'Execute shell' marked build as failure
-Finished: FAILURE

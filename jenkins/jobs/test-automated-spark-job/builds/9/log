@@ -1,9 +1,0 @@
-Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
-Building in workspace /var/jenkins_home/workspace/deploy-native-k8s-spark
-[deploy-native-k8s-spark] $ /bin/sh -xe /tmp/jenkins7808033014931755712.sh
-+ kubectl delete deployment submitpod-brad -n bsavoy
-deployment.extensions "submitpod-brad" deleted
-+ kubectl run submitpod-brad -n bsavoy --image=instance-1.us-east1-b.c.sandbox-224519.internal:8080/submitpod:201812263 --env=SPARK_SUBMIT_ARGS=--master k8s://https://10.142.0.3:6443 --deploy-mode cluster --name spark-pi --class org.apache.spark.examples.SparkPi --conf spark.executor.instances=2 --conf spark.kubernetes.container.image=instance-1.us-east1-b.c.sandbox-224519.internal:8080/spark:2.3.1 http://35.185.73.182/repository/dataproducts/examples/spark-examples_2.11-2.3.1.jar 
-kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
-deployment.apps/submitpod-brad created
-Finished: SUCCESS

@@ -1,15 +1,0 @@
-Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
-Building in workspace /var/jenkins_home/workspace/build-spark-k8s-native-images
-[build-spark-k8s-native-images] $ /bin/sh -xe /tmp/jenkins2440626566024661480.sh
-+ curl -L https://github.com/apache/spark/archive/v2.3.1.tar.gz -o spark_2.3.1.tar.gz
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   120    0   120    0     0    860      0 --:--:-- --:--:-- --:--:--   863
-100 1504k    0 1504k    0     0  2527k      0 --:--:-- --:--:-- --:--:-- 2527k100 10.7M    0 10.7M    0     0  6891k      0 --:--:--  0:00:01 --:--:-- 9488k100 13.9M    0 13.9M    0     0  6961k      0 --:--:--  0:00:02 --:--:-- 8769k
-+ tar -xzf spark_2.3.1.tar.gz
-+ rm spark_2.3.1.tar.gz
-+ cd spark-2.3.1
-+  
-/tmp/jenkins2440626566024661480.sh: 5: /tmp/jenkins2440626566024661480.sh:  : not found
-Build step 'Execute shell' marked build as failure
-Finished: FAILURE

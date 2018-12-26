@@ -1,9 +1,0 @@
-Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
-Building in workspace /var/jenkins_home/workspace/build-spark-k8s-native-images
-[build-spark-k8s-native-images] $ /bin/sh -xe /tmp/jenkins5500174106383104607.sh
-+ curl -o https://github.com/apache/spark/archive/v2.3.1.tar.gz spark_2.3.1.tar.gz
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: spark_2.3.1.tar.gz
-Build step 'Execute shell' marked build as failure
-Finished: FAILURE
