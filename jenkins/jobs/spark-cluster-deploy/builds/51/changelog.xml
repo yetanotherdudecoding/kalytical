@@ -1,0 +1,13 @@
+commit 2e542458e9aa3b3985f6bee0ff4d0d054432f8aa
+tree 40bfd52c5fcab10cf1fa73203b5f1025845f337a
+parent 6d03d8e4675e2244a3d5a01ac00d486e4c9bd9af
+author Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-19 03:37:59 +0000
+committer Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-19 03:37:59 +0000
+
+    update jupyter to spark-all image. Fixing webui for hdfs
+
+
+
+:100644 100644 b1d9f2abd637a6554d23a0b29115f36ff5034fbf 4c3c0f8be1166561b2a1010163ebc464c1c5eca5 M	explorepod/Dockerfile
+:100644 100644 bd958aa67475717dafaf1cf67cd154fd04edc149 3f4703652951208e70d51ac22d413aadb18df60d M	hdfs/entrypoint.sh
+:000000 100755 0000000000000000000000000000000000000000 d499b3d87a6889c250bcc809cd7acfd006072c18 A	startNexus.sh

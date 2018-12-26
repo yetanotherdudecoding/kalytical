@@ -1,0 +1,15 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/scale-spark-workers
+[scale-spark-workers] $ /bin/sh -xe /tmp/jenkins4541024499172896867.sh
++ kubectl get pods
+NAME                                             READY   STATUS    RESTARTS   AGE
+hdfs-deployment-5cdb467d9b-q7kzn                 1/1     Running   1          3d1h
+jenkins-deployment-69855d6f5-wk5qt               1/1     Running   2          3d20h
+jupyter-deployment-bsavoy-578f997cb6-lrnnf       1/1     Running   1          2d20h
+sdc-deployment-6fdc89598d-xwfdx                  1/1     Running   1          3d1h
+spark-cluster-01-spark-worker-7df58dd979-fs2b5   1/1     Running   0          38m
+spark-cluster-01-spark-worker-7df58dd979-hk6lj   1/1     Running   0          38m
+spark-cluster-01-spark-worker-7df58dd979-m2242   1/1     Running   0          38m
+spark-cluster-01-spark-worker-7df58dd979-tcxr6   1/1     Running   0          38m
+spark-master-spark-cluster-01-6db686cd7c-pdxwk   1/1     Running   0          38m
+Finished: SUCCESS

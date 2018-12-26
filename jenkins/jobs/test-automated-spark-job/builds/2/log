@@ -1,0 +1,28 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/deploy-native-k8s-spark
+[deploy-native-k8s-spark] $ /bin/sh -xe /tmp/jenkins2176127355304376364.sh
++ curl -L https://archive.apache.org/dist/spark/spark-2.4.0/spark-2.4.0-bin-without-hadoop.tgz -o spark_2.4.0.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  153M    0  208k    0     0   254k      0  0:10:15 --:--:--  0:10:15  255k  5  153M    5 8992k    0     0  4970k      0  0:00:31  0:00:01  0:00:30 4970k 16  153M   16 24.9M    0     0  9079k      0  0:00:17  0:00:02  0:00:15 9081k 26  153M   26 41.2M    0     0  10.8M      0  0:00:14  0:00:03  0:00:11 10.8M 37  153M   37 57.4M    0     0  11.9M      0  0:00:12  0:00:04  0:00:08 11.9M 49  153M   49 75.4M    0     0  12.9M      0  0:00:11  0:00:05  0:00:06 15.0M 60  153M   60 93.1M    0     0  13.6M      0  0:00:11  0:00:06  0:00:05 16.8M 72  153M   72  111M    0     0  14.2M      0  0:00:10  0:00:07  0:00:03 17.3M 83  153M   83  128M    0     0  14.6M      0  0:00:10  0:00:08  0:00:02 17.4M 96  153M   96  147M    0     0  15.0M      0  0:00:10  0:00:09  0:00:01 17.9M100  153M  100  153M    0     0  15.1M      0  0:00:10  0:00:10 --:--:-- 18.0M
++ tar -xzf spark_2.4.0.tar.gz
++ rm spark_2.4.0.tar.gz
++ cd spark-2.4.0-bin-without-hadoop
++ bin/spark-submit --master k8s://https://kubernetes.default:6443 --deploy-mode cluster --name spark-pi --class org.apache.spark.examples.SparkPi --conf spark.executor.instances=2 --conf spark.kubernetes.container.image=instance-1.us-east1-b.c.sandbox-224519.internal:8080/spark:2.4.0 http://35.185.73.182/repository/dataproducts/examples/spark-examples_2.11-2.3.1.jar
+Error: A JNI error has occurred, please check your installation and try again
+Exception in thread "main" java.lang.NoClassDefFoundError: org/slf4j/Logger
+	at java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2701)
+	at java.lang.Class.privateGetMethodRecursive(Class.java:3048)
+	at java.lang.Class.getMethod0(Class.java:3018)
+	at java.lang.Class.getMethod(Class.java:1784)
+	at sun.launcher.LauncherHelper.validateMainClass(LauncherHelper.java:544)
+	at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:526)
+Caused by: java.lang.ClassNotFoundException: org.slf4j.Logger
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	... 7 more
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

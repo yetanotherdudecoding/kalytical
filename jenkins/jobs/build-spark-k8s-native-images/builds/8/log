@@ -1,0 +1,177 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/build-spark-k8s-native-images
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/kalytical.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/kalytical.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/initial^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/initial^{commit} # timeout=10
+Checking out Revision 0913efd1787d6850d54d96a6f4ee368553d8fa1e (refs/remotes/origin/initial)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 0913efd1787d6850d54d96a6f4ee368553d8fa1e
+Commit message: "migrate spark to kubernetes scheduler and rbac for default serviceaccount - add build script - light housekeeping"
+ > git rev-list --no-walk 0913efd1787d6850d54d96a6f4ee368553d8fa1e # timeout=10
+[build-spark-k8s-native-images] $ /bin/sh -xe /tmp/jenkins6796794292268129196.sh
++ spark/buildImages.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  153M    0  416k    0     0   463k      0  0:05:38 --:--:--  0:05:38  463k 10  153M   10 16.4M    0     0  8945k      0  0:00:17  0:00:01  0:00:16 8945k 31  153M   31 48.4M    0     0  16.8M      0  0:00:09  0:00:02  0:00:07 16.8M 52  153M   52 80.7M    0     0  20.8M      0  0:00:07  0:00:03  0:00:04 20.8M 73  153M   73  112M    0     0  23.1M      0  0:00:06  0:00:04  0:00:02 23.1M 95  153M   95  145M    0     0  24.8M      0  0:00:06  0:00:05  0:00:01 29.2M100  153M  100  153M    0     0  25.1M      0  0:00:06  0:00:06 --:--:-- 32.4M
+spark/buildImages.sh: line 5:  : command not found
+Sending build context to Docker daemon  184.3MB
+Step 1/15 : FROM openjdk:8-alpine
+Trying to pull repository docker.io/library/openjdk ... 
+8-alpine: Pulling from docker.io/library/openjdk
+cd784148e348: Pulling fs layer
+35920a071f91: Pulling fs layer
+f8a5c2c61767: Pulling fs layer
+35920a071f91: Verifying Checksum
+35920a071f91: Download complete
+cd784148e348: Verifying Checksum
+cd784148e348: Download complete
+cd784148e348: Pull complete
+35920a071f91: Pull complete
+f8a5c2c61767: Verifying Checksum
+f8a5c2c61767: Download complete
+f8a5c2c61767: Pull complete
+Digest: sha256:d146ac4892198bfef92e2d246e5b2b17894056ce9534ae0a2837c8d2920c2053
+Status: Downloaded newer image for docker.io/openjdk:8-alpine
+ ---> 04060a9dfc39
+Step 2/15 : ARG spark_jars=jars
+ ---> Running in e4ca6f8d5160
+ ---> fe208e67de8a
+Removing intermediate container e4ca6f8d5160
+Step 3/15 : ARG img_path=kubernetes/dockerfiles
+ ---> Running in 7df39b5bf058
+ ---> 30594922ecf7
+Removing intermediate container 7df39b5bf058
+Step 4/15 : ARG k8s_tests=kubernetes/tests
+ ---> Running in 4fdab9248eb0
+ ---> d3bf794f5ec4
+Removing intermediate container 4fdab9248eb0
+Step 5/15 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat linux-pam &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir &&     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     echo "auth required pam_wheel.so use_uid" >> /etc/pam.d/su &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd
+ ---> Running in 4d69030d10f6
+
+[91m[0m[91m+ apk upgrade --no-cache
+[0mfetch http://dl-cdn.alpinelinux.org/alpine/v3.8/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.8/community/x86_64/APKINDEX.tar.gz
+OK: 101 MiB in 53 packages
+[91m+ apk add --no-cache bash tini libc6-compat linux-pam
+[0mfetch http://dl-cdn.alpinelinux.org/alpine/v3.8/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.8/community/x86_64/APKINDEX.tar.gz
+(1/8) Installing ncurses-terminfo-base (6.1_p20180818-r1)
+(2/8) Installing ncurses-terminfo (6.1_p20180818-r1)
+(3/8) Installing ncurses-libs (6.1_p20180818-r1)
+(4/8) Installing readline (7.0.003-r0)
+(5/8) Installing bash (4.4.19-r1)
+Executing bash-4.4.19-r1.post-install
+(6/8) Installing libc6-compat (1.1.19-r10)
+(7/8) Installing linux-pam (1.3.0-r0)
+(8/8) Installing tini (0.18.0-r0)
+Executing busybox-1.28.4-r2.trigger
+OK: 110 MiB in 61 packages
+[91m+ mkdir -p /opt/spark
+[0m[91m+ mkdir -p /opt/spark/work-dir
+[0m[91m+ touch /opt/spark/RELEASE
+[0m[91m+ rm /bin/sh
+[0m[91m+ ln -sv /bin/bash /bin/sh
+[0m'/bin/sh' -> '/bin/bash'
+[91m+ echo 'auth required pam_wheel.so use_uid'
++ chgrp root /etc/passwd
+[0m[91m+ chmod ug+rw /etc/passwd
+[0m ---> c7bed00f0335
+Removing intermediate container 4d69030d10f6
+Step 6/15 : COPY ${spark_jars} /opt/spark/jars
+ ---> 57e1bdee39ce
+Removing intermediate container 52a46d012e6a
+Step 7/15 : COPY bin /opt/spark/bin
+ ---> 75d1d8976a45
+Removing intermediate container 147bfb5e164a
+Step 8/15 : COPY sbin /opt/spark/sbin
+ ---> c75b68041751
+Removing intermediate container c7508edba20c
+Step 9/15 : COPY ${img_path}/spark/entrypoint.sh /opt/
+ ---> 30a480785346
+Removing intermediate container ed9cc13c0dfd
+Step 10/15 : COPY examples /opt/spark/examples
+ ---> 46af2921318f
+Removing intermediate container b1d43fa1b81f
+Step 11/15 : COPY ${k8s_tests} /opt/spark/tests
+ ---> 302a4fff370c
+Removing intermediate container 9d489e77ddec
+Step 12/15 : COPY data /opt/spark/data
+ ---> e4a963ab84e9
+Removing intermediate container aaebedc0cff5
+Step 13/15 : ENV SPARK_HOME /opt/spark
+ ---> Running in 16e4a93aa1b6
+ ---> b04b48fe3a4c
+Removing intermediate container 16e4a93aa1b6
+Step 14/15 : WORKDIR /opt/spark/work-dir
+ ---> 13fad11bdaf0
+Removing intermediate container 809f37634644
+Step 15/15 : ENTRYPOINT /opt/entrypoint.sh
+ ---> Running in 974832e6650e
+ ---> 8edfd70f1584
+Removing intermediate container 974832e6650e
+Successfully built 8edfd70f1584
+The push refers to a repository [instance-1:8080/spark]
+722af3d61471: Preparing
+9d32ae09249e: Preparing
+80d3cc92f8b2: Preparing
+59ceae781454: Preparing
+71e57444dca0: Preparing
+83b3fa094198: Preparing
+8622a57b0404: Preparing
+48911d1ec44a: Preparing
+ac1faac0988e: Preparing
+dbc783c89851: Preparing
+7bff100f35cb: Preparing
+8622a57b0404: Waiting
+48911d1ec44a: Waiting
+ac1faac0988e: Waiting
+dbc783c89851: Waiting
+7bff100f35cb: Waiting
+9d32ae09249e: Pushed
+59ceae781454: Pushed
+71e57444dca0: Pushed
+83b3fa094198: Pushed
+722af3d61471: Pushed
+ac1faac0988e: Layer already exists
+7bff100f35cb: Layer already exists
+dbc783c89851: Layer already exists
+80d3cc92f8b2: Pushed
+48911d1ec44a: Pushed
+8622a57b0404: Pushed
+2.4.0: digest: sha256:ea9ac65f7f32dcf27c144c6a2bbc6aee1f3221f652f556e29333db33fc776256 size: 2624
+Starting Kubernetes deployment
+Loading configuration: /var/jenkins_home/workspace/build-spark-k8s-native-images/spark/spark-rbac.yaml
+ERROR: ERROR: java.lang.NullPointerException
+hudson.remoting.ProxyException: java.lang.NullPointerException
+	at io.fabric8.kubernetes.client.dsl.internal.NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableListImpl.acceptVisitors(NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableListImpl.java:286)
+	at io.fabric8.kubernetes.client.dsl.internal.NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableListImpl.get(NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableListImpl.java:278)
+	at io.fabric8.kubernetes.client.dsl.internal.NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableListImpl.get(NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableListImpl.java:65)
+	at com.microsoft.jenkins.kubernetes.KubernetesClientWrapper.apply(KubernetesClientWrapper.java:137)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand$DeploymentTask.doCall(DeploymentCommand.java:168)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand$DeploymentTask.call(DeploymentCommand.java:122)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand$DeploymentTask.call(DeploymentCommand.java:105)
+	at hudson.FilePath.act(FilePath.java:1165)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand.execute(DeploymentCommand.java:67)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand.execute(DeploymentCommand.java:46)
+	at com.microsoft.jenkins.azurecommons.command.CommandService.runCommand(CommandService.java:88)
+	at com.microsoft.jenkins.azurecommons.command.CommandService.execute(CommandService.java:96)
+	at com.microsoft.jenkins.azurecommons.command.CommandService.executeCommands(CommandService.java:75)
+	at com.microsoft.jenkins.azurecommons.command.BaseCommandContext.executeCommands(BaseCommandContext.java:77)
+	at com.microsoft.jenkins.kubernetes.KubernetesDeploy.perform(KubernetesDeploy.java:42)
+	at hudson.tasks.BuildStepCompatibilityLayer.perform(BuildStepCompatibilityLayer.java:81)
+	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:20)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:744)
+	at hudson.model.Build$BuildExecution.build(Build.java:206)
+	at hudson.model.Build$BuildExecution.doRun(Build.java:163)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.run(AbstractBuild.java:504)
+	at hudson.model.Run.execute(Run.java:1810)
+	at hudson.model.FreeStyleBuild.run(FreeStyleBuild.java:43)
+	at hudson.model.ResourceController.execute(ResourceController.java:97)
+	at hudson.model.Executor.run(Executor.java:429)
+ERROR: Kubernetes deployment ended with HasError
+Finished: FAILURE

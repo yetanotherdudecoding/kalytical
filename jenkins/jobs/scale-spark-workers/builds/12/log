@@ -1,0 +1,7 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/scale-spark-workers
+[scale-spark-workers] $ /bin/sh -xe /tmp/jenkins6487974974704620045.sh
++ kubectl scale --replicas=2 spark-cluster-01-spark-worker
+error: resource(s) were provided, but no name, label selector, or --all flag specified
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

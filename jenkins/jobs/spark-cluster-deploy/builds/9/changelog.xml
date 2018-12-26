@@ -1,0 +1,11 @@
+commit 33ffe0556091d3e6314ab0f79ff87a072d7fb897
+tree 81b4892d67cbc095e73e385d2619d6b6be3ed067
+parent 8d976d916917d4640ec81881502627c7f72200d5
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:32:01 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:32:01 +0000
+
+    update names and such
+
+
+
+:100644 100644 01c2dd89321b51e6a45db7315b603984ef00080e b4dfdf94a5d9d4aa35cdfdd193955801fe62095c M	spark/spark-cluster-deploy.yaml

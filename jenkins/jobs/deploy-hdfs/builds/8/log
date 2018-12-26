@@ -1,0 +1,272 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/deploy-hdfs
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/kalytical.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/kalytical.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/initial^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/initial^{commit} # timeout=10
+Checking out Revision 685696ef16dcc7389bef9e4714442b6c9c1ecf86 (refs/remotes/origin/initial)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 685696ef16dcc7389bef9e4714442b6c9c1ecf86
+Commit message: "update hdfs"
+ > git rev-list --no-walk 8d6a3ecbb528247e2099317e335ce612dfc0b29d # timeout=10
+[deploy-hdfs] $ docker build -t instance-2:8080/hdfs:8 --pull=true --file=hdfs/Dockerfile hdfs
+Sending build context to Docker daemon  12.29kB
+Step 1/20 : FROM instance-2:8080/openjdk:8-jdk
+Trying to pull repository instance-2:8080/openjdk ... 
+8-jdk: Pulling from instance-2:8080/openjdk
+Digest: sha256:ba0816efdccc191b6774a9c5a8857487fe919ef63ce0a12849466eba30193144
+Status: Image is up to date for instance-2:8080/openjdk:8-jdk
+ ---> c14ba9d23b3a
+Step 2/20 : USER root
+ ---> Using cache
+ ---> bdee2f34eed8
+Step 3/20 : WORKDIR /opt
+ ---> Using cache
+ ---> 614356d249db
+Step 4/20 : RUN apt-get update -y && apt-get install vim net-tools telnet -y
+ ---> Using cache
+ ---> 34b1cad097be
+Step 5/20 : RUN curl -O http://instance-2:8081/repository/raw-artifacts/oss/hadoop-2.7.7.tar.gz
+ ---> Using cache
+ ---> 0c8e2b940a90
+Step 6/20 : RUN tar -xzf hadoop-2.7.7.tar.gz
+ ---> Using cache
+ ---> ba4669de1666
+Step 7/20 : COPY hdfs-site.xml hadoop-2.7.7/etc/hadoop/hdfs-site.xml
+ ---> Using cache
+ ---> 0c52fc553a07
+Step 8/20 : COPY core-site.xml hadoop-2.7.7/etc/hadoop/core-site.xml
+ ---> Using cache
+ ---> f9d483c6f41e
+Step 9/20 : COPY entrypoint.sh /entrypoint.sh
+ ---> f569079740c0
+Removing intermediate container 01ab1c49bf00
+Step 10/20 : RUN chmod +x /entrypoint.sh
+ ---> Running in 1db2918a44bf
+
+[91m[0m ---> 1d2078808242
+Removing intermediate container 1db2918a44bf
+Step 11/20 : RUN hadoop-2.7.7/bin/hdfs namenode -format
+ ---> Running in bf50a66f4224
+
+[91m[0m[91m18/12/14 15:58:57 INFO namenode.NameNode: STARTUP_MSG: 
+/************************************************************
+STARTUP_MSG: Starting NameNode
+STARTUP_MSG:   host = 01ab1c49bf00/172.17.0.2
+STARTUP_MSG:   args = [-format]
+STARTUP_MSG:   version = 2.7.7
+STARTUP_MSG:   classpath = /opt/hadoop-2.7.7/etc/hadoop:/opt/hadoop-2.7.7/share/hadoop/common/lib/activation-1.1.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/apacheds-i18n-2.0.0-M15.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/apacheds-kerberos-codec-2.0.0-M15.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/api-asn1-api-1.0.0-M20.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/api-util-1.0.0-M20.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/asm-3.2.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/avro-1.7.4.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-beanutils-1.7.0.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-beanutils-core-1.8.0.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-cli-1.2.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-codec-1.4.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-collections-3.2.2.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-compress-1.4.1.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-configuration-1.6.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-digester-1.8.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-httpclient-3.1.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-io-2.4.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-lang-2.6.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-logging-1.1.3.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-math3-3.1.1.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/commons-net-3.1.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/curator-client-2.7.1.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/curator-framework-2.7.1.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/curator-recipes-2.7.1.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/gson-2.2.4.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/guava-11.0.2.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/hadoop-annotations-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/hadoop-auth-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/hamcrest-core-1.3.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/htrace-core-3.1.0-incubating.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/httpclient-4.2.5.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/httpcore-4.2.5.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jackson-core-asl-1.9.13.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jackson-jaxrs-1.9.13.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jackson-mapper-asl-1.9.13.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jackson-xc-1.9.13.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/java-xmlbuilder-0.4.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jaxb-api-2.2.2.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jaxb-impl-2.2.3-1.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jersey-core-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jersey-json-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jersey-server-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jets3t-0.9.0.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jettison-1.1.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jetty-6.1.26.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jetty-sslengine-6.1.26.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jetty-util-6.1.26.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jsch-0.1.54.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jsp-api-2.1.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/jsr305-3.0.0.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/junit-4.11.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/log4j-1.2.17.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/mockito-all-1.8.5.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/netty-3.6.2.Final.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/paranamer-2.3.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/protobuf-java-2.5.0.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/servlet-api-2.5.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/slf4j-api-1.7.10.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/snappy-java-1.0.4.1.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/stax-api-1.0-2.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/xmlenc-0.52.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/xz-1.0.jar:/opt/hadoop-2.7.7/share/hadoop/common/lib/zookeeper-3.4.6.jar:/opt/hadoop-2.7.7/share/hadoop/common/hadoop-common-2.7.7-tests.jar:/opt/hadoop-2.7.7/share/hadoop/common/hadoop-common-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/common/hadoop-nfs-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/asm-3.2.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/commons-cli-1.2.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/commons-codec-1.4.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/commons-daemon-1.0.13.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/commons-io-2.4.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/commons-lang-2.6.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/commons-logging-1.1.3.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/guava-11.0.2.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/htrace-core-3.1.0-incubating.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/jackson-core-asl-1.9.13.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/jackson-mapper-asl-1.9.13.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/jersey-core-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/jersey-server-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/jetty-6.1.26.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/jetty-util-6.1.26.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/jsr305-3.0.0.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/leveldbjni-all-1.8.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/log4j-1.2.17.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/netty-3.6.2.Final.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/netty-all-4.0.23.Final.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/protobuf-java-2.5.0.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/servlet-api-2.5.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/xercesImpl-2.9.1.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/xml-apis-1.3.04.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/lib/xmlenc-0.52.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/hadoop-hdfs-2.7.7-tests.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/hadoop-hdfs-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/hdfs/hadoop-hdfs-nfs-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/activation-1.1.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/aopalliance-1.0.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/asm-3.2.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/commons-cli-1.2.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/commons-codec-1.4.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/commons-collections-3.2.2.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/commons-compress-1.4.1.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/commons-io-2.4.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/commons-lang-2.6.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/commons-logging-1.1.3.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/guava-11.0.2.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/guice-3.0.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/guice-servlet-3.0.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jackson-core-asl-1.9.13.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jackson-jaxrs-1.9.13.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jackson-mapper-asl-1.9.13.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jackson-xc-1.9.13.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/javax.inject-1.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jaxb-api-2.2.2.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jaxb-impl-2.2.3-1.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jersey-client-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jersey-core-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jersey-guice-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jersey-json-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jersey-server-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jettison-1.1.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jetty-6.1.26.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jetty-util-6.1.26.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/jsr305-3.0.0.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/leveldbjni-all-1.8.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/log4j-1.2.17.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/netty-3.6.2.Final.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/protobuf-java-2.5.0.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/servlet-api-2.5.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/stax-api-1.0-2.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/xz-1.0.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/zookeeper-3.4.6-tests.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/lib/zookeeper-3.4.6.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-api-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-applications-distributedshell-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-applications-unmanaged-am-launcher-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-client-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-common-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-registry-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-server-applicationhistoryservice-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-server-common-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-server-nodemanager-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-server-resourcemanager-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-server-sharedcachemanager-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-server-tests-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/yarn/hadoop-yarn-server-web-proxy-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/aopalliance-1.0.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/asm-3.2.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/avro-1.7.4.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/commons-compress-1.4.1.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/commons-io-2.4.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/guice-3.0.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/guice-servlet-3.0.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/hadoop-annotations-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/hamcrest-core-1.3.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/jackson-core-asl-1.9.13.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/jackson-mapper-asl-1.9.13.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/javax.inject-1.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/jersey-core-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/jersey-guice-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/jersey-server-1.9.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/junit-4.11.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/leveldbjni-all-1.8.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/log4j-1.2.17.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/netty-3.6.2.Final.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/paranamer-2.3.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/protobuf-java-2.5.0.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/snappy-java-1.0.4.1.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/lib/xz-1.0.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/hadoop-mapreduce-client-app-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/hadoop-mapreduce-client-common-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/hadoop-mapreduce-client-hs-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/hadoop-mapreduce-client-hs-plugins-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-2.7.7-tests.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/hadoop-mapreduce-client-shuffle-2.7.7.jar:/opt/hadoop-2.7.7/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.7.jar:/contrib/capacity-scheduler/*.jar
+STARTUP_MSG:   build = Unknown -r c1aad84bd27cd79c3d1a7dd58202a8c3ee1ed3ac; compiled by 'stevel' on 2018-07-18T22:47Z
+STARTUP_MSG:   java = 1.8.0_181
+************************************************************/
+[0m[91m18/12/14 15:58:57 INFO namenode.NameNode: registered UNIX signal handlers for [TERM, HUP, INT]
+[0m[91m18/12/14 15:58:57 INFO namenode.NameNode: createNameNode [-format]
+[0mFormatting using clusterid: CID-6de273ae-a565-4707-9342-9c2745e7c85b
+[91m18/12/14 15:58:57 INFO namenode.FSNamesystem: No KeyProvider found.
+[0m[91m18/12/14 15:58:57 INFO namenode.FSNamesystem: fsLock is fair: true
+[0m[91m18/12/14 15:58:57 INFO namenode.FSNamesystem: Detailed lock hold time metrics enabled: false
+[0m[91m18/12/14 15:58:58 INFO blockmanagement.DatanodeManager: dfs.block.invalidate.limit=1000
+18/12/14 15:58:58 INFO blockmanagement.DatanodeManager: dfs.namenode.datanode.registration.ip-hostname-check=true
+[0m[91m18/12/14 15:58:58 INFO blockmanagement.BlockManager: dfs.namenode.startup.delay.block.deletion.sec is set to 000:00:00:00.000
+[0m[91m18/12/14 15:58:58 INFO blockmanagement.BlockManager: The block deletion will start around 2018 Dec 14 15:58:58
+[0m[91m18/12/14 15:58:58 INFO util.GSet: Computing capacity for map BlocksMap
+18/12/14 15:58:58 INFO util.GSet: VM type       = 64-bit
+[0m[91m18/12/14 15:58:58 INFO util.GSet: 2.0% max memory 889 MB = 17.8 MB
+[0m[91m18/12/14 15:58:58 INFO util.GSet: capacity      = 2^21 = 2097152 entries
+[0m[91m18/12/14 15:58:58 INFO blockmanagement.BlockManager: dfs.block.access.token.enable=false
+[0m[91m18/12/14 15:58:58 INFO blockmanagement.BlockManager: defaultReplication         = 1
+18/12/14 15:58:58 INFO blockmanagement.BlockManager: maxReplication             = 512
+[0m[91m18/12/14 15:58:58 INFO blockmanagement.BlockManager: minReplication             = 1
+18/12/14 15:58:58 INFO blockmanagement.BlockManager: maxReplicationStreams      = 2
+[0m[91m18/12/14 15:58:58 INFO blockmanagement.BlockManager: replicationRecheckInterval = 3000
+18/12/14 15:58:58 INFO blockmanagement.BlockManager: encryptDataTransfer        = false
+18/12/14 15:58:58 INFO blockmanagement.BlockManager: maxNumBlocksToLog          = 1000
+[0m[91m18/12/14 15:58:58 INFO namenode.FSNamesystem: fsOwner             = root (auth:SIMPLE)
+18/12/14 15:58:58 INFO namenode.FSNamesystem: supergroup          = supergroup
+[0m[91m18/12/14 15:58:58 INFO namenode.FSNamesystem: isPermissionEnabled = true
+[0m[91m18/12/14 15:58:58 INFO namenode.FSNamesystem: HA Enabled: false
+[0m[91m18/12/14 15:58:58 INFO namenode.FSNamesystem: Append Enabled: true
+[0m[91m18/12/14 15:58:58 INFO util.GSet: Computing capacity for map INodeMap
+18/12/14 15:58:58 INFO util.GSet: VM type       = 64-bit
+[0m[91m18/12/14 15:58:58 INFO util.GSet: 1.0% max memory 889 MB = 8.9 MB
+18/12/14 15:58:58 INFO util.GSet: capacity      = 2^20 = 1048576 entries
+[0m[91m18/12/14 15:58:58 INFO namenode.FSDirectory: ACLs enabled? false
+18/12/14 15:58:58 INFO namenode.FSDirectory: XAttrs enabled? true
+18/12/14 15:58:58 INFO namenode.FSDirectory: Maximum size of an xattr: 16384
+18/12/14 15:58:58 INFO namenode.NameNode: Caching file names occuring more than 10 times
+[0m[91m18/12/14 15:58:58 INFO util.GSet: Computing capacity for map cachedBlocks
+18/12/14 15:58:58 INFO util.GSet: VM type       = 64-bit
+[0m[91m18/12/14 15:58:58 INFO util.GSet: 0.25% max memory 889 MB = 2.2 MB
+18/12/14 15:58:58 INFO util.GSet: capacity      = 2^18 = 262144 entries
+[0m[91m18/12/14 15:58:58 INFO namenode.FSNamesystem: dfs.namenode.safemode.threshold-pct = 0.9990000128746033
+[0m[91m18/12/14 15:58:58 INFO namenode.FSNamesystem: dfs.namenode.safemode.min.datanodes = 0
+18/12/14 15:58:58 INFO namenode.FSNamesystem: dfs.namenode.safemode.extension     = 30000
+[0m[91m18/12/14 15:58:58 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.window.num.buckets = 10
+[0m[91m18/12/14 15:58:58 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.num.users = 10
+18/12/14 15:58:58 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.windows.minutes = 1,5,25
+[0m[91m18/12/14 15:58:58 INFO namenode.FSNamesystem: Retry cache on namenode is enabled
+18/12/14 15:58:58 INFO namenode.FSNamesystem: Retry cache will use 0.03 of total heap and retry cache entry expiry time is 600000 millis
+[0m[91m18/12/14 15:58:58 INFO util.GSet: Computing capacity for map NameNodeRetryCache
+[0m[91m18/12/14 15:58:58 INFO util.GSet: VM type       = 64-bit
+[0m[91m18/12/14 15:58:58 INFO util.GSet: 0.029999999329447746% max memory 889 MB = 273.1 KB
+18/12/14 15:58:58 INFO util.GSet: capacity      = 2^15 = 32768 entries
+[0m[91m18/12/14 15:58:58 INFO namenode.FSImage: Allocated new BlockPoolId: BP-184355992-172.17.0.2-1544803138172
+[0m[91m18/12/14 15:58:58 INFO common.Storage: Storage directory /tmp/hadoop-root/dfs/name has been successfully formatted.
+[0m[91m18/12/14 15:58:58 INFO namenode.FSImageFormatProtobuf: Saving image file /tmp/hadoop-root/dfs/name/current/fsimage.ckpt_0000000000000000000 using no compression
+[0m[91m18/12/14 15:58:58 INFO namenode.FSImageFormatProtobuf: Image file /tmp/hadoop-root/dfs/name/current/fsimage.ckpt_0000000000000000000 of size 320 bytes saved in 0 seconds.
+[0m[91m18/12/14 15:58:58 INFO namenode.NNStorageRetentionManager: Going to retain 1 images with txid >= 0
+[0m[91m18/12/14 15:58:58 INFO util.ExitUtil: Exiting with status 0
+[0m[91m18/12/14 15:58:58 INFO namenode.NameNode: SHUTDOWN_MSG: 
+/************************************************************
+SHUTDOWN_MSG: Shutting down NameNode at 01ab1c49bf00/172.17.0.2
+************************************************************/
+[0m ---> 8be2d57a3e9a
+Removing intermediate container bf50a66f4224
+Step 12/20 : ENTRYPOINT sh -c /entrypoint.sh
+ ---> Running in cd01b6cf2e36
+ ---> b2754fd8bcd9
+Removing intermediate container cd01b6cf2e36
+Step 13/20 : EXPOSE 50070
+ ---> Running in 58ffe985fdb5
+ ---> 30873b0cca5a
+Removing intermediate container 58ffe985fdb5
+Step 14/20 : EXPOSE 9000
+ ---> Running in b821052de832
+ ---> 8718cc0f6db3
+Removing intermediate container b821052de832
+Step 15/20 : EXPOSE 8020
+ ---> Running in 4b867e4e5883
+ ---> ee8d4cc76896
+Removing intermediate container 4b867e4e5883
+Step 16/20 : EXPOSE 50075
+ ---> Running in 0522386df2f7
+ ---> 4ded9612b7ce
+Removing intermediate container 0522386df2f7
+Step 17/20 : EXPOSE 50475
+ ---> Running in 823c8a0a9b92
+ ---> f2adccf007cd
+Removing intermediate container 823c8a0a9b92
+Step 18/20 : EXPOSE 50010
+ ---> Running in f1bd6e738e0a
+ ---> 1b5679b8cdd9
+Removing intermediate container f1bd6e738e0a
+Step 19/20 : EXPOSE 50020
+ ---> Running in 831cc39c27c6
+ ---> 675e06c485e6
+Removing intermediate container 831cc39c27c6
+Step 20/20 : EXPOSE 50090
+ ---> Running in 25ff1eb052c2
+ ---> 68d6412cb972
+Removing intermediate container 25ff1eb052c2
+Successfully built 68d6412cb972
+[deploy-hdfs] $ docker tag 68d6412cb972 instance-2:8080/hdfs:latest
+[deploy-hdfs] $ docker inspect 68d6412cb972
+[deploy-hdfs] $ docker push instance-2:8080/hdfs:8
+The push refers to a repository [instance-2:8080/hdfs]
+d807686f95e9: Preparing
+beab9731da25: Preparing
+b543ee2d1c2f: Preparing
+e4566e599b2e: Preparing
+086042822368: Preparing
+06eb280f9a66: Preparing
+29293e31b162: Preparing
+344960ee5721: Preparing
+7ce48c206d82: Preparing
+a40eb036725c: Preparing
+d7d48188b655: Preparing
+b176545a110b: Preparing
+cc788d7feedb: Preparing
+f75e64f96dbc: Preparing
+8f7ee6d76fd9: Preparing
+c23711a84ad4: Preparing
+90d1009ce6fe: Preparing
+06eb280f9a66: Waiting
+29293e31b162: Waiting
+b176545a110b: Waiting
+344960ee5721: Waiting
+7ce48c206d82: Waiting
+cc788d7feedb: Waiting
+a40eb036725c: Waiting
+f75e64f96dbc: Waiting
+d7d48188b655: Waiting
+8f7ee6d76fd9: Waiting
+90d1009ce6fe: Waiting
+e4566e599b2e: Layer already exists
+086042822368: Layer already exists
+06eb280f9a66: Layer already exists
+29293e31b162: Layer already exists
+7ce48c206d82: Layer already exists
+344960ee5721: Layer already exists
+d7d48188b655: Layer already exists
+a40eb036725c: Layer already exists
+b176545a110b: Layer already exists
+cc788d7feedb: Layer already exists
+f75e64f96dbc: Layer already exists
+8f7ee6d76fd9: Layer already exists
+c23711a84ad4: Layer already exists
+90d1009ce6fe: Layer already exists
+b543ee2d1c2f: Pushed
+d807686f95e9: Pushed
+beab9731da25: Pushed
+8: digest: sha256:a351e325fdc2c6b92ff9da64615ccda4c693c005ae899d40266ed1766d0d9681 size: 3884
+[deploy-hdfs] $ docker push instance-2:8080/hdfs:latest
+The push refers to a repository [instance-2:8080/hdfs]
+d807686f95e9: Preparing
+beab9731da25: Preparing
+b543ee2d1c2f: Preparing
+e4566e599b2e: Preparing
+086042822368: Preparing
+06eb280f9a66: Preparing
+29293e31b162: Preparing
+344960ee5721: Preparing
+7ce48c206d82: Preparing
+a40eb036725c: Preparing
+d7d48188b655: Preparing
+b176545a110b: Preparing
+cc788d7feedb: Preparing
+f75e64f96dbc: Preparing
+8f7ee6d76fd9: Preparing
+c23711a84ad4: Preparing
+90d1009ce6fe: Preparing
+06eb280f9a66: Waiting
+8f7ee6d76fd9: Waiting
+d7d48188b655: Waiting
+c23711a84ad4: Waiting
+b176545a110b: Waiting
+90d1009ce6fe: Waiting
+cc788d7feedb: Waiting
+f75e64f96dbc: Waiting
+29293e31b162: Waiting
+7ce48c206d82: Waiting
+344960ee5721: Waiting
+a40eb036725c: Waiting
+086042822368: Layer already exists
+beab9731da25: Layer already exists
+d807686f95e9: Layer already exists
+e4566e599b2e: Layer already exists
+b543ee2d1c2f: Layer already exists
+29293e31b162: Layer already exists
+344960ee5721: Layer already exists
+06eb280f9a66: Layer already exists
+7ce48c206d82: Layer already exists
+b176545a110b: Layer already exists
+d7d48188b655: Layer already exists
+cc788d7feedb: Layer already exists
+f75e64f96dbc: Layer already exists
+a40eb036725c: Layer already exists
+8f7ee6d76fd9: Layer already exists
+c23711a84ad4: Layer already exists
+90d1009ce6fe: Layer already exists
+latest: digest: sha256:a351e325fdc2c6b92ff9da64615ccda4c693c005ae899d40266ed1766d0d9681 size: 3884
+Starting Kubernetes deployment
+Loading configuration: /var/jenkins_home/workspace/deploy-hdfs/hdfs/hdfs-deploy.yaml
+Applied Service: Service(apiVersion=v1, kind=Service, metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=2018-12-12T14:49:13Z, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=null, initializers=null, labels=null, name=hdfs-service, namespace=bsavoy, ownerReferences=[], resourceVersion=78192, selfLink=/api/v1/namespaces/bsavoy/services/hdfs-service, uid=171d9081-fe1d-11e8-b155-42010a8e0003, additionalProperties={}), spec=ServiceSpec(clusterIP=10.110.34.48, externalIPs=[], externalName=null, externalTrafficPolicy=null, healthCheckNodePort=null, loadBalancerIP=null, loadBalancerSourceRanges=[], ports=[ServicePort(name=null, nodePort=null, port=9000, protocol=TCP, targetPort=IntOrString(IntVal=9000, Kind=null, StrVal=null, additionalProperties={}), additionalProperties={})], selector={app=hdfs}, sessionAffinity=None, type=ClusterIP, additionalProperties={}), status=ServiceStatus(loadBalancer=LoadBalancerStatus(ingress=[], additionalProperties={}), additionalProperties={}), additionalProperties={})
+Applied Service: Service(apiVersion=v1, kind=Service, metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=2018-12-12T14:49:13Z, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=null, initializers=null, labels=null, name=hdfs-service, namespace=bsavoy, ownerReferences=[], resourceVersion=78194, selfLink=/api/v1/namespaces/bsavoy/services/hdfs-service, uid=171d9081-fe1d-11e8-b155-42010a8e0003, additionalProperties={}), spec=ServiceSpec(clusterIP=10.110.34.48, externalIPs=[], externalName=null, externalTrafficPolicy=null, healthCheckNodePort=null, loadBalancerIP=null, loadBalancerSourceRanges=[], ports=[ServicePort(name=null, nodePort=null, port=50075, protocol=TCP, targetPort=IntOrString(IntVal=50075, Kind=null, StrVal=null, additionalProperties={}), additionalProperties={})], selector={app=hdfs}, sessionAffinity=None, type=ClusterIP, additionalProperties={}), status=ServiceStatus(loadBalancer=LoadBalancerStatus(ingress=[], additionalProperties={}), additionalProperties={}), additionalProperties={})
+Applied Deployment: Deployment(apiVersion=extensions/v1beta1, kind=Deployment, metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=2018-12-12T15:13:47Z, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=8, initializers=null, labels={app=hdfs}, name=hdfs-deployment, namespace=bsavoy, ownerReferences=[], resourceVersion=78196, selfLink=/apis/extensions/v1beta1/namespaces/bsavoy/deployments/hdfs-deployment, uid=85c8b7f1-fe20-11e8-b0c4-42010a8e0003, additionalProperties={}), spec=DeploymentSpec(minReadySeconds=null, paused=null, progressDeadlineSeconds=2147483647, replicas=1, revisionHistoryLimit=2147483647, rollbackTo=null, selector=LabelSelector(matchExpressions=[], matchLabels={app=hdfs}, additionalProperties={}), strategy=DeploymentStrategy(rollingUpdate=RollingUpdateDeployment(maxSurge=IntOrString(IntVal=1, Kind=null, StrVal=null, additionalProperties={}), maxUnavailable=IntOrString(IntVal=1, Kind=null, StrVal=null, additionalProperties={}), additionalProperties={}), type=RollingUpdate, additionalProperties={}), template=PodTemplateSpec(metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=null, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=null, initializers=null, labels={app=hdfs}, name=null, namespace=null, ownerReferences=[], resourceVersion=null, selfLink=null, uid=null, additionalProperties={}), spec=PodSpec(activeDeadlineSeconds=null, affinity=null, automountServiceAccountToken=null, containers=[Container(args=[], command=[], env=[], envFrom=[], image=instance-2:8080/hdfs:8, imagePullPolicy=IfNotPresent, lifecycle=null, livenessProbe=null, name=hdfs-og, ports=[], readinessProbe=null, resources=ResourceRequirements(limits={cpu=Quantity(amount=1, format=null, additionalProperties={}), memory=Quantity(amount=2Gi, format=null, additionalProperties={})}, requests={cpu=Quantity(amount=500m, format=null, additionalProperties={}), memory=Quantity(amount=1Gi, format=null, additionalProperties={})}, additionalProperties={}), securityContext=null, stdin=null, stdinOnce=null, terminationMessagePath=/dev/termination-log, terminationMessagePolicy=File, tty=null, volumeMounts=[], workingDir=null, additionalProperties={})], dnsPolicy=ClusterFirst, hostAliases=[], hostIPC=null, hostNetwork=null, hostPID=null, hostname=null, imagePullSecrets=[], initContainers=[], nodeName=null, nodeSelector=null, restartPolicy=Always, schedulerName=default-scheduler, securityContext=PodSecurityContext(fsGroup=null, runAsNonRoot=null, runAsUser=null, seLinuxOptions=null, supplementalGroups=[], additionalProperties={}), serviceAccount=null, serviceAccountName=null, subdomain=null, terminationGracePeriodSeconds=30, tolerations=[], volumes=[], additionalProperties={}), additionalProperties={}), additionalProperties={}), status=DeploymentStatus(availableReplicas=null, collisionCount=null, conditions=[DeploymentCondition(lastTransitionTime=2018-12-12T15:13:47Z, lastUpdateTime=2018-12-12T15:13:47Z, message=Deployment has minimum availability., reason=MinimumReplicasAvailable, status=True, type=Available, additionalProperties={})], observedGeneration=7, readyReplicas=null, replicas=1, unavailableReplicas=1, updatedReplicas=1, additionalProperties={}), additionalProperties={})
+Finished Kubernetes deployment
+Finished: SUCCESS

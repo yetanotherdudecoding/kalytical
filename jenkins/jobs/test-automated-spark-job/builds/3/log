@@ -1,0 +1,7 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/deploy-native-k8s-spark
+[deploy-native-k8s-spark] $ /bin/sh -xe /tmp/jenkins6335347814619790424.sh
++ kubectl get pods
+NAME                                 READY   STATUS    RESTARTS   AGE
+jenkins-deployment-69855d6f5-6cq9b   1/1     Running   0          5h47m
+Finished: SUCCESS

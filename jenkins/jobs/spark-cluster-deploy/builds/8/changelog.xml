@@ -1,0 +1,22 @@
+commit 8d976d916917d4640ec81881502627c7f72200d5
+tree dba391aa98918c92be2f60d4476250a078cd5169
+parent e39c49659773c13c88e874d522bbf789d477479e
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:29:49 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:29:49 +0000
+
+    update names and such
+
+
+
+:100644 100644 2c189a583096a7d9097327d0bcbf3cf15a27d1b6 01c2dd89321b51e6a45db7315b603984ef00080e M	spark/spark-cluster-deploy.yaml
+commit e39c49659773c13c88e874d522bbf789d477479e
+tree 4243e756c47e91db0e17c41c65b9523463a9fac2
+parent 8c13e00808f12f93c674894ef22bed4671dba755
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:27:14 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:27:14 +0000
+
+    fix up the spark worker deployment name
+
+
+
+:100644 100644 1d1b27137afdec8903005064041c54b9b2d332d5 2c189a583096a7d9097327d0bcbf3cf15a27d1b6 M	spark/spark-cluster-deploy.yaml

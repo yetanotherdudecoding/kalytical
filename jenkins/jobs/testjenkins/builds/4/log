@@ -1,0 +1,89 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/testjenkins
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/k8s-python-test-app.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/k8s-python-test-app.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/k8s-python-test-app.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 0988437de2194e5ddf103f00056c1b8bd991af88 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 0988437de2194e5ddf103f00056c1b8bd991af88
+Commit message: "Dockerfile edited online with Bitbucket"
+ > git rev-list --no-walk 0988437de2194e5ddf103f00056c1b8bd991af88 # timeout=10
+[testjenkins] $ docker build -t instance-2:8080/pythondemo:latest --pull=true /var/jenkins_home/workspace/testjenkins
+Sending build context to Docker daemon  78.34kB
+Step 1/7 : FROM python:2.7-slim
+Trying to pull repository docker.io/library/python ... 
+2.7-slim: Pulling from docker.io/library/python
+Digest: sha256:f82db224fbc9ff3309b7b62496e19d673738a568891604a12312e237e01ef147
+Status: Image is up to date for docker.io/python:2.7-slim
+ ---> 0dc3d8d47241
+Step 2/7 : WORKDIR /usr/src/app
+ ---> Using cache
+ ---> a8880d7527d2
+Step 3/7 : RUN pip install --upgrade pip
+ ---> Using cache
+ ---> f1278bbe2c02
+Step 4/7 : RUN pip install --upgrade setuptools
+ ---> Using cache
+ ---> 4fc05d63f4ec
+Step 5/7 : COPY ./pytest.py ./
+ ---> Using cache
+ ---> 7ee29bdba58d
+Step 6/7 : CMD python ./pytest.py
+ ---> Using cache
+ ---> 8a1016637267
+Step 7/7 : EXPOSE 8080
+ ---> Using cache
+ ---> a83d18d69265
+Successfully built a83d18d69265
+[testjenkins] $ docker tag a83d18d69265 instance-2:8080/pythondemo:latest
+[testjenkins] $ docker inspect a83d18d69265
+[testjenkins] $ docker push instance-2:8080/pythondemo:latest
+The push refers to a repository [instance-2:8080/pythondemo]
+e77e6808d194: Preparing
+3f8615609bcf: Preparing
+fa8944ef28d4: Preparing
+9f8a6958baf4: Preparing
+6cffeea81e5d: Preparing
+614a79865f6d: Preparing
+612d27bb923f: Preparing
+ef68f6734aa4: Preparing
+614a79865f6d: Waiting
+612d27bb923f: Waiting
+ef68f6734aa4: Waiting
+e77e6808d194: Pushed
+9f8a6958baf4: Pushed
+3f8615609bcf: Pushed
+ef68f6734aa4: Layer already exists
+6cffeea81e5d: Pushed
+fa8944ef28d4: Pushed
+612d27bb923f: Pushed
+614a79865f6d: Pushed
+latest: digest: sha256:1adbcb4e6e40a6225ec966aa74d50466236216b865f8bfec8e085e5c1077af34 size: 1999
+[testjenkins] $ docker push instance-2:8080/pythondemo:latest
+The push refers to a repository [instance-2:8080/pythondemo]
+e77e6808d194: Preparing
+3f8615609bcf: Preparing
+fa8944ef28d4: Preparing
+9f8a6958baf4: Preparing
+6cffeea81e5d: Preparing
+614a79865f6d: Preparing
+612d27bb923f: Preparing
+ef68f6734aa4: Preparing
+612d27bb923f: Waiting
+ef68f6734aa4: Waiting
+614a79865f6d: Waiting
+9f8a6958baf4: Layer already exists
+fa8944ef28d4: Layer already exists
+e77e6808d194: Layer already exists
+3f8615609bcf: Layer already exists
+614a79865f6d: Layer already exists
+612d27bb923f: Layer already exists
+ef68f6734aa4: Layer already exists
+6cffeea81e5d: Layer already exists
+latest: digest: sha256:1adbcb4e6e40a6225ec966aa74d50466236216b865f8bfec8e085e5c1077af34 size: 1999
+Finished: SUCCESS

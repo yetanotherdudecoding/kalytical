@@ -1,0 +1,11 @@
+commit 30be7baacab9593566a1c542b96d6240e2fd482d
+tree e90c73809db397ea092a81ec14dce721993ef52e
+parent a24457fbc1d9e54fa45d4d1ce4b7b569a64c2666
+author Bradley Savoy <brad.savoy@gmail.com> 2018-12-13 19:55:18 +0000
+committer Bradley Savoy <brad.savoy@gmail.com> 2018-12-13 19:55:18 +0000
+
+    pytest_deployment.yaml edited online with Bitbucket
+
+
+
+:100644 100644 e332d096b49310ae4b707f73f1ef6a319edb362f 70b85aa00b7f3c4e59eb0322ecf5bdcfe85cbce9 M	pytest_deployment.yaml

@@ -1,0 +1,86 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/deploy-mysql
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/kalytical.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/kalytical.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/initial^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/initial^{commit} # timeout=10
+Checking out Revision 5dbf9243ef89aebd50bfdfee077aa35038ea16e4 (refs/remotes/origin/initial)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 5dbf9243ef89aebd50bfdfee077aa35038ea16e4
+Commit message: "expose port for Hdfs outside cluster"
+ > git rev-list --no-walk 1a90b71f39a722034bd5ed63c58f4cf205cb9991 # timeout=10
+[deploy-mysql] $ docker build -t instance-1:8080/mysql:2 --pull=true --file=mysql/Dockerfile mysql
+Sending build context to Docker daemon  8.192kB
+Step 1/14 : FROM centos:7
+Trying to pull repository docker.io/library/centos ... 
+7: Pulling from docker.io/library/centos
+Digest: sha256:184e5f35598e333bfa7de10d8fb1cebb5ee4df5bc0f970bf2b1e7c7345136426
+Status: Image is up to date for docker.io/centos:7
+ ---> 1e1148e4cc2c
+Step 2/14 : USER root
+ ---> Using cache
+ ---> 4c1fa2572ce1
+Step 3/14 : WORKDIR /opt
+ ---> Using cache
+ ---> f24b4efed7a0
+Step 4/14 : RUN yum install wget -y
+ ---> Using cache
+ ---> 8809853b4bd9
+Step 5/14 : RUN wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+ ---> Using cache
+ ---> 97babb87372a
+Step 6/14 : RUN yum install mysql57-community-release-el7-9.noarch.rpm -y && yum install mysql-server -y
+ ---> Using cache
+ ---> b74f8e01af59
+Step 7/14 : COPY entrypoint.sh /entrypoint.sh
+ ---> Using cache
+ ---> 94ee85215c42
+Step 8/14 : RUN chmod +x /entrypoint.sh
+ ---> Using cache
+ ---> 0afe7809af67
+Step 9/14 : COPY setup.sql setup.sql
+ ---> Using cache
+ ---> 45104867ee55
+Step 10/14 : COPY configure.sh configure.sh
+ ---> Using cache
+ ---> 0f7bd301b8b4
+Step 11/14 : RUN chmod +x configure.sh setup.sql
+ ---> Using cache
+ ---> 3215aa92f512
+Step 12/14 : USER mysql
+ ---> Using cache
+ ---> dabe067981c4
+Step 13/14 : ENTRYPOINT sh -c /entrypoint.sh
+ ---> Using cache
+ ---> 175890f14104
+Step 14/14 : EXPOSE 3306
+ ---> Using cache
+ ---> b4a066a7b72c
+Successfully built b4a066a7b72c
+[deploy-mysql] $ docker tag b4a066a7b72c instance-1:8080/mysql:latest
+[deploy-mysql] $ docker inspect b4a066a7b72c
+[deploy-mysql] $ docker push instance-1:8080/mysql:2
+The push refers to a repository [instance-1:8080/mysql]
+2a7651e377f1: Preparing
+71197664abe1: Preparing
+960bae74e146: Preparing
+0cfcc0a65889: Preparing
+f093a02a60c6: Preparing
+50b2e3c06b44: Preparing
+8c01b7a35142: Preparing
+ae4399fab653: Preparing
+071d8bd76517: Preparing
+50b2e3c06b44: Waiting
+8c01b7a35142: Waiting
+071d8bd76517: Waiting
+0cfcc0a65889: Layer already exists
+8c01b7a35142: Layer already exists
+ae4399fab653: Waiting
+unauthorized: access to the requested resource is not authorized
+Build step 'Docker Build and Publish' marked build as failure
+Finished: FAILURE

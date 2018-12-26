@@ -1,0 +1,26 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/spark-deploy
+Cloning the remote Git repository
+Cloning repository https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+ > git init /var/jenkins_home/workspace/spark-deploy # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/kalytical.git +refs/heads/*:refs/remotes/origin/*
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/kalytical.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/kalytical.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/kalytical.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/initial^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/initial^{commit} # timeout=10
+Checking out Revision e2fd440df2c9c6d1ac5df9f5c61b84038b721f82 (refs/remotes/origin/initial)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f e2fd440df2c9c6d1ac5df9f5c61b84038b721f82
+Commit message: "Merge branch 'initial' of https://bitbucket.org/zerodown524/kalytical into initial"
+First time build. Skipping changelog.
+[spark-deploy] $ docker build -t instance-2:8080/spark:1 --pull=true --file=spark/Dockerfile spark
+unable to prepare context: unable to evaluate symlinks in Dockerfile path: lstat /var/jenkins_home/workspace/spark-deploy/spark/Dockerfile: no such file or directory
+Build step 'Docker Build and Publish' marked build as failure
+Finished: FAILURE

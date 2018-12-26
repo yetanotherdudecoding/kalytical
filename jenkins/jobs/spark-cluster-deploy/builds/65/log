@@ -1,0 +1,152 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/spark-cluster-deploy
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/kalytical.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/kalytical.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/initial^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/initial^{commit} # timeout=10
+Checking out Revision 15754c6e6273915554634ff65d429190d1194ba2 (refs/remotes/origin/initial)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 15754c6e6273915554634ff65d429190d1194ba2
+Commit message: "try removing namespace??"
+ > git rev-list --no-walk 15754c6e6273915554634ff65d429190d1194ba2 # timeout=10
+[spark-cluster-deploy] $ docker build -t instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkmaster:65 --pull=true --file=spark/master/Dockerfile spark/master
+Sending build context to Docker daemon  2.048kB
+Step 1/1 : FROM gettyimages/spark:latest
+Trying to pull repository docker.io/gettyimages/spark ... 
+latest: Pulling from docker.io/gettyimages/spark
+Digest: sha256:476fe6243bfd172064d7f71bd1d3679618f349e09941420848dde08c9fa6cf16
+Status: Image is up to date for docker.io/gettyimages/spark:latest
+ ---> 56107fdf8422
+Successfully built 56107fdf8422
+[spark-cluster-deploy] $ docker tag 56107fdf8422 instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkmaster:latest
+[spark-cluster-deploy] $ docker inspect 56107fdf8422
+[spark-cluster-deploy] $ docker push instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkmaster:65
+The push refers to a repository [instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkmaster]
+b499c54f8f4e: Preparing
+fae276ab8af7: Preparing
+158c017de1af: Preparing
+9821ca65a1a8: Preparing
+8d43435b20d7: Preparing
+90d1009ce6fe: Preparing
+90d1009ce6fe: Waiting
+8d43435b20d7: Layer already exists
+b499c54f8f4e: Layer already exists
+9821ca65a1a8: Layer already exists
+158c017de1af: Layer already exists
+90d1009ce6fe: Layer already exists
+fae276ab8af7: Layer already exists
+65: digest: sha256:476fe6243bfd172064d7f71bd1d3679618f349e09941420848dde08c9fa6cf16 size: 1591
+[spark-cluster-deploy] $ docker push instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkmaster:latest
+The push refers to a repository [instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkmaster]
+b499c54f8f4e: Preparing
+fae276ab8af7: Preparing
+158c017de1af: Preparing
+9821ca65a1a8: Preparing
+8d43435b20d7: Preparing
+90d1009ce6fe: Preparing
+90d1009ce6fe: Waiting
+158c017de1af: Layer already exists
+9821ca65a1a8: Layer already exists
+8d43435b20d7: Layer already exists
+fae276ab8af7: Layer already exists
+b499c54f8f4e: Layer already exists
+90d1009ce6fe: Layer already exists
+latest: digest: sha256:476fe6243bfd172064d7f71bd1d3679618f349e09941420848dde08c9fa6cf16 size: 1591
+[spark-cluster-deploy] $ docker build -t instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkworker:65 --pull=true --file=spark/worker/Dockerfile spark/worker
+Sending build context to Docker daemon  4.608kB
+Step 1/4 : FROM gettyimages/spark:latest
+Trying to pull repository docker.io/gettyimages/spark ... 
+latest: Pulling from docker.io/gettyimages/spark
+Digest: sha256:476fe6243bfd172064d7f71bd1d3679618f349e09941420848dde08c9fa6cf16
+Status: Image is up to date for docker.io/gettyimages/spark:latest
+ ---> 56107fdf8422
+Step 2/4 : COPY startWorker.sh startWorker.sh
+ ---> Using cache
+ ---> 092ad9f6f321
+Step 3/4 : RUN chmod +x startWorker.sh
+ ---> Using cache
+ ---> f8857ac9126f
+Step 4/4 : CMD /bin/bash ./startWorker.sh
+ ---> Using cache
+ ---> 728d8f7c67cc
+Successfully built 728d8f7c67cc
+[spark-cluster-deploy] $ docker tag 728d8f7c67cc instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkworker:latest
+[spark-cluster-deploy] $ docker inspect 728d8f7c67cc
+[spark-cluster-deploy] $ docker push instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkworker:65
+The push refers to a repository [instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkworker]
+cfcea9ec6d4c: Preparing
+1856dfc241e5: Preparing
+b499c54f8f4e: Preparing
+fae276ab8af7: Preparing
+158c017de1af: Preparing
+9821ca65a1a8: Preparing
+8d43435b20d7: Preparing
+90d1009ce6fe: Preparing
+9821ca65a1a8: Waiting
+8d43435b20d7: Waiting
+90d1009ce6fe: Waiting
+fae276ab8af7: Layer already exists
+cfcea9ec6d4c: Layer already exists
+b499c54f8f4e: Layer already exists
+1856dfc241e5: Layer already exists
+158c017de1af: Layer already exists
+9821ca65a1a8: Layer already exists
+8d43435b20d7: Layer already exists
+90d1009ce6fe: Layer already exists
+65: digest: sha256:dd6b6db3becac2035fa468cea1672b91e506549cb9a28f7e25058a13bed96cf1 size: 2005
+[spark-cluster-deploy] $ docker push instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkworker:latest
+The push refers to a repository [instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkworker]
+cfcea9ec6d4c: Preparing
+1856dfc241e5: Preparing
+b499c54f8f4e: Preparing
+fae276ab8af7: Preparing
+158c017de1af: Preparing
+9821ca65a1a8: Preparing
+8d43435b20d7: Preparing
+90d1009ce6fe: Preparing
+9821ca65a1a8: Waiting
+90d1009ce6fe: Waiting
+8d43435b20d7: Waiting
+b499c54f8f4e: Layer already exists
+158c017de1af: Layer already exists
+1856dfc241e5: Layer already exists
+cfcea9ec6d4c: Layer already exists
+fae276ab8af7: Layer already exists
+90d1009ce6fe: Layer already exists
+8d43435b20d7: Layer already exists
+9821ca65a1a8: Layer already exists
+latest: digest: sha256:dd6b6db3becac2035fa468cea1672b91e506549cb9a28f7e25058a13bed96cf1 size: 2005
+Starting Kubernetes deployment
+ERROR: ERROR: java.lang.IllegalArgumentException: The kubeconfig file path is not configured
+hudson.remoting.ProxyException: java.lang.IllegalArgumentException: The kubeconfig file path is not configured
+	at com.microsoft.jenkins.kubernetes.credentials.KubeconfigCredentials$FileOnMasterKubeconfigSource.getContent(KubeconfigCredentials.java:183)
+	at com.microsoft.jenkins.kubernetes.credentials.KubeconfigCredentials.getContent(KubeconfigCredentials.java:69)
+	at com.microsoft.jenkins.kubernetes.KubernetesDeployContext$ClientWrapperFactoryImpl.buildClient(KubernetesDeployContext.java:466)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand$DeploymentTask.doCall(DeploymentCommand.java:141)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand$DeploymentTask.call(DeploymentCommand.java:122)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand$DeploymentTask.call(DeploymentCommand.java:105)
+	at hudson.FilePath.act(FilePath.java:1165)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand.execute(DeploymentCommand.java:67)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand.execute(DeploymentCommand.java:46)
+	at com.microsoft.jenkins.azurecommons.command.CommandService.runCommand(CommandService.java:88)
+	at com.microsoft.jenkins.azurecommons.command.CommandService.execute(CommandService.java:96)
+	at com.microsoft.jenkins.azurecommons.command.CommandService.executeCommands(CommandService.java:75)
+	at com.microsoft.jenkins.azurecommons.command.BaseCommandContext.executeCommands(BaseCommandContext.java:77)
+	at com.microsoft.jenkins.kubernetes.KubernetesDeploy.perform(KubernetesDeploy.java:42)
+	at hudson.tasks.BuildStepCompatibilityLayer.perform(BuildStepCompatibilityLayer.java:81)
+	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:20)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:744)
+	at hudson.model.Build$BuildExecution.build(Build.java:206)
+	at hudson.model.Build$BuildExecution.doRun(Build.java:163)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.run(AbstractBuild.java:504)
+	at hudson.model.Run.execute(Run.java:1810)
+	at hudson.model.FreeStyleBuild.run(FreeStyleBuild.java:43)
+	at hudson.model.ResourceController.execute(ResourceController.java:97)
+	at hudson.model.Executor.run(Executor.java:429)
+ERROR: Kubernetes deployment ended with HasError
+Finished: FAILURE

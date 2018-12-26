@@ -1,0 +1,12 @@
+commit 6d03d8e4675e2244a3d5a01ac00d486e4c9bd9af
+tree 9c928871647cb65ad2e7d36b55402696918d6a6e
+parent 5dbf9243ef89aebd50bfdfee077aa35038ea16e4
+author Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-19 02:30:11 +0000
+committer Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-19 02:30:11 +0000
+
+    fix jupyter
+
+
+
+:000000 100644 0000000000000000000000000000000000000000 b1d9f2abd637a6554d23a0b29115f36ff5034fbf A	explorepod/Dockerfile
+:100644 100644 9b3ee42c7d8c51c17f928a00da9b41f05bb94c08 df36ff04312ba1735346dd745316ad67b9e990c2 M	jupyter/Dockerfile

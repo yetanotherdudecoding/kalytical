@@ -1,0 +1,32 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/deploy-notebook
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/kalytical.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/kalytical.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/initial^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/initial^{commit} # timeout=10
+Checking out Revision 5dbf9243ef89aebd50bfdfee077aa35038ea16e4 (refs/remotes/origin/initial)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 5dbf9243ef89aebd50bfdfee077aa35038ea16e4
+Commit message: "expose port for Hdfs outside cluster"
+ > git rev-list --no-walk 8b1aae00896d6e99924c02264cc57a754efd4824 # timeout=10
+[deploy-notebook] $ docker build -t instance-1:8080/jupyter:4 --pull=true --file=jupyter/Dockerfile jupyter
+Sending build context to Docker daemon  3.584kB
+Step 1/1 : FROM jupyter/scipy-notebook:2c80cf3537ca
+Trying to pull repository docker.io/jupyter/scipy-notebook ... 
+2c80cf3537ca: Pulling from docker.io/jupyter/scipy-notebook
+Digest: sha256:1457325a4df1803427042686b7b8c99261ec0ae75c6af1d4acbf2df9279c3668
+Status: Downloaded newer image for docker.io/jupyter/scipy-notebook:2c80cf3537ca
+ ---> 494ebea23b3c
+Successfully built 494ebea23b3c
+[deploy-notebook] $ docker tag 494ebea23b3c instance-1:8080/jupyter:latest
+[deploy-notebook] $ docker inspect 494ebea23b3c
+[deploy-notebook] $ docker push instance-1:8080/jupyter:4
+The push refers to a repository [instance-1:8080/jupyter]
+Put http://instance-1:8080/v1/repositories/jupyter/: dial tcp 10.142.0.2:8080: getsockopt: connection refused
+Build step 'Docker Build and Publish' marked build as failure
+Finished: FAILURE

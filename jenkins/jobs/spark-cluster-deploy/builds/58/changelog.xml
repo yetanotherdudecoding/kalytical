@@ -1,0 +1,11 @@
+commit 13ca66f2837e55ef1324b2d7f45d01c648c1fef4
+tree 06a4d8adf309e3a57d4d5a3c2cdf7dc82bbb3998
+parent 77dc1b2dbe4defe1d8b55a563d2ae676026d5862
+author Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-19 18:13:28 +0000
+committer Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-19 18:13:28 +0000
+
+    update deployment to remove service for workers
+
+
+
+:100644 100644 5877e634916ff1c53c38da508fb0b83a6bf661d4 1a35dffaf660f59a389a2d0e64ab849edc7ed8ef M	spark/spark-cluster-deploy.yaml

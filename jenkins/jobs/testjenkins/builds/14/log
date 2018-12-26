@@ -1,0 +1,126 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/testjenkins
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/k8s-python-test-app.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/k8s-python-test-app.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/k8s-python-test-app.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision d16f71a53687ac11475c1da9b932f0a50583beaa (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f d16f71a53687ac11475c1da9b932f0a50583beaa
+Commit message: "Dockerfile edited online with Bitbucket"
+ > git rev-list --no-walk cec3876df3ab1195957728480b7ed64d6b813d32 # timeout=10
+[testjenkins] $ docker build -t instance-2:8080/pytest:14 --pull=true /var/jenkins_home/workspace/testjenkins
+Sending build context to Docker daemon  112.6kB
+Step 1/8 : FROM python:2.7-slim
+Trying to pull repository docker.io/library/python ... 
+2.7-slim: Pulling from docker.io/library/python
+Digest: sha256:f82db224fbc9ff3309b7b62496e19d673738a568891604a12312e237e01ef147
+Status: Image is up to date for docker.io/python:2.7-slim
+ ---> 0dc3d8d47241
+Step 2/8 : WORKDIR /usr/src/app
+ ---> Using cache
+ ---> a8880d7527d2
+Step 3/8 : RUN pip install --upgrade pip
+ ---> Using cache
+ ---> f1278bbe2c02
+Step 4/8 : RUN pip install --upgrade setuptools
+ ---> Using cache
+ ---> 4fc05d63f4ec
+Step 5/8 : RUN pip --no-cache-dir install web.py flask
+ ---> Running in 6aefa81cf301
+
+[91m[0mCollecting web.py
+  Downloading https://files.pythonhosted.org/packages/fc/58/21649fc1849b1f688f3d42e25e79615cc573469ea57eaa9e6af70b1e3b87/web.py-0.39.tar.gz (93kB)
+Collecting flask
+  Downloading https://files.pythonhosted.org/packages/7f/e7/08578774ed4536d3242b14dacb4696386634607af824ea997202cd0edb4b/Flask-1.0.2-py2.py3-none-any.whl (91kB)
+Collecting itsdangerous>=0.24 (from flask)
+  Downloading https://files.pythonhosted.org/packages/76/ae/44b03b253d6fade317f32c24d100b3b35c2239807046a4c953c7b89fa49e/itsdangerous-1.1.0-py2.py3-none-any.whl
+Collecting Jinja2>=2.10 (from flask)
+  Downloading https://files.pythonhosted.org/packages/7f/ff/ae64bacdfc95f27a016a7bed8e8686763ba4d277a78ca76f32659220a731/Jinja2-2.10-py2.py3-none-any.whl (126kB)
+Collecting Werkzeug>=0.14 (from flask)
+  Downloading https://files.pythonhosted.org/packages/20/c4/12e3e56473e52375aa29c4764e70d1b8f3efa6682bef8d0aae04fe335243/Werkzeug-0.14.1-py2.py3-none-any.whl (322kB)
+Collecting click>=5.1 (from flask)
+  Downloading https://files.pythonhosted.org/packages/fa/37/45185cb5abbc30d7257104c434fe0b07e5a195a6847506c074527aa599ec/Click-7.0-py2.py3-none-any.whl (81kB)
+Collecting MarkupSafe>=0.23 (from Jinja2>=2.10->flask)
+  Downloading https://files.pythonhosted.org/packages/bc/3a/6bfd7b4b202fa33bdda8e4e3d3acc719f381fd730f9a0e7c5f34e845bd4d/MarkupSafe-1.1.0-cp27-cp27mu-manylinux1_x86_64.whl
+Installing collected packages: web.py, itsdangerous, MarkupSafe, Jinja2, Werkzeug, click, flask
+  Running setup.py install for web.py: started
+    Running setup.py install for web.py: finished with status 'done'
+Successfully installed Jinja2-2.10 MarkupSafe-1.1.0 Werkzeug-0.14.1 click-7.0 flask-1.0.2 itsdangerous-1.1.0 web.py-0.39
+ ---> acb4c285bc8f
+Removing intermediate container 6aefa81cf301
+Step 6/8 : COPY ./pytest.py ./
+ ---> 602e22b8c7a8
+Removing intermediate container 3a131c5775c5
+Step 7/8 : CMD python ./pytest.py
+ ---> Running in 42df856b2186
+ ---> 3726981c9af2
+Removing intermediate container 42df856b2186
+Step 8/8 : EXPOSE 8080
+ ---> Running in 0861ebce1c75
+ ---> 06dcb3d2781e
+Removing intermediate container 0861ebce1c75
+Successfully built 06dcb3d2781e
+[testjenkins] $ docker tag 06dcb3d2781e instance-2:8080/pytest:latest
+[testjenkins] $ docker inspect 06dcb3d2781e
+[testjenkins] $ docker push instance-2:8080/pytest:14
+The push refers to a repository [instance-2:8080/pytest]
+12ddcea9432f: Preparing
+41f51ed5bd93: Preparing
+3f8615609bcf: Preparing
+fa8944ef28d4: Preparing
+9f8a6958baf4: Preparing
+6cffeea81e5d: Preparing
+614a79865f6d: Preparing
+612d27bb923f: Preparing
+ef68f6734aa4: Preparing
+6cffeea81e5d: Waiting
+614a79865f6d: Waiting
+612d27bb923f: Waiting
+ef68f6734aa4: Waiting
+fa8944ef28d4: Layer already exists
+9f8a6958baf4: Layer already exists
+3f8615609bcf: Layer already exists
+612d27bb923f: Layer already exists
+6cffeea81e5d: Layer already exists
+614a79865f6d: Layer already exists
+ef68f6734aa4: Layer already exists
+12ddcea9432f: Pushed
+41f51ed5bd93: Pushed
+14: digest: sha256:85bc4b24043a83c6292e02cadac38799809647b2f18851339a09aaca523b2ae8 size: 2210
+[testjenkins] $ docker push instance-2:8080/pytest:latest
+The push refers to a repository [instance-2:8080/pytest]
+12ddcea9432f: Preparing
+41f51ed5bd93: Preparing
+3f8615609bcf: Preparing
+fa8944ef28d4: Preparing
+9f8a6958baf4: Preparing
+6cffeea81e5d: Preparing
+614a79865f6d: Preparing
+612d27bb923f: Preparing
+ef68f6734aa4: Preparing
+612d27bb923f: Waiting
+6cffeea81e5d: Waiting
+ef68f6734aa4: Waiting
+614a79865f6d: Waiting
+9f8a6958baf4: Layer already exists
+41f51ed5bd93: Layer already exists
+12ddcea9432f: Layer already exists
+3f8615609bcf: Layer already exists
+fa8944ef28d4: Layer already exists
+6cffeea81e5d: Layer already exists
+614a79865f6d: Layer already exists
+612d27bb923f: Layer already exists
+ef68f6734aa4: Layer already exists
+latest: digest: sha256:85bc4b24043a83c6292e02cadac38799809647b2f18851339a09aaca523b2ae8 size: 2210
+Starting Kubernetes deployment
+Loading configuration: /var/jenkins_home/workspace/testjenkins/pytest_deployment.yaml
+Applied Service: Service(apiVersion=v1, kind=Service, metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=2018-12-13T19:49:29Z, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=null, initializers=null, labels=null, name=pytest-service, namespace=bsavoy, ownerReferences=[], resourceVersion=57879, selfLink=/api/v1/namespaces/bsavoy/services/pytest-service, uid=34330713-ff10-11e8-a61f-42010a8e0003, additionalProperties={}), spec=ServiceSpec(clusterIP=10.99.217.28, externalIPs=[], externalName=null, externalTrafficPolicy=Cluster, healthCheckNodePort=null, loadBalancerIP=null, loadBalancerSourceRanges=[], ports=[ServicePort(name=null, nodePort=31872, port=8080, protocol=TCP, targetPort=IntOrString(IntVal=8080, Kind=null, StrVal=null, additionalProperties={}), additionalProperties={})], selector={app=pytest}, sessionAffinity=None, type=NodePort, additionalProperties={}), status=ServiceStatus(loadBalancer=LoadBalancerStatus(ingress=[], additionalProperties={}), additionalProperties={}), additionalProperties={})
+Applied Deployment: Deployment(apiVersion=extensions/v1beta1, kind=Deployment, metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=2018-12-13T19:49:29Z, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=7, initializers=null, labels={app=pytest}, name=pytest-deployment, namespace=bsavoy, ownerReferences=[], resourceVersion=65637, selfLink=/apis/extensions/v1beta1/namespaces/bsavoy/deployments/pytest-deployment, uid=34526e0a-ff10-11e8-a61f-42010a8e0003, additionalProperties={}), spec=DeploymentSpec(minReadySeconds=null, paused=null, progressDeadlineSeconds=2147483647, replicas=5, revisionHistoryLimit=2147483647, rollbackTo=null, selector=LabelSelector(matchExpressions=[], matchLabels={app=pytest}, additionalProperties={}), strategy=DeploymentStrategy(rollingUpdate=RollingUpdateDeployment(maxSurge=IntOrString(IntVal=1, Kind=null, StrVal=null, additionalProperties={}), maxUnavailable=IntOrString(IntVal=1, Kind=null, StrVal=null, additionalProperties={}), additionalProperties={}), type=RollingUpdate, additionalProperties={}), template=PodTemplateSpec(metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=null, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=null, initializers=null, labels={app=pytest}, name=null, namespace=null, ownerReferences=[], resourceVersion=null, selfLink=null, uid=null, additionalProperties={}), spec=PodSpec(activeDeadlineSeconds=null, affinity=null, automountServiceAccountToken=null, containers=[Container(args=[], command=[], env=[], envFrom=[], image=instance-2:8080/pytest:14, imagePullPolicy=IfNotPresent, lifecycle=null, livenessProbe=null, name=pytest-og, ports=[ContainerPort(containerPort=8080, hostIP=null, hostPort=null, name=null, protocol=TCP, additionalProperties={})], readinessProbe=null, resources=ResourceRequirements(limits={cpu=Quantity(amount=400m, format=null, additionalProperties={}), memory=Quantity(amount=512Mi, format=null, additionalProperties={})}, requests={cpu=Quantity(amount=50m, format=null, additionalProperties={}), memory=Quantity(amount=32Mi, format=null, additionalProperties={})}, additionalProperties={}), securityContext=null, stdin=null, stdinOnce=null, terminationMessagePath=/dev/termination-log, terminationMessagePolicy=File, tty=null, volumeMounts=[], workingDir=null, additionalProperties={})], dnsPolicy=ClusterFirst, hostAliases=[], hostIPC=null, hostNetwork=null, hostPID=null, hostname=null, imagePullSecrets=[], initContainers=[], nodeName=null, nodeSelector=null, restartPolicy=Always, schedulerName=default-scheduler, securityContext=PodSecurityContext(fsGroup=null, runAsNonRoot=null, runAsUser=null, seLinuxOptions=null, supplementalGroups=[], additionalProperties={}), serviceAccount=null, serviceAccountName=null, subdomain=null, terminationGracePeriodSeconds=30, tolerations=[], volumes=[], additionalProperties={}), additionalProperties={}), additionalProperties={}), status=DeploymentStatus(availableReplicas=null, collisionCount=null, conditions=[DeploymentCondition(lastTransitionTime=2018-12-13T19:49:29Z, lastUpdateTime=2018-12-13T19:49:29Z, message=Deployment does not have minimum availability., reason=MinimumReplicasUnavailable, status=False, type=Available, additionalProperties={})], observedGeneration=6, readyReplicas=null, replicas=6, unavailableReplicas=6, updatedReplicas=2, additionalProperties={}), additionalProperties={})
+Skipped unsupported resource: HorizontalPodAutoscaler(apiVersion=autoscaling/v2beta1, kind=HorizontalPodAutoscaler, metadata=ObjectMeta(annotations={}, clusterName=null, creationTimestamp=null, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=null, initializers=null, labels={}, name=pytest-hpa, namespace=bsavoy, ownerReferences=[], resourceVersion=null, selfLink=null, uid=null, additionalProperties={}), spec=HorizontalPodAutoscalerSpec(maxReplicas=20, minReplicas=5, scaleTargetRef=CrossVersionObjectReference(apiVersion=apps/v1, kind=Deployment, name=pytest-deployment, additionalProperties={}), targetCPUUtilizationPercentage=null, additionalProperties={}), status=null, additionalProperties={})
+Finished Kubernetes deployment
+Finished: SUCCESS

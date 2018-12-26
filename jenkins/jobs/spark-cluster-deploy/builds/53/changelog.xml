@@ -1,0 +1,11 @@
+commit 3d01c6a5fdf598487424c39f8d7c7b12ed27aa97
+tree 2a88798ac75d106ec28b1d55535a3faa87f19f2d
+parent 9b7a929bf1938fe726aa0814c780ed675eaa391c
+author Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-19 16:36:24 +0000
+committer Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-19 16:36:24 +0000
+
+    fix app selector for app ui service
+
+
+
+:100644 100644 0b5c8188f62e8813e48a0b1b939a81e7ab4356d4 36002f9ad43d7cf729a5f2887c6433e2d071168c M	spark/spark-cluster-deploy.yaml

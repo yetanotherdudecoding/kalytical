@@ -1,0 +1,189 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/deploy-hdfs
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/kalytical.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/kalytical.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/initial^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/initial^{commit} # timeout=10
+Checking out Revision dcaf76866013bce2964e2181e1b10aaa59dcedb7 (refs/remotes/origin/initial)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f dcaf76866013bce2964e2181e1b10aaa59dcedb7
+Commit message: "update jupyter to spark-all image. Fixing webui for hdfs"
+ > git rev-list --no-walk 16d8088bf3cec47f87281f05b6ee300697c9f59d # timeout=10
+[deploy-hdfs] $ docker build -t instance-1.us-east1-b.c.sandbox-224519.internal:8080/hdfs:17 --pull=true --file=hdfs/Dockerfile hdfs
+Sending build context to Docker daemon   12.8kB
+Step 1/20 : FROM instance-1.us-east1-b.c.sandbox-224519.internal:8080/openjdk:8-jdk
+Trying to pull repository instance-1.us-east1-b.c.sandbox-224519.internal:8080/openjdk ... 
+8-jdk: Pulling from instance-1.us-east1-b.c.sandbox-224519.internal:8080/openjdk
+Digest: sha256:ba0816efdccc191b6774a9c5a8857487fe919ef63ce0a12849466eba30193144
+Status: Image is up to date for instance-1.us-east1-b.c.sandbox-224519.internal:8080/openjdk:8-jdk
+ ---> c14ba9d23b3a
+Step 2/20 : USER root
+ ---> Using cache
+ ---> bdee2f34eed8
+Step 3/20 : WORKDIR /opt
+ ---> Using cache
+ ---> 614356d249db
+Step 4/20 : RUN apt-get update -y && apt-get install vim net-tools telnet -y
+ ---> Using cache
+ ---> 34b1cad097be
+Step 5/20 : RUN curl -O http://instance-2:8081/repository/raw-artifacts/oss/hadoop-2.7.7.tar.gz
+ ---> Using cache
+ ---> 0c8e2b940a90
+Step 6/20 : RUN tar -xzf hadoop-2.7.7.tar.gz
+ ---> Using cache
+ ---> ba4669de1666
+Step 7/20 : COPY hdfs-site.xml hadoop-2.7.7/etc/hadoop/hdfs-site.xml
+ ---> Using cache
+ ---> 0c52fc553a07
+Step 8/20 : COPY core-site.xml hadoop-2.7.7/etc/hadoop/core-site.xml
+ ---> Using cache
+ ---> f9d483c6f41e
+Step 9/20 : COPY entrypoint.sh /entrypoint.sh
+ ---> Using cache
+ ---> cdff4847e8d6
+Step 10/20 : RUN chmod +x /entrypoint.sh
+ ---> Using cache
+ ---> 4cd5f073ff01
+Step 11/20 : RUN hadoop-2.7.7/bin/hdfs namenode -format
+ ---> Using cache
+ ---> bb6d75b51651
+Step 12/20 : ENTRYPOINT sh -c /entrypoint.sh
+ ---> Using cache
+ ---> dc4e2de72560
+Step 13/20 : EXPOSE 50070
+ ---> Using cache
+ ---> de15c3690b29
+Step 14/20 : EXPOSE 9000
+ ---> Using cache
+ ---> 8bd2d123b746
+Step 15/20 : EXPOSE 8020
+ ---> Using cache
+ ---> edc1910e0f8c
+Step 16/20 : EXPOSE 50075
+ ---> Using cache
+ ---> dcd3377e1aae
+Step 17/20 : EXPOSE 50475
+ ---> Using cache
+ ---> ce72b3ce468e
+Step 18/20 : EXPOSE 50010
+ ---> Using cache
+ ---> a0a91d45b7ac
+Step 19/20 : EXPOSE 50020
+ ---> Using cache
+ ---> b0ecdffa09cb
+Step 20/20 : EXPOSE 50090
+ ---> Using cache
+ ---> b7163e6017de
+Successfully built b7163e6017de
+[deploy-hdfs] $ docker tag b7163e6017de instance-1.us-east1-b.c.sandbox-224519.internal:8080/hdfs:latest
+[deploy-hdfs] $ docker inspect b7163e6017de
+[deploy-hdfs] $ docker push instance-1.us-east1-b.c.sandbox-224519.internal:8080/hdfs:17
+The push refers to a repository [instance-1.us-east1-b.c.sandbox-224519.internal:8080/hdfs]
+774e93f09c59: Preparing
+489197ac0012: Preparing
+b0dc6e89e3a1: Preparing
+e4566e599b2e: Preparing
+086042822368: Preparing
+06eb280f9a66: Preparing
+29293e31b162: Preparing
+344960ee5721: Preparing
+7ce48c206d82: Preparing
+a40eb036725c: Preparing
+d7d48188b655: Preparing
+b176545a110b: Preparing
+cc788d7feedb: Preparing
+f75e64f96dbc: Preparing
+8f7ee6d76fd9: Preparing
+c23711a84ad4: Preparing
+90d1009ce6fe: Preparing
+d7d48188b655: Waiting
+b176545a110b: Waiting
+cc788d7feedb: Waiting
+f75e64f96dbc: Waiting
+8f7ee6d76fd9: Waiting
+c23711a84ad4: Waiting
+90d1009ce6fe: Waiting
+06eb280f9a66: Waiting
+29293e31b162: Waiting
+344960ee5721: Waiting
+7ce48c206d82: Waiting
+a40eb036725c: Waiting
+086042822368: Layer already exists
+e4566e599b2e: Layer already exists
+06eb280f9a66: Layer already exists
+29293e31b162: Layer already exists
+344960ee5721: Layer already exists
+b0dc6e89e3a1: Layer already exists
+489197ac0012: Layer already exists
+7ce48c206d82: Layer already exists
+a40eb036725c: Layer already exists
+b176545a110b: Layer already exists
+f75e64f96dbc: Layer already exists
+d7d48188b655: Layer already exists
+cc788d7feedb: Layer already exists
+774e93f09c59: Layer already exists
+c23711a84ad4: Layer already exists
+8f7ee6d76fd9: Layer already exists
+90d1009ce6fe: Layer already exists
+17: digest: sha256:eac02c57b1c413c7a2e4c09ec02a6f43db4d787bfb4de8ae981dac90c3995ea8 size: 3884
+[deploy-hdfs] $ docker push instance-1.us-east1-b.c.sandbox-224519.internal:8080/hdfs:latest
+The push refers to a repository [instance-1.us-east1-b.c.sandbox-224519.internal:8080/hdfs]
+774e93f09c59: Preparing
+489197ac0012: Preparing
+b0dc6e89e3a1: Preparing
+e4566e599b2e: Preparing
+086042822368: Preparing
+06eb280f9a66: Preparing
+29293e31b162: Preparing
+344960ee5721: Preparing
+7ce48c206d82: Preparing
+a40eb036725c: Preparing
+d7d48188b655: Preparing
+b176545a110b: Preparing
+cc788d7feedb: Preparing
+f75e64f96dbc: Preparing
+8f7ee6d76fd9: Preparing
+c23711a84ad4: Preparing
+90d1009ce6fe: Preparing
+06eb280f9a66: Waiting
+29293e31b162: Waiting
+344960ee5721: Waiting
+7ce48c206d82: Waiting
+a40eb036725c: Waiting
+d7d48188b655: Waiting
+b176545a110b: Waiting
+cc788d7feedb: Waiting
+f75e64f96dbc: Waiting
+8f7ee6d76fd9: Waiting
+c23711a84ad4: Waiting
+90d1009ce6fe: Waiting
+774e93f09c59: Layer already exists
+489197ac0012: Layer already exists
+b0dc6e89e3a1: Layer already exists
+e4566e599b2e: Layer already exists
+086042822368: Layer already exists
+06eb280f9a66: Layer already exists
+344960ee5721: Layer already exists
+29293e31b162: Layer already exists
+a40eb036725c: Layer already exists
+7ce48c206d82: Layer already exists
+b176545a110b: Layer already exists
+8f7ee6d76fd9: Layer already exists
+d7d48188b655: Layer already exists
+cc788d7feedb: Layer already exists
+f75e64f96dbc: Layer already exists
+90d1009ce6fe: Layer already exists
+c23711a84ad4: Layer already exists
+latest: digest: sha256:eac02c57b1c413c7a2e4c09ec02a6f43db4d787bfb4de8ae981dac90c3995ea8 size: 3884
+Starting Kubernetes deployment
+Loading configuration: /var/jenkins_home/workspace/deploy-hdfs/hdfs/hdfs-deploy.yaml
+Applied Service: Service(apiVersion=v1, kind=Service, metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=2018-12-12T14:49:13Z, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=null, initializers=null, labels=null, name=hdfs-service, namespace=bsavoy, ownerReferences=[], resourceVersion=166636, selfLink=/api/v1/namespaces/bsavoy/services/hdfs-service, uid=171d9081-fe1d-11e8-b155-42010a8e0003, additionalProperties={}), spec=ServiceSpec(clusterIP=10.110.34.48, externalIPs=[], externalName=null, externalTrafficPolicy=Cluster, healthCheckNodePort=null, loadBalancerIP=null, loadBalancerSourceRanges=[], ports=[ServicePort(name=null, nodePort=30900, port=9000, protocol=TCP, targetPort=IntOrString(IntVal=9000, Kind=null, StrVal=null, additionalProperties={}), additionalProperties={})], selector={app=hdfs}, sessionAffinity=None, type=NodePort, additionalProperties={}), status=ServiceStatus(loadBalancer=LoadBalancerStatus(ingress=[], additionalProperties={}), additionalProperties={}), additionalProperties={})
+Applied Service: Service(apiVersion=v1, kind=Service, metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=2018-12-14T16:24:51Z, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=null, initializers=null, labels=null, name=hdfs-ui-service, namespace=bsavoy, ownerReferences=[], resourceVersion=166637, selfLink=/api/v1/namespaces/bsavoy/services/hdfs-ui-service, uid=c8506249-ffbc-11e8-9fcf-42010a8e0003, additionalProperties={}), spec=ServiceSpec(clusterIP=10.101.218.185, externalIPs=[], externalName=null, externalTrafficPolicy=Cluster, healthCheckNodePort=null, loadBalancerIP=null, loadBalancerSourceRanges=[], ports=[ServicePort(name=null, nodePort=31512, port=50070, protocol=TCP, targetPort=IntOrString(IntVal=50070, Kind=null, StrVal=null, additionalProperties={}), additionalProperties={})], selector={app=hdfs}, sessionAffinity=None, type=NodePort, additionalProperties={}), status=ServiceStatus(loadBalancer=LoadBalancerStatus(ingress=[], additionalProperties={}), additionalProperties={}), additionalProperties={})
+Applied Deployment: Deployment(apiVersion=extensions/v1beta1, kind=Deployment, metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=2018-12-12T15:13:47Z, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=13, initializers=null, labels={app=hdfs}, name=hdfs-deployment, namespace=bsavoy, ownerReferences=[], resourceVersion=166800, selfLink=/apis/extensions/v1beta1/namespaces/bsavoy/deployments/hdfs-deployment, uid=85c8b7f1-fe20-11e8-b0c4-42010a8e0003, additionalProperties={}), spec=DeploymentSpec(minReadySeconds=null, paused=null, progressDeadlineSeconds=2147483647, replicas=1, revisionHistoryLimit=2147483647, rollbackTo=null, selector=LabelSelector(matchExpressions=[], matchLabels={app=hdfs}, additionalProperties={}), strategy=DeploymentStrategy(rollingUpdate=RollingUpdateDeployment(maxSurge=IntOrString(IntVal=1, Kind=null, StrVal=null, additionalProperties={}), maxUnavailable=IntOrString(IntVal=1, Kind=null, StrVal=null, additionalProperties={}), additionalProperties={}), type=RollingUpdate, additionalProperties={}), template=PodTemplateSpec(metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=null, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=null, initializers=null, labels={app=hdfs}, name=null, namespace=null, ownerReferences=[], resourceVersion=null, selfLink=null, uid=null, additionalProperties={}), spec=PodSpec(activeDeadlineSeconds=null, affinity=null, automountServiceAccountToken=null, containers=[Container(args=[], command=[], env=[], envFrom=[], image=instance-1.us-east1-b.c.sandbox-224519.internal:8080/hdfs:17, imagePullPolicy=IfNotPresent, lifecycle=null, livenessProbe=null, name=hdfs-og, ports=[], readinessProbe=null, resources=ResourceRequirements(limits={cpu=Quantity(amount=1, format=null, additionalProperties={}), memory=Quantity(amount=2Gi, format=null, additionalProperties={})}, requests={cpu=Quantity(amount=500m, format=null, additionalProperties={}), memory=Quantity(amount=1Gi, format=null, additionalProperties={})}, additionalProperties={}), securityContext=null, stdin=null, stdinOnce=null, terminationMessagePath=/dev/termination-log, terminationMessagePolicy=File, tty=null, volumeMounts=[], workingDir=null, additionalProperties={})], dnsPolicy=ClusterFirst, hostAliases=[], hostIPC=null, hostNetwork=null, hostPID=null, hostname=null, imagePullSecrets=[], initContainers=[], nodeName=null, nodeSelector=null, restartPolicy=Always, schedulerName=default-scheduler, securityContext=PodSecurityContext(fsGroup=null, runAsNonRoot=null, runAsUser=null, seLinuxOptions=null, supplementalGroups=[], additionalProperties={}), serviceAccount=null, serviceAccountName=null, subdomain=null, terminationGracePeriodSeconds=30, tolerations=[], volumes=[], additionalProperties={}), additionalProperties={}), additionalProperties={}), status=DeploymentStatus(availableReplicas=1, collisionCount=null, conditions=[DeploymentCondition(lastTransitionTime=2018-12-12T15:13:47Z, lastUpdateTime=2018-12-12T15:13:47Z, message=Deployment has minimum availability., reason=MinimumReplicasAvailable, status=True, type=Available, additionalProperties={})], observedGeneration=12, readyReplicas=1, replicas=1, unavailableReplicas=null, updatedReplicas=1, additionalProperties={}), additionalProperties={})
+Finished Kubernetes deployment
+Finished: SUCCESS

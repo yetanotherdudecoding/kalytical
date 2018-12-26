@@ -1,0 +1,16 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/scale-spark-workers
+$ kubectl config set-cluster k8s --server=https://instance-8:6443 --insecure-skip-tls-verify=true
+Cluster "k8s" set.
+$ kubectl config set-credentials cluster-admin ********
+User "cluster-admin" set.
+$ kubectl config set-context kubernetes --cluster=k8s --user=cluster-admin
+Context "kubernetes" created.
+$ kubectl config use-context kubernetes
+Switched to context "kubernetes".
+[scale-spark-workers] $ /bin/sh -xe /tmp/jenkins6799735039520255221.sh
++ kubectl get pods
+error: the server doesn't have a resource type "pods"
+Build step 'Execute shell' marked build as failure
+kubectl configuration cleaned up
+Finished: FAILURE

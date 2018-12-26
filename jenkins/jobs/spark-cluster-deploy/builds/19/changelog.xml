@@ -1,0 +1,12 @@
+commit 5dbf9243ef89aebd50bfdfee077aa35038ea16e4
+tree 79add7242ab00ece79ea4b528273c3c1b447e7d5
+parent ffc3f5f60c181dfeb221a56282d1e6cec6455d67
+author Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-17 21:44:18 +0000
+committer Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-17 21:44:18 +0000
+
+    expose port for Hdfs outside cluster
+
+
+
+:100644 100644 5bbc6362ad22d0485792019cb8cade3fb56521b1 ac0a39e8780f71e53c30ffa7880eb3aff5a7b128 M	examples/shakespere_count.py
+:100644 100644 2c288d5b625f64f73739629599e871b27db4130b a2c63e0afdfe12b981cd1ccdf94adcb2e60c3e4e M	hdfs/hdfs-deploy.yaml

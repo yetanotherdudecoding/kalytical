@@ -1,0 +1,282 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/deploy-notebook
+Cloning the remote Git repository
+Cloning repository https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+ > git init /var/jenkins_home/workspace/deploy-notebook # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/kalytical.git +refs/heads/*:refs/remotes/origin/*
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/kalytical.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/kalytical.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/kalytical.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/initial^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/initial^{commit} # timeout=10
+Checking out Revision 9e3a4b5bb41963c8a8db879162faa4a4faa971ac (refs/remotes/origin/initial)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 9e3a4b5bb41963c8a8db879162faa4a4faa971ac
+Commit message: "trying to setup jupyter"
+First time build. Skipping changelog.
+[deploy-notebook] $ docker build -t instance-2:8080/jupyter:1 --pull=true --file=jupyter/Dockerfile jupyter
+Sending build context to Docker daemon  3.584kB
+Step 1/1 : FROM jupyter/scipy-notebook:2c80cf3537ca
+Trying to pull repository docker.io/jupyter/scipy-notebook ... 
+2c80cf3537ca: Pulling from docker.io/jupyter/scipy-notebook
+e0a742c2abfd: Pulling fs layer
+486cb8339a27: Pulling fs layer
+dc6f0d824617: Pulling fs layer
+4f7a5649a30e: Pulling fs layer
+672363445ad2: Pulling fs layer
+ecdd51c923e7: Pulling fs layer
+42885501cf6c: Pulling fs layer
+a91169574a99: Pulling fs layer
+4d0f6517ea26: Pulling fs layer
+95394e9265ac: Pulling fs layer
+8227c59e3779: Pulling fs layer
+074b7bf56d53: Pulling fs layer
+7acd5e85ad59: Pulling fs layer
+7f12c3d0ff9e: Pulling fs layer
+c6c3afa6f981: Pulling fs layer
+84c4870ea598: Pulling fs layer
+9f71a0e80d07: Pulling fs layer
+501394cd98d6: Pulling fs layer
+206ef30745dc: Pulling fs layer
+95c30287bbe3: Pulling fs layer
+07530d462a27: Pulling fs layer
+40d781684f63: Pulling fs layer
+af2f4b908ec1: Pulling fs layer
+4f7a5649a30e: Waiting
+672363445ad2: Waiting
+ecdd51c923e7: Waiting
+84c4870ea598: Waiting
+42885501cf6c: Waiting
+9f71a0e80d07: Waiting
+a91169574a99: Waiting
+074b7bf56d53: Waiting
+501394cd98d6: Waiting
+4d0f6517ea26: Waiting
+206ef30745dc: Waiting
+7acd5e85ad59: Waiting
+95394e9265ac: Waiting
+95c30287bbe3: Waiting
+7f12c3d0ff9e: Waiting
+8227c59e3779: Waiting
+07530d462a27: Waiting
+c6c3afa6f981: Waiting
+40d781684f63: Waiting
+dc6f0d824617: Verifying Checksum
+dc6f0d824617: Download complete
+4f7a5649a30e: Verifying Checksum
+4f7a5649a30e: Download complete
+486cb8339a27: Verifying Checksum
+486cb8339a27: Download complete
+672363445ad2: Verifying Checksum
+672363445ad2: Download complete
+e0a742c2abfd: Verifying Checksum
+e0a742c2abfd: Download complete
+ecdd51c923e7: Verifying Checksum
+ecdd51c923e7: Download complete
+a91169574a99: Verifying Checksum
+a91169574a99: Download complete
+42885501cf6c: Download complete
+4d0f6517ea26: Verifying Checksum
+4d0f6517ea26: Download complete
+95394e9265ac: Verifying Checksum
+95394e9265ac: Download complete
+8227c59e3779: Verifying Checksum
+8227c59e3779: Download complete
+7f12c3d0ff9e: Verifying Checksum
+7f12c3d0ff9e: Download complete
+c6c3afa6f981: Verifying Checksum
+c6c3afa6f981: Download complete
+074b7bf56d53: Verifying Checksum
+074b7bf56d53: Download complete
+84c4870ea598: Verifying Checksum
+84c4870ea598: Download complete
+9f71a0e80d07: Verifying Checksum
+9f71a0e80d07: Download complete
+501394cd98d6: Verifying Checksum
+501394cd98d6: Download complete
+7acd5e85ad59: Verifying Checksum
+7acd5e85ad59: Download complete
+e0a742c2abfd: Pull complete
+486cb8339a27: Pull complete
+dc6f0d824617: Pull complete
+4f7a5649a30e: Pull complete
+672363445ad2: Pull complete
+95c30287bbe3: Verifying Checksum
+95c30287bbe3: Download complete
+40d781684f63: Verifying Checksum
+40d781684f63: Download complete
+ecdd51c923e7: Pull complete
+42885501cf6c: Pull complete
+a91169574a99: Pull complete
+4d0f6517ea26: Pull complete
+95394e9265ac: Pull complete
+8227c59e3779: Pull complete
+af2f4b908ec1: Verifying Checksum
+af2f4b908ec1: Download complete
+074b7bf56d53: Pull complete
+206ef30745dc: Verifying Checksum
+206ef30745dc: Download complete
+07530d462a27: Verifying Checksum
+07530d462a27: Download complete
+7acd5e85ad59: Pull complete
+7f12c3d0ff9e: Pull complete
+c6c3afa6f981: Pull complete
+84c4870ea598: Pull complete
+9f71a0e80d07: Pull complete
+501394cd98d6: Pull complete
+206ef30745dc: Pull complete
+95c30287bbe3: Pull complete
+07530d462a27: Pull complete
+40d781684f63: Pull complete
+af2f4b908ec1: Pull complete
+Digest: sha256:1457325a4df1803427042686b7b8c99261ec0ae75c6af1d4acbf2df9279c3668
+Status: Downloaded newer image for docker.io/jupyter/scipy-notebook:2c80cf3537ca
+ ---> 494ebea23b3c
+Successfully built 494ebea23b3c
+[deploy-notebook] $ docker tag 494ebea23b3c instance-2:8080/jupyter:latest
+[deploy-notebook] $ docker inspect 494ebea23b3c
+[deploy-notebook] $ docker push instance-2:8080/jupyter:1
+The push refers to a repository [instance-2:8080/jupyter]
+04405f781c3c: Preparing
+a2be780bbaad: Preparing
+c0d98debc5ef: Preparing
+665a1032999b: Preparing
+b5106232cadb: Preparing
+9501d6c8d0a9: Preparing
+2ce74ee9c776: Preparing
+ddce6a59d154: Preparing
+914dd56be0c3: Preparing
+9e359ccacdf9: Preparing
+f32720a70d6c: Preparing
+ffe73f02011f: Preparing
+2c50b1f51d27: Preparing
+d50217f5ce67: Preparing
+4afdd26656bf: Preparing
+05400c8ff976: Preparing
+7547bddc4d06: Preparing
+804802f02402: Preparing
+26b126eb8632: Preparing
+220d34b5f6c9: Preparing
+8a5132998025: Preparing
+aca233ed29c3: Preparing
+e5d2f035d7a4: Preparing
+9501d6c8d0a9: Waiting
+2ce74ee9c776: Waiting
+f32720a70d6c: Waiting
+4afdd26656bf: Waiting
+ffe73f02011f: Waiting
+ddce6a59d154: Waiting
+2c50b1f51d27: Waiting
+914dd56be0c3: Waiting
+d50217f5ce67: Waiting
+9e359ccacdf9: Waiting
+220d34b5f6c9: Waiting
+05400c8ff976: Waiting
+8a5132998025: Waiting
+7547bddc4d06: Waiting
+aca233ed29c3: Waiting
+e5d2f035d7a4: Waiting
+804802f02402: Waiting
+a2be780bbaad: Pushed
+9501d6c8d0a9: Pushed
+2ce74ee9c776: Pushed
+ddce6a59d154: Pushed
+914dd56be0c3: Pushed
+9e359ccacdf9: Pushed
+665a1032999b: Pushed
+04405f781c3c: Pushed
+2c50b1f51d27: Pushed
+d50217f5ce67: Pushed
+4afdd26656bf: Pushed
+05400c8ff976: Pushed
+7547bddc4d06: Pushed
+ffe73f02011f: Pushed
+26b126eb8632: Pushed
+220d34b5f6c9: Pushed
+8a5132998025: Pushed
+aca233ed29c3: Pushed
+804802f02402: Pushed
+e5d2f035d7a4: Pushed
+f32720a70d6c: Pushed
+c0d98debc5ef: Pushed
+b5106232cadb: Pushed
+1: digest: sha256:ff84904cd587fbcc5e8737b73c61b5b07557df0f26857abcb900c8168862057a size: 5132
+[deploy-notebook] $ docker push instance-2:8080/jupyter:latest
+The push refers to a repository [instance-2:8080/jupyter]
+04405f781c3c: Preparing
+a2be780bbaad: Preparing
+c0d98debc5ef: Preparing
+665a1032999b: Preparing
+b5106232cadb: Preparing
+9501d6c8d0a9: Preparing
+2ce74ee9c776: Preparing
+ddce6a59d154: Preparing
+914dd56be0c3: Preparing
+9e359ccacdf9: Preparing
+f32720a70d6c: Preparing
+ffe73f02011f: Preparing
+2c50b1f51d27: Preparing
+d50217f5ce67: Preparing
+4afdd26656bf: Preparing
+05400c8ff976: Preparing
+7547bddc4d06: Preparing
+804802f02402: Preparing
+26b126eb8632: Preparing
+220d34b5f6c9: Preparing
+8a5132998025: Preparing
+aca233ed29c3: Preparing
+e5d2f035d7a4: Preparing
+d50217f5ce67: Waiting
+4afdd26656bf: Waiting
+05400c8ff976: Waiting
+7547bddc4d06: Waiting
+9501d6c8d0a9: Waiting
+804802f02402: Waiting
+aca233ed29c3: Waiting
+e5d2f035d7a4: Waiting
+26b126eb8632: Waiting
+220d34b5f6c9: Waiting
+2ce74ee9c776: Waiting
+ddce6a59d154: Waiting
+ffe73f02011f: Waiting
+914dd56be0c3: Waiting
+9e359ccacdf9: Waiting
+8a5132998025: Waiting
+2c50b1f51d27: Waiting
+f32720a70d6c: Waiting
+a2be780bbaad: Layer already exists
+b5106232cadb: Layer already exists
+c0d98debc5ef: Layer already exists
+04405f781c3c: Layer already exists
+665a1032999b: Layer already exists
+9501d6c8d0a9: Layer already exists
+ddce6a59d154: Layer already exists
+2ce74ee9c776: Layer already exists
+9e359ccacdf9: Layer already exists
+914dd56be0c3: Layer already exists
+ffe73f02011f: Layer already exists
+f32720a70d6c: Layer already exists
+2c50b1f51d27: Layer already exists
+d50217f5ce67: Layer already exists
+05400c8ff976: Layer already exists
+4afdd26656bf: Layer already exists
+804802f02402: Layer already exists
+7547bddc4d06: Layer already exists
+26b126eb8632: Layer already exists
+8a5132998025: Layer already exists
+220d34b5f6c9: Layer already exists
+aca233ed29c3: Layer already exists
+e5d2f035d7a4: Layer already exists
+latest: digest: sha256:ff84904cd587fbcc5e8737b73c61b5b07557df0f26857abcb900c8168862057a size: 5132
+Starting Kubernetes deployment
+Loading configuration: /var/jenkins_home/workspace/deploy-notebook/jupyter/jupyter-deploy.yaml
+Created Service: Service(apiVersion=v1, kind=Service, metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=2018-12-14T19:58:59Z, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=null, initializers=null, labels=null, name=jupyter-service, namespace=bsavoy, ownerReferences=[], resourceVersion=95660, selfLink=/api/v1/namespaces/bsavoy/services/jupyter-service, uid=b24923e9-ffda-11e8-9fcf-42010a8e0003, additionalProperties={}), spec=ServiceSpec(clusterIP=10.107.109.127, externalIPs=[], externalName=null, externalTrafficPolicy=Cluster, healthCheckNodePort=null, loadBalancerIP=null, loadBalancerSourceRanges=[], ports=[ServicePort(name=null, nodePort=32671, port=8080, protocol=TCP, targetPort=IntOrString(IntVal=30800, Kind=null, StrVal=null, additionalProperties={}), additionalProperties={})], selector={app=jupyter}, sessionAffinity=None, type=NodePort, additionalProperties={}), status=ServiceStatus(loadBalancer=LoadBalancerStatus(ingress=[], additionalProperties={}), additionalProperties={}), additionalProperties={})
+Created Deployment: Deployment(apiVersion=extensions/v1beta1, kind=Deployment, metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=2018-12-14T19:58:59Z, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=1, initializers=null, labels={app=jupyter}, name=jupyter-deployment, namespace=bsavoy, ownerReferences=[], resourceVersion=95662, selfLink=/apis/extensions/v1beta1/namespaces/bsavoy/deployments/jupyter-deployment, uid=b252d512-ffda-11e8-9fcf-42010a8e0003, additionalProperties={}), spec=DeploymentSpec(minReadySeconds=null, paused=null, progressDeadlineSeconds=2147483647, replicas=1, revisionHistoryLimit=2147483647, rollbackTo=null, selector=LabelSelector(matchExpressions=[], matchLabels={app=jupyter}, additionalProperties={}), strategy=DeploymentStrategy(rollingUpdate=RollingUpdateDeployment(maxSurge=IntOrString(IntVal=1, Kind=null, StrVal=null, additionalProperties={}), maxUnavailable=IntOrString(IntVal=1, Kind=null, StrVal=null, additionalProperties={}), additionalProperties={}), type=RollingUpdate, additionalProperties={}), template=PodTemplateSpec(metadata=ObjectMeta(annotations=null, clusterName=null, creationTimestamp=null, deletionGracePeriodSeconds=null, deletionTimestamp=null, finalizers=[], generateName=null, generation=null, initializers=null, labels={app=jupyter}, name=null, namespace=null, ownerReferences=[], resourceVersion=null, selfLink=null, uid=null, additionalProperties={}), spec=PodSpec(activeDeadlineSeconds=null, affinity=null, automountServiceAccountToken=null, containers=[Container(args=[], command=[], env=[], envFrom=[], image=instance-2:8080/jupyter:1, imagePullPolicy=IfNotPresent, lifecycle=null, livenessProbe=null, name=jupyter-og, ports=[], readinessProbe=null, resources=ResourceRequirements(limits={cpu=Quantity(amount=1, format=null, additionalProperties={}), memory=Quantity(amount=2Gi, format=null, additionalProperties={})}, requests={cpu=Quantity(amount=500m, format=null, additionalProperties={}), memory=Quantity(amount=1Gi, format=null, additionalProperties={})}, additionalProperties={}), securityContext=null, stdin=null, stdinOnce=null, terminationMessagePath=/dev/termination-log, terminationMessagePolicy=File, tty=null, volumeMounts=[], workingDir=null, additionalProperties={})], dnsPolicy=ClusterFirst, hostAliases=[], hostIPC=null, hostNetwork=null, hostPID=null, hostname=null, imagePullSecrets=[], initContainers=[], nodeName=null, nodeSelector=null, restartPolicy=Always, schedulerName=default-scheduler, securityContext=PodSecurityContext(fsGroup=null, runAsNonRoot=null, runAsUser=null, seLinuxOptions=null, supplementalGroups=[], additionalProperties={}), serviceAccount=null, serviceAccountName=null, subdomain=null, terminationGracePeriodSeconds=30, tolerations=[], volumes=[], additionalProperties={}), additionalProperties={}), additionalProperties={}), status=DeploymentStatus(availableReplicas=null, collisionCount=null, conditions=[], observedGeneration=null, readyReplicas=null, replicas=null, unavailableReplicas=null, updatedReplicas=null, additionalProperties={}), additionalProperties={})
+Finished Kubernetes deployment
+Finished: SUCCESS

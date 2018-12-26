@@ -1,0 +1,130 @@
+commit 5dbf9243ef89aebd50bfdfee077aa35038ea16e4
+tree 79add7242ab00ece79ea4b528273c3c1b447e7d5
+parent ffc3f5f60c181dfeb221a56282d1e6cec6455d67
+author Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-17 21:44:18 +0000
+committer Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-17 21:44:18 +0000
+
+    expose port for Hdfs outside cluster
+
+
+
+:100644 100644 5bbc6362ad22d0485792019cb8cade3fb56521b1 ac0a39e8780f71e53c30ffa7880eb3aff5a7b128 M	examples/shakespere_count.py
+:100644 100644 2c288d5b625f64f73739629599e871b27db4130b a2c63e0afdfe12b981cd1ccdf94adcb2e60c3e4e M	hdfs/hdfs-deploy.yaml
+commit ffc3f5f60c181dfeb221a56282d1e6cec6455d67
+tree 3e0e4dd217d51807179b7273ca8c2c32684dce61
+parent ec5ea2b78d512223a22535a15cf50746243a1581
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 18:40:54 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 18:40:54 +0000
+
+    still fixing spark
+
+
+
+:100644 100644 7bcb75fb346f5df72a6863a158ce7db50db989e8 3272c027c6da6aa083f883a8af82d6fdffc4978f M	spark/spark-cluster-deploy.yaml
+commit ec5ea2b78d512223a22535a15cf50746243a1581
+tree df15f26c261c70226857b566993a23ae44310fac
+parent 04e29e58b3452a4efa9d20ab8f828c5172a66395
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 18:39:24 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 18:39:24 +0000
+
+    still fixing spark
+
+
+
+:000000 100644 0000000000000000000000000000000000000000 5bbc6362ad22d0485792019cb8cade3fb56521b1 A	examples/shakespere_count.py
+:100644 100644 b04f88b3eb13d9a48299e017f28c01f9007f4a25 7bcb75fb346f5df72a6863a158ce7db50db989e8 M	spark/spark-cluster-deploy.yaml
+:000000 100644 0000000000000000000000000000000000000000 b04f88b3eb13d9a48299e017f28c01f9007f4a25 A	spark/spark-worker-resize.yaml
+commit 04e29e58b3452a4efa9d20ab8f828c5172a66395
+tree fbf7443ed0d4e8a889852186c86d357a7bade410
+parent 77e2298ca072812bb2e5c4bd0fdc282c1478247a
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:46:35 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:46:35 +0000
+
+    still fixing spark
+
+
+
+:100644 100644 b9b363af137c747f05be7897bf477621dbe42bdc b04f88b3eb13d9a48299e017f28c01f9007f4a25 M	spark/spark-cluster-deploy.yaml
+commit 77e2298ca072812bb2e5c4bd0fdc282c1478247a
+tree 4678de5f890f1ed18e7dedaa262718763b1846f5
+parent 88b5236c6b74ce5fe52cda5d9871f8424ef66ac8
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:44:01 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:44:01 +0000
+
+    still fixing spark
+
+
+
+:100644 100644 3a12eb346e3a031beb50b64863dfec262877f8e6 b9b363af137c747f05be7897bf477621dbe42bdc M	spark/spark-cluster-deploy.yaml
+commit 88b5236c6b74ce5fe52cda5d9871f8424ef66ac8
+tree 46f43bf6aaecc682dd203d0144d4096f533fd23c
+parent 33ffe0556091d3e6314ab0f79ff87a072d7fb897
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:37:58 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:37:58 +0000
+
+    fixing app selectors
+
+
+
+:100644 100644 b4dfdf94a5d9d4aa35cdfdd193955801fe62095c 3a12eb346e3a031beb50b64863dfec262877f8e6 M	spark/spark-cluster-deploy.yaml
+commit 33ffe0556091d3e6314ab0f79ff87a072d7fb897
+tree 81b4892d67cbc095e73e385d2619d6b6be3ed067
+parent 8d976d916917d4640ec81881502627c7f72200d5
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:32:01 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:32:01 +0000
+
+    update names and such
+
+
+
+:100644 100644 01c2dd89321b51e6a45db7315b603984ef00080e b4dfdf94a5d9d4aa35cdfdd193955801fe62095c M	spark/spark-cluster-deploy.yaml
+commit 8d976d916917d4640ec81881502627c7f72200d5
+tree dba391aa98918c92be2f60d4476250a078cd5169
+parent e39c49659773c13c88e874d522bbf789d477479e
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:29:49 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:29:49 +0000
+
+    update names and such
+
+
+
+:100644 100644 2c189a583096a7d9097327d0bcbf3cf15a27d1b6 01c2dd89321b51e6a45db7315b603984ef00080e M	spark/spark-cluster-deploy.yaml
+commit e39c49659773c13c88e874d522bbf789d477479e
+tree 4243e756c47e91db0e17c41c65b9523463a9fac2
+parent 8c13e00808f12f93c674894ef22bed4671dba755
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:27:14 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:27:14 +0000
+
+    fix up the spark worker deployment name
+
+
+
+:100644 100644 1d1b27137afdec8903005064041c54b9b2d332d5 2c189a583096a7d9097327d0bcbf3cf15a27d1b6 M	spark/spark-cluster-deploy.yaml
+commit 8c13e00808f12f93c674894ef22bed4671dba755
+tree 0bf21c40a829872ca5e6ef26b31123325070778b
+parent 32068e09622ac6c51e8a9f1815d38e0b6db976d5
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:25:14 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:25:14 +0000
+
+    first attempt at spark clustering
+
+
+
+:100644 000000 781e3c81ffed704d570583427440cc015a67e9cc 0000000000000000000000000000000000000000 D	spark/build.sh
+:100644 100644 24dae7bdd81303f4e45f6a8388fe14cfa3dbc808 24dae7bdd81303f4e45f6a8388fe14cfa3dbc808 R100	spark/Dockerfile	spark/master/Dockerfile
+:000000 100644 0000000000000000000000000000000000000000 1d1b27137afdec8903005064041c54b9b2d332d5 A	spark/spark-cluster-deploy.yaml
+:100644 000000 53bfc85fc51752f987003604d243188e9d524e39 0000000000000000000000000000000000000000 D	spark/spark-deploy.yaml
+:000000 100644 0000000000000000000000000000000000000000 7ef49dba6dd5784bd7b0a5a52b6a19db95d88137 A	spark/worker/Dockerfile
+:000000 100644 0000000000000000000000000000000000000000 63e19130b83e40940e8a4eeb489d053150c68ba0 A	spark/worker/spark-worker-deploy.yaml
+:000000 100644 0000000000000000000000000000000000000000 cf96c83d5b991bbcfd9656d96f9115416a686e1a A	spark/worker/startWorker.sh
+commit 32068e09622ac6c51e8a9f1815d38e0b6db976d5
+tree 4495874d39599b51aafdc00200582c0386d92d81
+parent 8b1aae00896d6e99924c02264cc57a754efd4824
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 15:48:44 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 15:48:44 +0000
+
+    fix spark port
+
+
+
+:100644 100644 53b1f95ca4b03033da21b3fc9521295ceb10c91d 53bfc85fc51752f987003604d243188e9d524e39 M	spark/spark-deploy.yaml

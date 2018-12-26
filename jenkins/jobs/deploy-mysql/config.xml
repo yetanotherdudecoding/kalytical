@@ -1,0 +1,93 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>deploy single node hdfs to kubernetes</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>DOCKER_REGISTRY</name>
+          <description>docker registry adddress (i.e. myregistry:8080 )</description>
+          <defaultValue>instance-2:8080</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>IMAGE_NAME</name>
+          <description>docker image name proper</description>
+          <defaultValue>mysql</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.9.1">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://zerodown524@bitbucket.org/zerodown524/kalytical.git</url>
+        <credentialsId>private bitbucket</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/initial</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <com.cloudbees.dockerpublish.DockerBuilder plugin="docker-build-publish@1.3.2">
+      <server plugin="docker-commons@1.13"/>
+      <registry plugin="docker-commons@1.13">
+        <url>http://$DOCKER_REGISTRY</url>
+        <credentialsId>docker</credentialsId>
+      </registry>
+      <repoName>$IMAGE_NAME</repoName>
+      <noCache>false</noCache>
+      <forcePull>true</forcePull>
+      <buildContext>mysql</buildContext>
+      <dockerfilePath>mysql/Dockerfile</dockerfilePath>
+      <skipBuild>false</skipBuild>
+      <skipDecorate>false</skipDecorate>
+      <repoTag>$BUILD_NUMBER</repoTag>
+      <skipPush>false</skipPush>
+      <createFingerprint>true</createFingerprint>
+      <skipTagLatest>false</skipTagLatest>
+      <buildAdditionalArgs></buildAdditionalArgs>
+      <forceTag>false</forceTag>
+    </com.cloudbees.dockerpublish.DockerBuilder>
+    <com.microsoft.jenkins.kubernetes.KubernetesDeploy plugin="kubernetes-cd@0.2.3">
+      <context>
+        <kubeconfigId>44cc1693-5262-4fcd-9ee4-8e1d2613812f</kubeconfigId>
+        <credentialsType>KubeConfig</credentialsType>
+        <ssh>
+          <sshServer></sshServer>
+          <sshCredentialsId>*</sshCredentialsId>
+        </ssh>
+        <kubeConfig>
+          <path></path>
+        </kubeConfig>
+        <textCredentials>
+          <serverUrl>https://</serverUrl>
+          <certificateAuthorityData></certificateAuthorityData>
+          <clientCertificateData></clientCertificateData>
+          <clientKeyData></clientKeyData>
+        </textCredentials>
+        <configs>mysql/mysql-deploy.yaml</configs>
+        <enableConfigSubstitution>true</enableConfigSubstitution>
+        <secretName></secretName>
+      </context>
+    </com.microsoft.jenkins.kubernetes.KubernetesDeploy>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

@@ -1,0 +1,307 @@
+commit 5dbf9243ef89aebd50bfdfee077aa35038ea16e4
+tree 79add7242ab00ece79ea4b528273c3c1b447e7d5
+parent ffc3f5f60c181dfeb221a56282d1e6cec6455d67
+author Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-17 21:44:18 +0000
+committer Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-17 21:44:18 +0000
+
+    expose port for Hdfs outside cluster
+
+
+
+:100644 100644 5bbc6362ad22d0485792019cb8cade3fb56521b1 ac0a39e8780f71e53c30ffa7880eb3aff5a7b128 M	examples/shakespere_count.py
+:100644 100644 2c288d5b625f64f73739629599e871b27db4130b a2c63e0afdfe12b981cd1ccdf94adcb2e60c3e4e M	hdfs/hdfs-deploy.yaml
+commit ffc3f5f60c181dfeb221a56282d1e6cec6455d67
+tree 3e0e4dd217d51807179b7273ca8c2c32684dce61
+parent ec5ea2b78d512223a22535a15cf50746243a1581
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 18:40:54 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 18:40:54 +0000
+
+    still fixing spark
+
+
+
+:100644 100644 7bcb75fb346f5df72a6863a158ce7db50db989e8 3272c027c6da6aa083f883a8af82d6fdffc4978f M	spark/spark-cluster-deploy.yaml
+commit ec5ea2b78d512223a22535a15cf50746243a1581
+tree df15f26c261c70226857b566993a23ae44310fac
+parent 04e29e58b3452a4efa9d20ab8f828c5172a66395
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 18:39:24 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 18:39:24 +0000
+
+    still fixing spark
+
+
+
+:000000 100644 0000000000000000000000000000000000000000 5bbc6362ad22d0485792019cb8cade3fb56521b1 A	examples/shakespere_count.py
+:100644 100644 b04f88b3eb13d9a48299e017f28c01f9007f4a25 7bcb75fb346f5df72a6863a158ce7db50db989e8 M	spark/spark-cluster-deploy.yaml
+:000000 100644 0000000000000000000000000000000000000000 b04f88b3eb13d9a48299e017f28c01f9007f4a25 A	spark/spark-worker-resize.yaml
+commit 04e29e58b3452a4efa9d20ab8f828c5172a66395
+tree fbf7443ed0d4e8a889852186c86d357a7bade410
+parent 77e2298ca072812bb2e5c4bd0fdc282c1478247a
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:46:35 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:46:35 +0000
+
+    still fixing spark
+
+
+
+:100644 100644 b9b363af137c747f05be7897bf477621dbe42bdc b04f88b3eb13d9a48299e017f28c01f9007f4a25 M	spark/spark-cluster-deploy.yaml
+commit 77e2298ca072812bb2e5c4bd0fdc282c1478247a
+tree 4678de5f890f1ed18e7dedaa262718763b1846f5
+parent 88b5236c6b74ce5fe52cda5d9871f8424ef66ac8
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:44:01 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:44:01 +0000
+
+    still fixing spark
+
+
+
+:100644 100644 3a12eb346e3a031beb50b64863dfec262877f8e6 b9b363af137c747f05be7897bf477621dbe42bdc M	spark/spark-cluster-deploy.yaml
+commit 88b5236c6b74ce5fe52cda5d9871f8424ef66ac8
+tree 46f43bf6aaecc682dd203d0144d4096f533fd23c
+parent 33ffe0556091d3e6314ab0f79ff87a072d7fb897
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:37:58 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:37:58 +0000
+
+    fixing app selectors
+
+
+
+:100644 100644 b4dfdf94a5d9d4aa35cdfdd193955801fe62095c 3a12eb346e3a031beb50b64863dfec262877f8e6 M	spark/spark-cluster-deploy.yaml
+commit 33ffe0556091d3e6314ab0f79ff87a072d7fb897
+tree 81b4892d67cbc095e73e385d2619d6b6be3ed067
+parent 8d976d916917d4640ec81881502627c7f72200d5
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:32:01 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:32:01 +0000
+
+    update names and such
+
+
+
+:100644 100644 01c2dd89321b51e6a45db7315b603984ef00080e b4dfdf94a5d9d4aa35cdfdd193955801fe62095c M	spark/spark-cluster-deploy.yaml
+commit 8d976d916917d4640ec81881502627c7f72200d5
+tree dba391aa98918c92be2f60d4476250a078cd5169
+parent e39c49659773c13c88e874d522bbf789d477479e
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:29:49 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:29:49 +0000
+
+    update names and such
+
+
+
+:100644 100644 2c189a583096a7d9097327d0bcbf3cf15a27d1b6 01c2dd89321b51e6a45db7315b603984ef00080e M	spark/spark-cluster-deploy.yaml
+commit e39c49659773c13c88e874d522bbf789d477479e
+tree 4243e756c47e91db0e17c41c65b9523463a9fac2
+parent 8c13e00808f12f93c674894ef22bed4671dba755
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:27:14 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:27:14 +0000
+
+    fix up the spark worker deployment name
+
+
+
+:100644 100644 1d1b27137afdec8903005064041c54b9b2d332d5 2c189a583096a7d9097327d0bcbf3cf15a27d1b6 M	spark/spark-cluster-deploy.yaml
+commit 8c13e00808f12f93c674894ef22bed4671dba755
+tree 0bf21c40a829872ca5e6ef26b31123325070778b
+parent 32068e09622ac6c51e8a9f1815d38e0b6db976d5
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:25:14 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 16:25:14 +0000
+
+    first attempt at spark clustering
+
+
+
+:100644 000000 781e3c81ffed704d570583427440cc015a67e9cc 0000000000000000000000000000000000000000 D	spark/build.sh
+:100644 100644 24dae7bdd81303f4e45f6a8388fe14cfa3dbc808 24dae7bdd81303f4e45f6a8388fe14cfa3dbc808 R100	spark/Dockerfile	spark/master/Dockerfile
+:000000 100644 0000000000000000000000000000000000000000 1d1b27137afdec8903005064041c54b9b2d332d5 A	spark/spark-cluster-deploy.yaml
+:100644 000000 53bfc85fc51752f987003604d243188e9d524e39 0000000000000000000000000000000000000000 D	spark/spark-deploy.yaml
+:000000 100644 0000000000000000000000000000000000000000 7ef49dba6dd5784bd7b0a5a52b6a19db95d88137 A	spark/worker/Dockerfile
+:000000 100644 0000000000000000000000000000000000000000 63e19130b83e40940e8a4eeb489d053150c68ba0 A	spark/worker/spark-worker-deploy.yaml
+:000000 100644 0000000000000000000000000000000000000000 cf96c83d5b991bbcfd9656d96f9115416a686e1a A	spark/worker/startWorker.sh
+commit 32068e09622ac6c51e8a9f1815d38e0b6db976d5
+tree 4495874d39599b51aafdc00200582c0386d92d81
+parent 8b1aae00896d6e99924c02264cc57a754efd4824
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 15:48:44 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-17 15:48:44 +0000
+
+    fix spark port
+
+
+
+:100644 100644 53b1f95ca4b03033da21b3fc9521295ceb10c91d 53bfc85fc51752f987003604d243188e9d524e39 M	spark/spark-deploy.yaml
+commit 8b1aae00896d6e99924c02264cc57a754efd4824
+tree 65db6e2c472903248cc059b1ab3b70550c85039d
+parent 435d75d6dade1ebc4dcc0fba303bf638f07594f1
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 20:51:57 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 20:51:57 +0000
+
+    fix jupyter service
+
+
+
+:100644 100644 088a3594310eb95bc6c4bfd0a96c7ed0a54ba019 fe607547746bf66cd586b9e7680a2cb62812f7dc M	jupyter/jupyter-deploy.yaml
+commit 435d75d6dade1ebc4dcc0fba303bf638f07594f1
+tree 8fc52d9bc4aaeb1a927446dfeecce129d342b6d1
+parent 9e3a4b5bb41963c8a8db879162faa4a4faa971ac
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 20:28:02 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 20:28:02 +0000
+
+    update jupyter to point to correct service port
+
+
+
+:100644 100644 861abc9deae9a2991b51ae918f072fa3aab73600 088a3594310eb95bc6c4bfd0a96c7ed0a54ba019 M	jupyter/jupyter-deploy.yaml
+commit 9e3a4b5bb41963c8a8db879162faa4a4faa971ac
+tree c2cd8aa27a1f18932283e1243d112c983752848f
+parent f01ef9cf4a224876ca9a5cbb3f38f84957257415
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 18:51:05 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 18:51:05 +0000
+
+    trying to setup jupyter
+
+
+
+:100644 100644 53b1f95ca4b03033da21b3fc9521295ceb10c91d 861abc9deae9a2991b51ae918f072fa3aab73600 M	jupyter/jupyter-deploy.yaml
+commit f01ef9cf4a224876ca9a5cbb3f38f84957257415
+tree 0077c8420441a3e6ad2d3c44042677c2672db475
+parent 189e67aa352f32810ce5045ebc68a51ad88b6842
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 16:26:52 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 16:26:52 +0000
+
+    update hdfs
+
+
+
+:100644 100644 4a0308276e15e37a04e652fd88036719308a84cc bd958aa67475717dafaf1cf67cd154fd04edc149 M	hdfs/entrypoint.sh
+commit 189e67aa352f32810ce5045ebc68a51ad88b6842
+tree 668ece6ca766b7615bae76b4c8a57f6b2de86451
+parent 685696ef16dcc7389bef9e4714442b6c9c1ecf86
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 16:24:36 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 16:24:36 +0000
+
+    update hdfs
+
+
+
+:100644 100644 b63184357e45f42d1b3aa6c4811e2b8a91b419ba 2c288d5b625f64f73739629599e871b27db4130b M	hdfs/hdfs-deploy.yaml
+commit 685696ef16dcc7389bef9e4714442b6c9c1ecf86
+tree feb5eccca2f0edbe1a7f67a8962fc46fee7aa0f9
+parent 8d6a3ecbb528247e2099317e335ce612dfc0b29d
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 15:58:37 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 15:58:37 +0000
+
+    update hdfs
+
+
+
+:100644 100644 5915c6d775fa3a5ca3b06e28e7036892b2ad3226 4a0308276e15e37a04e652fd88036719308a84cc M	hdfs/entrypoint.sh
+commit 8d6a3ecbb528247e2099317e335ce612dfc0b29d
+tree 9880edbdd76f4878127438022d214093c64991f4
+parent 0ace3b56a904c873300b78d9b0443e5ccdccfd03
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 15:55:24 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 15:55:24 +0000
+
+    update hdfs
+
+
+
+:100644 100644 cc95903a782a15c9ff10899319d96aa73bf1149c b63184357e45f42d1b3aa6c4811e2b8a91b419ba M	hdfs/hdfs-deploy.yaml
+commit 0ace3b56a904c873300b78d9b0443e5ccdccfd03
+tree 369edf9430d55eabf6b918e395f416fd0f9d9643
+parent 6b9a236d7ef0e3058ff4b5f0bc498faf3c3d730d
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 15:54:16 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 15:54:16 +0000
+
+    update hdfs permissions
+
+
+
+:100644 100644 46a1479e1bf87a307c7321922d1a4da36e149d1b 5915c6d775fa3a5ca3b06e28e7036892b2ad3226 M	hdfs/entrypoint.sh
+commit 6b9a236d7ef0e3058ff4b5f0bc498faf3c3d730d
+tree 9c37844d97ea31f6da3df63d8c828bbc63703deb
+parent 9c9d5bad1f8c67d5fb268c7aea3400f070a0bf7a
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 15:45:59 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-14 15:45:59 +0000
+
+    include streamsets. allow sdc user impersonation on hdfs
+
+
+
+:100644 000000 ee37b0304a61002a6294cb950a9b9cb9601a7386 0000000000000000000000000000000000000000 D	cluster-info.yaml
+:000000 100644 0000000000000000000000000000000000000000 a08b4935bcb32a69638d930a5022bc204bbadfa5 A	discovery/README.md
+:100644 100644 76fc9c68fa375bd954b6acd1b968ed14ad3aca1b b88162f889030315b6e4dd3cfc4e1637c8389c24 M	hdfs/hdfs-site.xml
+:000000 100644 0000000000000000000000000000000000000000 9b3ee42c7d8c51c17f928a00da9b41f05bb94c08 A	jupyter/Dockerfile
+:000000 100644 0000000000000000000000000000000000000000 53b1f95ca4b03033da21b3fc9521295ceb10c91d A	jupyter/jupyter-deploy.yaml
+:000000 100644 0000000000000000000000000000000000000000 115013a3fb36e5e1fec92bebf8476b0394d74edc A	startK8sBox.sh
+:000000 100644 0000000000000000000000000000000000000000 ba2a5d099ae55afc12b64f8ded7183863cbb58e1 A	streamsets/Dockerfile
+:000000 100644 0000000000000000000000000000000000000000 590594468c3692540e2076c9b39bc42971a9f503 A	streamsets/LICENSE
+:000000 100644 0000000000000000000000000000000000000000 4d334a12dfe192eb0929bd37c84c86b9f935c17a A	streamsets/README.md
+:000000 100755 0000000000000000000000000000000000000000 384bd781944fa0b08bb7d21280b055df12650786 A	streamsets/docker-entrypoint.sh
+:000000 100644 0000000000000000000000000000000000000000 e69de29bb2d1d6434b8b29ae775ad8c2e48c5391 A	streamsets/resources/.keep
+:000000 100755 0000000000000000000000000000000000000000 06dea2a14f0704cd724a1591eaca67a4a603f26c A	streamsets/sdc-configure.sh
+:000000 100644 0000000000000000000000000000000000000000 e69de29bb2d1d6434b8b29ae775ad8c2e48c5391 A	streamsets/sdc-extras/.keep
+:000000 100644 0000000000000000000000000000000000000000 26c7e5eae08dad69a76147745537047b4e2abcb4 A	streamsets/streamsets-deploy.yaml
+commit 9c9d5bad1f8c67d5fb268c7aea3400f070a0bf7a
+tree c7d2deac54a7afc520e06f335a191b73f25012e3
+parent e2fd440df2c9c6d1ac5df9f5c61b84038b721f82
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-13 21:43:17 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-13 21:43:17 +0000
+
+    jenkins deployment working for mysql and hdfs, working on spark
+
+
+
+:100644 000000 e53e8035f30eed251af6d1f43f9020e669c964d3 0000000000000000000000000000000000000000 D	hdfs/hdfs-deploy-debug.yaml
+:100644 100644 a9a08dc86c66975487f5a2999f5ae38f28c4a27c cc95903a782a15c9ff10899319d96aa73bf1149c M	hdfs/hdfs-deploy.yaml
+:100644 000000 67e2180e09a7a10245a544460f34c4fff389a32e 0000000000000000000000000000000000000000 D	hdfs/readme.txt
+:100644 000000 eccf04d3b05c07d74dd4b01009a9e33628a28459 0000000000000000000000000000000000000000 D	mysql/mysql-deploy-debug.yaml
+:100644 100644 44fb3a3fd7ea12ce7c0406a2d4d03768a231dc1b 20d0f116591da0ef7dac90266d7bd929efa7d86d M	mysql/mysql-deploy.yaml
+:000000 100644 0000000000000000000000000000000000000000 24dae7bdd81303f4e45f6a8388fe14cfa3dbc808 A	spark/Dockerfile
+:100644 100644 9cf61d3eb8e11a6f3795a88d8c1c90e30421fcc2 53b1f95ca4b03033da21b3fc9521295ceb10c91d M	spark/spark-deploy.yaml
+:100644 000000 a9c8d76c5297134711ffebda19502fe23f6dadcd 0000000000000000000000000000000000000000 D	streamsets/Dockerfile
+commit b80abe9bc7bab70f31e819e9edd6920d7827df10
+tree d28f54bde68cf651941ddd9ac566105de3821c70
+parent 1a90b71f39a722034bd5ed63c58f4cf205cb9991
+author Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-13 21:36:12 +0000
+committer Bradley Savoy <zerodown524@instance-2.us-east1-b.c.sandbox-224519.internal> 2018-12-13 21:36:12 +0000
+
+    updates to jenkins build for 2.150 as well as hdfs/mysql k8s deployments
+
+
+
+:100644 100644 669572f5a55972be2701df11931ea1847dbd004a 4413aec1f1a1465f3b51d064e8483e2cf7ac9d91 M	README.md
+:000000 100644 0000000000000000000000000000000000000000 c94ddf580c30db8f673de1148aa5ef3658b67fa3 A	build.sh
+:000000 100644 0000000000000000000000000000000000000000 ee37b0304a61002a6294cb950a9b9cb9601a7386 A	cluster-info.yaml
+:100644 100644 322b32c8cb05c112e0870d65f3505f3acfd9b122 58292a5865cf2fed2c198ab0ee42f5bc64a96d45 M	hdfs/hdfs-deploy.yaml
+:000000 100644 0000000000000000000000000000000000000000 b288470449b2498438d791d33fd53d955e4ad0cd A	jenkins/.jenkins-deploy.yaml.swn
+:000000 100644 0000000000000000000000000000000000000000 fdc8ee692fc26216a85870605483d43bfb16629c A	jenkins/.jenkins-deploy.yaml.swo
+:100644 100644 979a76e2179ad2007d6d5b0ac12444e963837585 eafde76a1468a5b76c5acd5d68ed6084c85689d7 M	jenkins/README.md
+:100755 100755 52ea975b578cae78781407ee8cc68292d2590a33 dceffea296eacaf5169ccbe7cbc5bee381ec3a6f M	jenkins/build.sh
+:160000 160000 255f924549f2fbaaeaf6f45d98a67f34ddcc94bc aa47001265b4d7245dfac476f068efaf1f33c0db M	jenkins/docker
+:100755 100755 9efa5ec39be4e78f08ad8ac4940f60ac1e322f7b f95a86becbe3e66119767fa28e45ba2a3111095b M	jenkins/getJenkins.sh
+:000000 100644 0000000000000000000000000000000000000000 97cec0ec8cf45883be84ff475bcffbf093a5779e A	jenkins/jenkins-deploy.yaml
+:100644 100755 4004dc60183a296d9638a7b82414828c53a7d238 c6d43e6e92cf09291fa452ee658190b4b5a531f0 M	jenkins/start-jenkins.sh
+:100644 100644 5108c6d5c8d57c5441c716665b979f81374b5de9 7ab9e800d2ec3ad2dd11bb45c6c260603d5a7c56 M	mysql/mysql-deploy.yaml
+:000000 100644 0000000000000000000000000000000000000000 781e3c81ffed704d570583427440cc015a67e9cc A	spark/build.sh
+:000000 100644 0000000000000000000000000000000000000000 9cf61d3eb8e11a6f3795a88d8c1c90e30421fcc2 A	spark/spark-deploy.yaml
+commit 4c4559a998844364422ac9fd1e6e5a3cac380931
+tree a67ac56601ca723fb6551ad28ff807b491f07542
+parent c217d0ff909eb9752064796c006055c8978252a3
+author Bradley Savoy <brad.savoy@gmail.com> 2018-12-13 20:18:56 +0000
+committer Bradley Savoy <brad.savoy@gmail.com> 2018-12-13 20:18:56 +0000
+
+    hdfs-deploy.yaml edited online with Bitbucket
+
+
+
+:100644 100644 322b32c8cb05c112e0870d65f3505f3acfd9b122 aafd5ab6e8a4bbb807d253bfceb87295f5de98f0 M	hdfs/hdfs-deploy.yaml
+commit c217d0ff909eb9752064796c006055c8978252a3
+tree 98fd3883fa74171a5963e1aba86764b4e0763c83
+parent 1a90b71f39a722034bd5ed63c58f4cf205cb9991
+author Bradley Savoy <brad.savoy@gmail.com> 2018-12-13 20:18:20 +0000
+committer Bradley Savoy <brad.savoy@gmail.com> 2018-12-13 20:18:20 +0000
+
+    mysql-deploy.yaml edited online with Bitbucket
+
+
+
+:100644 100644 5108c6d5c8d57c5441c716665b979f81374b5de9 dc836e09f0132007c662887dd61b12582f58496c M	mysql/mysql-deploy.yaml

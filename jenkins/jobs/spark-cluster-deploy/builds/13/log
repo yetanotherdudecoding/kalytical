@@ -1,0 +1,161 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/spark-deploy
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/kalytical.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/kalytical.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/initial^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/initial^{commit} # timeout=10
+Checking out Revision 04e29e58b3452a4efa9d20ab8f828c5172a66395 (refs/remotes/origin/initial)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 04e29e58b3452a4efa9d20ab8f828c5172a66395
+Commit message: "still fixing spark"
+ > git rev-list --no-walk 77e2298ca072812bb2e5c4bd0fdc282c1478247a # timeout=10
+[spark-deploy] $ docker build -t instance-2:8080/sparkmaster:13 --pull=true --file=spark/master/Dockerfile spark/master
+Sending build context to Docker daemon  2.048kB
+Step 1/1 : FROM gettyimages/spark:latest
+Trying to pull repository docker.io/gettyimages/spark ... 
+latest: Pulling from docker.io/gettyimages/spark
+Digest: sha256:476fe6243bfd172064d7f71bd1d3679618f349e09941420848dde08c9fa6cf16
+Status: Image is up to date for docker.io/gettyimages/spark:latest
+ ---> 56107fdf8422
+Successfully built 56107fdf8422
+[spark-deploy] $ docker tag 56107fdf8422 instance-2:8080/sparkmaster:latest
+[spark-deploy] $ docker inspect 56107fdf8422
+[spark-deploy] $ docker push instance-2:8080/sparkmaster:13
+The push refers to a repository [instance-2:8080/sparkmaster]
+b499c54f8f4e: Preparing
+fae276ab8af7: Preparing
+158c017de1af: Preparing
+9821ca65a1a8: Preparing
+8d43435b20d7: Preparing
+90d1009ce6fe: Preparing
+90d1009ce6fe: Waiting
+b499c54f8f4e: Layer already exists
+9821ca65a1a8: Layer already exists
+8d43435b20d7: Layer already exists
+fae276ab8af7: Layer already exists
+158c017de1af: Layer already exists
+90d1009ce6fe: Layer already exists
+13: digest: sha256:476fe6243bfd172064d7f71bd1d3679618f349e09941420848dde08c9fa6cf16 size: 1591
+[spark-deploy] $ docker push instance-2:8080/sparkmaster:latest
+The push refers to a repository [instance-2:8080/sparkmaster]
+b499c54f8f4e: Preparing
+fae276ab8af7: Preparing
+158c017de1af: Preparing
+9821ca65a1a8: Preparing
+8d43435b20d7: Preparing
+90d1009ce6fe: Preparing
+90d1009ce6fe: Waiting
+fae276ab8af7: Layer already exists
+8d43435b20d7: Layer already exists
+9821ca65a1a8: Layer already exists
+158c017de1af: Layer already exists
+b499c54f8f4e: Layer already exists
+90d1009ce6fe: Layer already exists
+latest: digest: sha256:476fe6243bfd172064d7f71bd1d3679618f349e09941420848dde08c9fa6cf16 size: 1591
+[spark-deploy] $ docker build -t instance-2:8080/sparkworker:13 --pull=true --file=spark/worker/Dockerfile spark/worker
+Sending build context to Docker daemon  4.608kB
+Step 1/4 : FROM gettyimages/spark:latest
+Trying to pull repository docker.io/gettyimages/spark ... 
+latest: Pulling from docker.io/gettyimages/spark
+Digest: sha256:476fe6243bfd172064d7f71bd1d3679618f349e09941420848dde08c9fa6cf16
+Status: Image is up to date for docker.io/gettyimages/spark:latest
+ ---> 56107fdf8422
+Step 2/4 : COPY startWorker.sh startWorker.sh
+ ---> Using cache
+ ---> 092ad9f6f321
+Step 3/4 : RUN chmod +x startWorker.sh
+ ---> Using cache
+ ---> f8857ac9126f
+Step 4/4 : CMD /bin/bash ./startWorker.sh
+ ---> Using cache
+ ---> 728d8f7c67cc
+Successfully built 728d8f7c67cc
+[spark-deploy] $ docker tag 728d8f7c67cc instance-2:8080/sparkworker:latest
+[spark-deploy] $ docker inspect 728d8f7c67cc
+[spark-deploy] $ docker push instance-2:8080/sparkworker:13
+The push refers to a repository [instance-2:8080/sparkworker]
+cfcea9ec6d4c: Preparing
+1856dfc241e5: Preparing
+b499c54f8f4e: Preparing
+fae276ab8af7: Preparing
+158c017de1af: Preparing
+9821ca65a1a8: Preparing
+8d43435b20d7: Preparing
+90d1009ce6fe: Preparing
+90d1009ce6fe: Waiting
+8d43435b20d7: Waiting
+9821ca65a1a8: Waiting
+b499c54f8f4e: Layer already exists
+cfcea9ec6d4c: Layer already exists
+158c017de1af: Layer already exists
+1856dfc241e5: Layer already exists
+fae276ab8af7: Layer already exists
+90d1009ce6fe: Layer already exists
+9821ca65a1a8: Layer already exists
+8d43435b20d7: Layer already exists
+13: digest: sha256:dd6b6db3becac2035fa468cea1672b91e506549cb9a28f7e25058a13bed96cf1 size: 2005
+[spark-deploy] $ docker push instance-2:8080/sparkworker:latest
+The push refers to a repository [instance-2:8080/sparkworker]
+cfcea9ec6d4c: Preparing
+1856dfc241e5: Preparing
+b499c54f8f4e: Preparing
+fae276ab8af7: Preparing
+158c017de1af: Preparing
+9821ca65a1a8: Preparing
+8d43435b20d7: Preparing
+90d1009ce6fe: Preparing
+9821ca65a1a8: Waiting
+90d1009ce6fe: Waiting
+8d43435b20d7: Waiting
+fae276ab8af7: Layer already exists
+b499c54f8f4e: Layer already exists
+1856dfc241e5: Layer already exists
+158c017de1af: Layer already exists
+cfcea9ec6d4c: Layer already exists
+8d43435b20d7: Layer already exists
+90d1009ce6fe: Layer already exists
+9821ca65a1a8: Layer already exists
+latest: digest: sha256:dd6b6db3becac2035fa468cea1672b91e506549cb9a28f7e25058a13bed96cf1 size: 2005
+Starting Kubernetes deployment
+Loading configuration: /var/jenkins_home/workspace/spark-deploy/spark/spark-cluster-deploy.yaml
+ERROR: ERROR: io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: POST at: https://10.142.0.3:6443/api/v1/namespaces/bsavoy/services. Message: Service "spark-cluster-01:7077-spark-master" is invalid: [metadata.name: Invalid value: "spark-cluster-01:7077-spark-master": a DNS-1035 label must consist of lower case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name',  or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?'), spec.selector: Invalid value: "spark-master-spark-cluster-01:7077": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')]. Received status: Status(apiVersion=v1, code=422, details=StatusDetails(causes=[StatusCause(field=metadata.name, message=Invalid value: "spark-cluster-01:7077-spark-master": a DNS-1035 label must consist of lower case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name',  or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?'), reason=FieldValueInvalid, additionalProperties={}), StatusCause(field=spec.selector, message=Invalid value: "spark-master-spark-cluster-01:7077": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?'), reason=FieldValueInvalid, additionalProperties={})], group=null, kind=Service, name=spark-cluster-01:7077-spark-master, retryAfterSeconds=null, uid=null, additionalProperties={}), kind=Status, message=Service "spark-cluster-01:7077-spark-master" is invalid: [metadata.name: Invalid value: "spark-cluster-01:7077-spark-master": a DNS-1035 label must consist of lower case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name',  or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?'), spec.selector: Invalid value: "spark-master-spark-cluster-01:7077": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')], metadata=ListMeta(resourceVersion=null, selfLink=null, additionalProperties={}), reason=Invalid, status=Failure, additionalProperties={}).
+hudson.remoting.ProxyException: io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: POST at: https://10.142.0.3:6443/api/v1/namespaces/bsavoy/services. Message: Service "spark-cluster-01:7077-spark-master" is invalid: [metadata.name: Invalid value: "spark-cluster-01:7077-spark-master": a DNS-1035 label must consist of lower case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name',  or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?'), spec.selector: Invalid value: "spark-master-spark-cluster-01:7077": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')]. Received status: Status(apiVersion=v1, code=422, details=StatusDetails(causes=[StatusCause(field=metadata.name, message=Invalid value: "spark-cluster-01:7077-spark-master": a DNS-1035 label must consist of lower case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name',  or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?'), reason=FieldValueInvalid, additionalProperties={}), StatusCause(field=spec.selector, message=Invalid value: "spark-master-spark-cluster-01:7077": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?'), reason=FieldValueInvalid, additionalProperties={})], group=null, kind=Service, name=spark-cluster-01:7077-spark-master, retryAfterSeconds=null, uid=null, additionalProperties={}), kind=Status, message=Service "spark-cluster-01:7077-spark-master" is invalid: [metadata.name: Invalid value: "spark-cluster-01:7077-spark-master": a DNS-1035 label must consist of lower case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name',  or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?'), spec.selector: Invalid value: "spark-master-spark-cluster-01:7077": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')], metadata=ListMeta(resourceVersion=null, selfLink=null, additionalProperties={}), reason=Invalid, status=Failure, additionalProperties={}).
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.requestFailure(OperationSupport.java:472)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.assertResponseCode(OperationSupport.java:411)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:381)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:344)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleCreate(OperationSupport.java:227)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.handleCreate(BaseOperation.java:756)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.create(BaseOperation.java:334)
+	at com.microsoft.jenkins.kubernetes.KubernetesClientWrapper$ServiceUpdater.createResource(KubernetesClientWrapper.java:503)
+	at com.microsoft.jenkins.kubernetes.KubernetesClientWrapper$ServiceUpdater.createResource(KubernetesClientWrapper.java:435)
+	at com.microsoft.jenkins.kubernetes.KubernetesClientWrapper$ResourceUpdater.createOrApply(KubernetesClientWrapper.java:369)
+	at com.microsoft.jenkins.kubernetes.KubernetesClientWrapper.apply(KubernetesClientWrapper.java:160)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand$DeploymentTask.doCall(DeploymentCommand.java:168)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand$DeploymentTask.call(DeploymentCommand.java:122)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand$DeploymentTask.call(DeploymentCommand.java:105)
+	at hudson.FilePath.act(FilePath.java:1165)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand.execute(DeploymentCommand.java:67)
+	at com.microsoft.jenkins.kubernetes.command.DeploymentCommand.execute(DeploymentCommand.java:46)
+	at com.microsoft.jenkins.azurecommons.command.CommandService.runCommand(CommandService.java:88)
+	at com.microsoft.jenkins.azurecommons.command.CommandService.execute(CommandService.java:96)
+	at com.microsoft.jenkins.azurecommons.command.CommandService.executeCommands(CommandService.java:75)
+	at com.microsoft.jenkins.azurecommons.command.BaseCommandContext.executeCommands(BaseCommandContext.java:77)
+	at com.microsoft.jenkins.kubernetes.KubernetesDeploy.perform(KubernetesDeploy.java:42)
+	at hudson.tasks.BuildStepCompatibilityLayer.perform(BuildStepCompatibilityLayer.java:81)
+	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:20)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:744)
+	at hudson.model.Build$BuildExecution.build(Build.java:206)
+	at hudson.model.Build$BuildExecution.doRun(Build.java:163)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.run(AbstractBuild.java:504)
+	at hudson.model.Run.execute(Run.java:1810)
+	at hudson.model.FreeStyleBuild.run(FreeStyleBuild.java:43)
+	at hudson.model.ResourceController.execute(ResourceController.java:97)
+	at hudson.model.Executor.run(Executor.java:429)
+ERROR: Kubernetes deployment ended with HasError
+Finished: FAILURE

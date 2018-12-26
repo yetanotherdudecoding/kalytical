@@ -1,0 +1,11 @@
+commit 401572340397d162ae37571b0ac69b64be98ee95
+tree 32f15f12903f7e8a77e14673b2f8d5344303f714
+parent 38b1ffee225eca4b2deb558d59afe1a911377efc
+author Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-19 16:56:58 +0000
+committer Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-19 16:56:58 +0000
+
+    fix magnitude for memory
+
+
+
+:100644 100644 c27f9d311485db3f1b019df6ecb1a2f799efab7d dd73a6f28e8758dfb0e83af30714aa14a0ff9044 M	spark/spark-cluster-deploy.yaml

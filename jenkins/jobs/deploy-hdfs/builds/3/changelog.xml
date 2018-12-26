@@ -1,0 +1,22 @@
+commit 4c4559a998844364422ac9fd1e6e5a3cac380931
+tree a67ac56601ca723fb6551ad28ff807b491f07542
+parent c217d0ff909eb9752064796c006055c8978252a3
+author Bradley Savoy <brad.savoy@gmail.com> 2018-12-13 20:18:56 +0000
+committer Bradley Savoy <brad.savoy@gmail.com> 2018-12-13 20:18:56 +0000
+
+    hdfs-deploy.yaml edited online with Bitbucket
+
+
+
+:100644 100644 322b32c8cb05c112e0870d65f3505f3acfd9b122 aafd5ab6e8a4bbb807d253bfceb87295f5de98f0 M	hdfs/hdfs-deploy.yaml
+commit c217d0ff909eb9752064796c006055c8978252a3
+tree 98fd3883fa74171a5963e1aba86764b4e0763c83
+parent 1a90b71f39a722034bd5ed63c58f4cf205cb9991
+author Bradley Savoy <brad.savoy@gmail.com> 2018-12-13 20:18:20 +0000
+committer Bradley Savoy <brad.savoy@gmail.com> 2018-12-13 20:18:20 +0000
+
+    mysql-deploy.yaml edited online with Bitbucket
+
+
+
+:100644 100644 5108c6d5c8d57c5441c716665b979f81374b5de9 dc836e09f0132007c662887dd61b12582f58496c M	mysql/mysql-deploy.yaml

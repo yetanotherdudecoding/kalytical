@@ -1,0 +1,32 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/spark-cluster-deploy
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/kalytical.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/kalytical.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/kalytical.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/initial^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/initial^{commit} # timeout=10
+Checking out Revision 5dbf9243ef89aebd50bfdfee077aa35038ea16e4 (refs/remotes/origin/initial)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 5dbf9243ef89aebd50bfdfee077aa35038ea16e4
+Commit message: "expose port for Hdfs outside cluster"
+ > git rev-list --no-walk 5dbf9243ef89aebd50bfdfee077aa35038ea16e4 # timeout=10
+[spark-cluster-deploy] $ docker build -t instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkmaster:22 --pull=true --file=spark/master/Dockerfile spark/master
+Sending build context to Docker daemon  2.048kB
+Step 1/1 : FROM gettyimages/spark:latest
+Trying to pull repository docker.io/gettyimages/spark ... 
+latest: Pulling from docker.io/gettyimages/spark
+Digest: sha256:476fe6243bfd172064d7f71bd1d3679618f349e09941420848dde08c9fa6cf16
+Status: Image is up to date for docker.io/gettyimages/spark:latest
+ ---> 56107fdf8422
+Successfully built 56107fdf8422
+[spark-cluster-deploy] $ docker tag 56107fdf8422 instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkmaster:latest
+[spark-cluster-deploy] $ docker inspect 56107fdf8422
+[spark-cluster-deploy] $ docker push instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkmaster:22
+The push refers to a repository [instance-1.us-east1-b.c.sandbox-224519.internal:8080/sparkmaster]
+Put http://instance-1.us-east1-b.c.sandbox-224519.internal:8080/v1/repositories/sparkmaster/: dial tcp 10.142.0.2:8080: getsockopt: connection refused
+Build step 'Docker Build and Publish' marked build as failure
+Finished: FAILURE

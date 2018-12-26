@@ -1,0 +1,91 @@
+Started by user [8mha:////4Nct9mT4JkcR2n6qL2qp2Se2jSWIXugywtK/9phaDtIgAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgYe/dLi1CL9lPzk7NQiAErXYGvBAAAA[0mzzz@zzz.com
+Building in workspace /var/jenkins_home/workspace/testjenkins
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://zerodown524@bitbucket.org/zerodown524/k8s-python-test-app.git # timeout=10
+Fetching upstream changes from https://zerodown524@bitbucket.org/zerodown524/k8s-python-test-app.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://zerodown524@bitbucket.org/zerodown524/k8s-python-test-app.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 0988437de2194e5ddf103f00056c1b8bd991af88 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 0988437de2194e5ddf103f00056c1b8bd991af88
+Commit message: "Dockerfile edited online with Bitbucket"
+ > git rev-list --no-walk 0988437de2194e5ddf103f00056c1b8bd991af88 # timeout=10
+[testjenkins] $ docker build -t instance-2:8080/pythondemo:latest --pull=true /var/jenkins_home/workspace/testjenkins
+Sending build context to Docker daemon  78.34kB
+Step 1/7 : FROM python:2.7-slim
+Trying to pull repository docker.io/library/python ... 
+2.7-slim: Pulling from docker.io/library/python
+a5a6f2f73cd8: Pulling fs layer
+8da2a74f37b1: Pulling fs layer
+09b6f498cfd0: Pulling fs layer
+f0afb4f0a079: Pulling fs layer
+f0afb4f0a079: Waiting
+8da2a74f37b1: Verifying Checksum
+8da2a74f37b1: Download complete
+09b6f498cfd0: Verifying Checksum
+09b6f498cfd0: Download complete
+a5a6f2f73cd8: Verifying Checksum
+a5a6f2f73cd8: Download complete
+f0afb4f0a079: Verifying Checksum
+f0afb4f0a079: Download complete
+a5a6f2f73cd8: Pull complete
+8da2a74f37b1: Pull complete
+09b6f498cfd0: Pull complete
+f0afb4f0a079: Pull complete
+Digest: sha256:f82db224fbc9ff3309b7b62496e19d673738a568891604a12312e237e01ef147
+Status: Downloaded newer image for docker.io/python:2.7-slim
+ ---> 0dc3d8d47241
+Step 2/7 : WORKDIR /usr/src/app
+ ---> a8880d7527d2
+Removing intermediate container 10b018d40a6e
+Step 3/7 : RUN pip install --upgrade pip
+ ---> Running in e164e7bd4a67
+
+[91m[0mRequirement already up-to-date: pip in /usr/local/lib/python2.7/site-packages (18.1)
+ ---> f1278bbe2c02
+Removing intermediate container e164e7bd4a67
+Step 4/7 : RUN pip install --upgrade setuptools
+ ---> Running in 0096685e6b3f
+
+[91m[0mCollecting setuptools
+  Downloading https://files.pythonhosted.org/packages/37/06/754589caf971b0d2d48f151c2586f62902d93dc908e2fd9b9b9f6aa3c9dd/setuptools-40.6.3-py2.py3-none-any.whl (573kB)
+Installing collected packages: setuptools
+  Found existing installation: setuptools 40.6.2
+    Uninstalling setuptools-40.6.2:
+      Successfully uninstalled setuptools-40.6.2
+Successfully installed setuptools-40.6.3
+ ---> 4fc05d63f4ec
+Removing intermediate container 0096685e6b3f
+Step 5/7 : COPY ./pytest.py ./
+ ---> 7ee29bdba58d
+Removing intermediate container cc8041d99e53
+Step 6/7 : CMD python ./pytest.py
+ ---> Running in 8252389f6df5
+ ---> 8a1016637267
+Removing intermediate container 8252389f6df5
+Step 7/7 : EXPOSE 8080
+ ---> Running in 1c05b6bbb514
+ ---> a83d18d69265
+Removing intermediate container 1c05b6bbb514
+Successfully built a83d18d69265
+[testjenkins] $ docker tag a83d18d69265 instance-2:8080/pythondemo:latest
+[testjenkins] $ docker inspect a83d18d69265
+[testjenkins] $ docker push instance-2:8080/pythondemo:latest
+The push refers to a repository [instance-2:8080/pythondemo]
+e77e6808d194: Preparing
+3f8615609bcf: Preparing
+fa8944ef28d4: Preparing
+9f8a6958baf4: Preparing
+6cffeea81e5d: Preparing
+614a79865f6d: Preparing
+612d27bb923f: Preparing
+ef68f6734aa4: Preparing
+612d27bb923f: Waiting
+ef68f6734aa4: Waiting
+614a79865f6d: Waiting
+unauthorized: access to the requested resource is not authorized
+Build step 'Docker Build and Publish' marked build as failure
+Finished: FAILURE

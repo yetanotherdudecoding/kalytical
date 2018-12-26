@@ -1,0 +1,11 @@
+commit 16d8088bf3cec47f87281f05b6ee300697c9f59d
+tree 61b7942e416f8bd3d49223126a2d8ae833da18d4
+parent 5d036111ae797067bd613c79bbb1b4633534d004
+author Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-19 03:42:26 +0000
+committer Bradley Savoy <zerodown524@instance-1.us-east1-b.c.sandbox-224519.internal> 2018-12-19 03:42:26 +0000
+
+    update jupyter to spark-all image. Fixing webui for hdfs
+
+
+
+:100644 100644 f1b061a39f1164174dd541264c4a2687ca26b85e 3a4229559406131e6fcf878b4257c0d6c5f3b6f2 M	hdfs/Dockerfile
