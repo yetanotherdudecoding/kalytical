@@ -70,7 +70,7 @@ RUN apk --no-cache add bash \
 
 # Begin Data Collector installation
 ARG SDC_VERSION=3.6.1
-ARG SDC_URL=http://instance-2:8081/repository/raw-artifacts/oss/streamsets-datacollector-all-3.6.1.tgz
+ARG SDC_URL=http://instance-1.us-east1-b.c.sandbox-224519.internal:8081/repository/raw-artifacts/oss/streamsets-datacollector-all-3.6.1.tgz
 ARG SDC_USER=sdc
 # SDC_HOME is where executables and related files are installed. Used in setup_mapr script.
 ARG SDC_HOME="/opt/streamsets-datacollector-${SDC_VERSION}"
