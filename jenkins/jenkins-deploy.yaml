@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: jenkins-og
-        image: instance-2:8080/jenkins:201812131
+        image: instance-1.us-east1-b.c.sandbox-224519.internal:8080/jenkins:201812270
         volumeMounts:
         - name: jenkins-home
           mountPath: /var/jenkins_home

@@ -13,4 +13,4 @@ spec:
         - name: SPARK_SUBMIT_ARGS
           value: "${SUBMIT_PARAMS}"
       restartPolicy: Never
-  backoffLimit: 4
+  backoffLimit: 0
