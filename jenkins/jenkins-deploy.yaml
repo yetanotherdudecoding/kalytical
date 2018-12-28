@@ -33,6 +33,9 @@ spec:
       containers:
       - name: jenkins-og
         image: instance-1.us-east1-b.c.sandbox-224519.internal:8080/jenkins:201812270
+        env:
+        - name: JAVA_OPTS
+          value: "-Djenkins.install.runSetupWizard=false"
         volumeMounts:
         - name: jenkins-home
           mountPath: /var/jenkins_home
