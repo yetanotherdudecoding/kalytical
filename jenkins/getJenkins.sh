@@ -1,7 +1,7 @@
 rm -rf ./docker
 git clone https://github.com/jenkinsci/docker.git
 cp plugins.txt ./docker/plugins.txt
-
+cp config.json ./docker/config.json
 cat << EOF >> ./docker/Dockerfile
 COPY plugins.txt /usr/local/bin/plugins.txt
 RUN cat /usr/local/bin/plugins.txt | /usr/local/bin/install-plugins.sh
@@ -17,6 +17,10 @@ RUN apt-get install apt-transport-https ca-certificates curl gnupg2 software-pro
   && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian \$(lsb_release -cs) stable" \
   && apt-get update -y && apt-get install docker-ce -y 
 RUN rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /home/.docker
+COPY config.json /home/.docker/
+RUN chmod +r /home/.docker/config.json
 USER \${user}
+ENV DOCKER_CONFIG /home/.docker
 
 EOF
