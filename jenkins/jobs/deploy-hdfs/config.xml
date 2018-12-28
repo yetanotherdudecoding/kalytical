@@ -73,7 +73,7 @@
     </com.cloudbees.dockerpublish.DockerBuilder>
     <com.microsoft.jenkins.kubernetes.KubernetesDeploy plugin="kubernetes-cd@0.2.3">
       <context>
-        <kubeconfigId>44cc1693-5262-4fcd-9ee4-8e1d2613812f</kubeconfigId>
+        <kubeconfigId>localkubernetesconfig</kubeconfigId>
         <credentialsType>KubeConfig</credentialsType>
         <ssh>
           <sshServer></sshServer>

@@ -1,7 +1,7 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>deploy something to kubernetes</description>
+  <description>deploy single streamsets to kubernetes</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.model.ParametersDefinitionProperty>
@@ -9,13 +9,19 @@
         <hudson.model.StringParameterDefinition>
           <name>DOCKER_REGISTRY</name>
           <description>docker registry adddress (i.e. myregistry:8080 )</description>
-          <defaultValue>instance-2:8080</defaultValue>
+          <defaultValue>instance-1.us-east1-b.c.sandbox-224519.internal:8080</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>IMAGE_NAME</name>
           <description>docker image name proper</description>
-          <defaultValue>pytest</defaultValue>
+          <defaultValue>sdc</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>K8S_NAMESPACE</name>
+          <description>kubernetes deployment namespace</description>
+          <defaultValue>bsavoy</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -25,12 +31,13 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://zerodown524@bitbucket.org/zerodown524/k8s-python-test-app.git</url>
+        <url>https://zerodown524@bitbucket.org/zerodown524/kalytical.git</url>
+        <credentialsId>private bitbucket</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>*/master</name>
+        <name>*/initial</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -53,6 +60,8 @@
       <repoName>$IMAGE_NAME</repoName>
       <noCache>false</noCache>
       <forcePull>true</forcePull>
+      <buildContext>streamsets</buildContext>
+      <dockerfilePath>streamsets/Dockerfile</dockerfilePath>
       <skipBuild>false</skipBuild>
       <skipDecorate>false</skipDecorate>
       <repoTag>$BUILD_NUMBER</repoTag>
@@ -64,7 +73,7 @@
     </com.cloudbees.dockerpublish.DockerBuilder>
     <com.microsoft.jenkins.kubernetes.KubernetesDeploy plugin="kubernetes-cd@0.2.3">
       <context>
-        <kubeconfigId>44cc1693-5262-4fcd-9ee4-8e1d2613812f</kubeconfigId>
+        <kubeconfigId>localkubernetesconfig</kubeconfigId>
         <credentialsType>KubeConfig</credentialsType>
         <ssh>
           <sshServer></sshServer>
@@ -79,7 +88,7 @@
           <clientCertificateData></clientCertificateData>
           <clientKeyData></clientKeyData>
         </textCredentials>
-        <configs>pytest_deployment.yaml</configs>
+        <configs>streamsets/sdc-deploy.yaml</configs>
         <enableConfigSubstitution>true</enableConfigSubstitution>
         <secretName></secretName>
       </context>

@@ -9,13 +9,19 @@
         <hudson.model.StringParameterDefinition>
           <name>DOCKER_REGISTRY</name>
           <description>docker registry adddress (i.e. myregistry:8080 )</description>
-          <defaultValue>instance-2:8080</defaultValue>
+          <defaultValue>instance-1.us-east1-b.c.sandbox-224519.internal:8080</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>IMAGE_NAME</name>
           <description>docker image name proper</description>
           <defaultValue>mysql</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>K8S_NAMESPACE</name>
+          <description></description>
+          <defaultValue>bsavoy</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -67,7 +73,7 @@
     </com.cloudbees.dockerpublish.DockerBuilder>
     <com.microsoft.jenkins.kubernetes.KubernetesDeploy plugin="kubernetes-cd@0.2.3">
       <context>
-        <kubeconfigId>44cc1693-5262-4fcd-9ee4-8e1d2613812f</kubeconfigId>
+        <kubeconfigId>localkubernetesconfig</kubeconfigId>
         <credentialsType>KubeConfig</credentialsType>
         <ssh>
           <sshServer></sshServer>
