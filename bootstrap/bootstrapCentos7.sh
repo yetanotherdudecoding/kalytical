@@ -48,6 +48,7 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8
 kubectl create namespace bsavoy
 mkdir -p /k8s-pvs/{jenkins_home,sdc_data}
 chmod 777 -R /k8s-pvs
+kubectl create secret generic k8s-kube-config --from-file=.kube/config -n bsavoy
 
 kubectl apply -f jenkins/jenkins-deploy.yaml
 #Give jenkins a chance to pull and start initializing

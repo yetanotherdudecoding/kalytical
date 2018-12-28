@@ -41,6 +41,9 @@ spec:
           mountPath: /var/jenkins_home
         - name: docker-sock
           mountPath: /var/run/docker.sock
+        - name: kubeconfigsecret
+          mountPath: /home/.kube
+          readOnly: true
         resources:
           limits:
             cpu: "1000m"
@@ -55,6 +58,9 @@ spec:
       - name: docker-sock
         persistentVolumeClaim:
           claimName: jenkins-dockersock-pvc
+      - name: kubeconfigsecret
+        secret:
+          secretName: k8s-kube-config
 ---
 kind: PersistentVolume
 apiVersion: v1
