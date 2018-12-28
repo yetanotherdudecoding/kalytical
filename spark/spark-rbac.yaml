@@ -4,7 +4,7 @@ metadata:
   namespace: ${K8S_NAMESPACE}
   name: spark-pod-mgr
 rules:
-- apiGroups: [""] # "" indicates the core API group
+- apiGroups: ["","batch"] # "" indicates the core API group
   resources: ["*"]
   verbs: ["get", "watch", "list", "delete", "create", "edit"]
 ---
