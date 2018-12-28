@@ -10,12 +10,12 @@ fi
 ATTEMPTS=0
 while [ "200" != "$(curl -sL -w %{http_code} $JENKINS_URL/ -o /dev/null)" -a "$ATTEMPTS" != "5" ]; do
 	((ATTEMPTS++))
-	echo "Jenkins was not up, wait 10 seconds then try again. Attempt $ATTEMPTS/5"
+	echo "WARN: Jenkins was not up, wait 10 seconds then try again. Attempt $ATTEMPTS/5"
 	sleep 10
 done
 
 if [ "$ATTEMPTS" = "5" ]; then
-	echo "Jenkins did not come up after 5 attempts to reach it. 10 second timeout on each poll. Please check jenkins at $JENKINS_URL"
+	echo "ERROR: Jenkins did not come up after 5 attempts to reach it. 10 second timeout on each poll. Please check jenkins at $JENKINS_URL"
 	exit 1
 fi
 

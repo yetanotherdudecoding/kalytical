@@ -48,13 +48,11 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8
 kubectl create namespace bsavoy
 mkdir -p /k8s-pvs/{jenkins_home,sdc_data}
 chmod 777 -R /k8s-pvs
-kubectl create secret generic k8s-kube-config --from-file=.kube/config -n bsavoy
-
+kubectl create secret generic jenkins-k8s-kube-config --from-file=/root/.kube/config -n bsavoy
+kubectl create secret generic jenkins-docker-config --from-file=jenkins/config.json -n bsavoy
 kubectl apply -f jenkins/jenkins-deploy.yaml
 #Give jenkins a chance to pull and start initializing
-sleep 120 
-jenkins/jobs/provisionJenkinsJobs.sh http://$(hostname):30080
-
+jenkins/configureJenkinsDeployment.sh http://$(hostname):30080
 echo "At this point, you should navigate to http://$(hostname):30080 and use jenkins to bootstrap the rest of the resources"
 echo "I would not reccomend bringing additional nodes into the cluster at this time since hostpath is used for persistence"
 #kubeadm token create --print-join-command

@@ -1,5 +1,4 @@
-<?xml version='1.1' encoding='UTF-8'?>
-<project>
+<?xml version="1.1" encoding="UTF-8"?><project>
   <actions/>
   <description>Scale the number of spark workers for a given cluster</description>
   <keepDependencies>false</keepDependencies>
@@ -20,7 +19,7 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>REPLICAS</name>
-          <description></description>
+          <description/>
           <defaultValue>3</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>

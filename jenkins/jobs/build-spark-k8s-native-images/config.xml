@@ -4,7 +4,7 @@
   <description>Builds spark images used for kubernetes deployment</description>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.9.1">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.2">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -32,7 +32,7 @@
     </hudson.tasks.Shell>
     <com.microsoft.jenkins.kubernetes.KubernetesDeploy plugin="kubernetes-cd@0.2.3">
       <context>
-        <kubeconfigId>localkubernetesconfig</kubeconfigId>
+        <kubeconfigId>k8s-kube-config-secret</kubeconfigId>
         <credentialsType>KubeConfig</credentialsType>
         <ssh>
           <sshServer></sshServer>

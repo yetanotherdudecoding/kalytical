@@ -36,6 +36,8 @@ spec:
         env:
         - name: JAVA_OPTS
           value: "-Djenkins.install.runSetupWizard=false -DXmx=4096M -DXms=2048M"
+        - name: DOCKER_CONFIG
+          value: "/home/.docker"
         volumeMounts:
         - name: jenkins-home
           mountPath: /var/jenkins_home
@@ -43,6 +45,8 @@ spec:
           mountPath: /var/run/docker.sock
         - name: kubeconfigsecret
           mountPath: /home/.kube
+        - name: dockerconfigsecret
+          mountPath: /home/.docker
           readOnly: true
         resources:
           limits:
@@ -60,7 +64,10 @@ spec:
           claimName: jenkins-dockersock-pvc
       - name: kubeconfigsecret
         secret:
-          secretName: k8s-kube-config
+          secretName: jenkins-k8s-kube-config
+      - name: dockerconfigsecret
+        secret:
+          secretName: jenkins-docker-config
 ---
 kind: PersistentVolume
 apiVersion: v1
