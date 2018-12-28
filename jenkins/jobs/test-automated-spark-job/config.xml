@@ -15,24 +15,25 @@
         <hudson.model.StringParameterDefinition>
           <name>K8S_NAMESPACE</name>
           <description></description>
-          <defaultValue>default</defaultValue>
+          <defaultValue>bsavoy</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.TextParameterDefinition>
           <name>SUBMIT_PARAMS</name>
           <description></description>
-          <defaultValue>--master k8s://https://10.142.0.3:6443 \
+          <defaultValue>--master k8s://https://kubernetes.default:443 \
 --deploy-mode cluster \
 --name spark-pi \
 --class org.apache.spark.examples.SparkPi \
 --conf spark.executor.instances=1 \
 --conf spark.kubernetes.container.image=instance-1.us-east1-b.c.sandbox-224519.internal:8080/spark:2.3.1 \
+--conf spark.kubernetes.namespace=bsavoy
 http://instance-1.us-east1-b.c.sandbox-224519.internal/repository/dataproducts/examples/spark-examples_2.11-2.3.1.jar</defaultValue>
           <trim>false</trim>
         </hudson.model.TextParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SUBMIT_POD_IMAGE</name>
-          <description></description>
+          <description>Pod used to submit spark job to kubernetes</description>
           <defaultValue>instance-1.us-east1-b.c.sandbox-224519.internal:8080/submitpod:201812263</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
@@ -62,6 +63,10 @@ http://instance-1.us-east1-b.c.sandbox-224519.internal/repository/dataproducts/e
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <hudson.tasks.Shell>
+      <command>sed -i &apos;s/$K8S_NAMESPACE/bsavoy/g&apos; spark/spark-rbac.yaml
+kubectl apply -f spark/spark-rbac.yaml -n bsavoy --kubeconfig /home/.kube/config</command>
+    </hudson.tasks.Shell>
     <com.microsoft.jenkins.kubernetes.KubernetesDeploy plugin="kubernetes-cd@0.2.3">
       <context>
         <kubeconfigId>k8s-kube-config-secret</kubeconfigId>
@@ -84,6 +89,9 @@ http://instance-1.us-east1-b.c.sandbox-224519.internal/repository/dataproducts/e
         <secretName></secretName>
       </context>
     </com.microsoft.jenkins.kubernetes.KubernetesDeploy>
+    <hudson.tasks.Shell>
+      <command>spark/checkJobStatus.sh spark-job-$JOB_NAME-$BUILD_NUMBER</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers/>
   <buildWrappers/>
