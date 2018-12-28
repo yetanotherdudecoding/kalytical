@@ -1,14 +1,14 @@
 #!/bin/bash
 #This script provisions jenkins pipelines found in this folder
 JENKINS_URL=$1
-WORKDIR=$(pwd)
+echo $JENKINS_URL
 echo "INFO: Provision jenkins pipelines in $(pwd)/jobs"
 if [ -z $JENKINS_URL ]; then
 	echo "ERROR: You must specify a jenkins url, such as http://jenkins:8080"
 	exit 10
 fi
 ATTEMPTS=0
-while [ "200" != "$(curl -sL -w %{http_code} http://instance-1:443/ -o /dev/null)" -a "$ATTEMPTS" != "5" ]; do
+while [ "200" != "$(curl -sL -w %{http_code} $JENKINS_URL/ -o /dev/null)" -a "$ATTEMPTS" != "5" ]; do
 	((ATTEMPTS++))
 	echo "Jenkins was not up, wait 10 seconds then try again. Attempt $ATTEMPTS/5"
 	sleep 10
@@ -19,7 +19,7 @@ if [ "$ATTEMPTS" = "5" ]; then
 	exit 1
 fi
 
-cd jobs
+cd jenkins/jobs
 for JOB in $(ls -d */ | cut -f1 -d'/'); do
 	if [ -r $JOB/config.xml ]; then
 		SUBMIT_STR="curl -s -XPOST '$JENKINS_URL/createItem?name=$JOB' --data-binary @$JOB/config.xml -H 'Content-Type:text/xml' > /dev/null"

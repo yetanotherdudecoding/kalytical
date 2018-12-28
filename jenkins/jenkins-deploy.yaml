@@ -35,7 +35,7 @@ spec:
         image: instance-1.us-east1-b.c.sandbox-224519.internal:8080/jenkins:201812270
         env:
         - name: JAVA_OPTS
-          value: "-Djenkins.install.runSetupWizard=false"
+          value: "-Djenkins.install.runSetupWizard=false -DXmx=4096M -DXms=2048M"
         volumeMounts:
         - name: jenkins-home
           mountPath: /var/jenkins_home
@@ -44,10 +44,10 @@ spec:
         resources:
           limits:
             cpu: "1000m"
-            memory: "2048Mi"
+            memory: "4096Mi"
           requests:
             cpu: "500m"
-            memory: "1024Mi"
+            memory: "2048Mi"
       volumes:
       - name: jenkins-home
         persistentVolumeClaim:

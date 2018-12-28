@@ -39,21 +39,21 @@ systemctl enable kubelet && systemctl start kubelet
 kubeadm init --pod-network-cidr=10.244.0.0/16
 echo "Setup kubernetes credentials"
 mkdir -p $HOME/.kube
-cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+cp -if /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
-
-sleep 30
 
 echo "Applying minimum necessary setup for bootstrapping the rest of the cluster from jenkins"
 kubectl taint nodes --all node-role.kubernetes.io/master-
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
-kubectl apply -f spark/spark-rbac.yaml
-mkdir -p /k8s_pvs/{jenkins_home,sdc_data}
-chmod 777 -R /k8s_pvs
-cd jenkins
-kubectl apply -f jenkins-deploy.yaml
-jobs/provisionJenkinsJobs.sh http://$(hostname):30080
+kubectl create namespace bsavoy
+mkdir -p /k8s-pvs/{jenkins_home,sdc_data}
+chmod 777 -R /k8s-pvs
 
-echo "At this point, you should navigate to http://" $(hostname) ":30080 and use jenkins to bootstrap the rest of the resources"
+kubectl apply -f jenkins/jenkins-deploy.yaml
+#Give jenkins a chance to pull and start initializing
+sleep 120 
+jenkins/jobs/provisionJenkinsJobs.sh http://$(hostname):30080
+
+echo "At this point, you should navigate to http://$(hostname):30080 and use jenkins to bootstrap the rest of the resources"
 echo "I would not reccomend bringing additional nodes into the cluster at this time since hostpath is used for persistence"
 #kubeadm token create --print-join-command
