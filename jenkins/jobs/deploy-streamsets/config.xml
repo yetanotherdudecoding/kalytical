@@ -75,28 +75,14 @@
       <buildAdditionalArgs>--build-arg DOCKER_REGISTRY=$DOCKER_REGISTRY --build-arg SDC_URL=$SDC_URL</buildAdditionalArgs>
       <forceTag>false</forceTag>
     </com.cloudbees.dockerpublish.DockerBuilder>
-    <com.microsoft.jenkins.kubernetes.KubernetesDeploy plugin="kubernetes-cd@0.2.3">
-      <context>
-        <kubeconfigId>k8s-kube-config-secret</kubeconfigId>
-        <credentialsType>KubeConfig</credentialsType>
-        <ssh>
-          <sshServer></sshServer>
-          <sshCredentialsId>*</sshCredentialsId>
-        </ssh>
-        <kubeConfig>
-          <path></path>
-        </kubeConfig>
-        <textCredentials>
-          <serverUrl>https://</serverUrl>
-          <certificateAuthorityData></certificateAuthorityData>
-          <clientCertificateData></clientCertificateData>
-          <clientKeyData></clientKeyData>
-        </textCredentials>
-        <configs>streamsets/sdc-deploy.yaml</configs>
-        <enableConfigSubstitution>true</enableConfigSubstitution>
-        <secretName></secretName>
-      </context>
-    </com.microsoft.jenkins.kubernetes.KubernetesDeploy>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+sed -i &apos;s/${K8S_NAMESPACE}/&apos;&quot;$K8S_NAMESPACE&quot;&apos;/g&apos; streamsets/sdc-deploy.yaml
+sed -i &apos;s/${DOCKER_REGISTRY}/&apos;&quot;$DOCKER_REGISTRY&quot;&apos;/g&apos; streamsets/sdc-deploy.yaml
+sed -i &apos;s/${IMAGE_NAME}/&apos;&quot;$IMAGE_NAME&quot;&apos;/g&apos; streamsets/sdc-deploy.yaml
+sed -i &apos;s/${BUILD_NUMBER}/&apos;&quot;$BUILD_NUMBER&quot;&apos;/g&apos; streamsets/sdc-deploy.yaml
+kubectl apply -f streamsets/sdc-deploy.yaml -n $K8S_NAMESPACE --kubeconfig /home/.kube/config</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers/>
   <buildWrappers/>

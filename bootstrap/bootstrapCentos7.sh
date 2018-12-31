@@ -34,7 +34,7 @@ cat << EOF | /usr/bin/tee /etc/docker/daemon.json
 }
 EOF
 
-yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
+yum install -y docker kubelet kubeadm kubectl jq --disableexcludes=kubernetes
 systemctl disable firewalld && systemctl stop firewalld
 cat << EOF | /usr/bin/tee /etc/sysconfig/docker
 INSECURE_REGISTRY="--insecure-registry=0.0.0.0/0"
