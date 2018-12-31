@@ -23,7 +23,7 @@ if [ ! -d "${SDC_DIST}" ]; then
 
     # Download and extract SDC.
     for f in /tmp/*.tgz; do
-        [ -e "$f" ] && mv "$f" /tmp/sdc.tgz || curl -u admin:rwzB8ff@tuil -o /tmp/sdc.tgz -L "${SDC_URL}"
+        [ -e "$f" ] && mv "$f" /tmp/sdc.tgz || curl -o /tmp/sdc.tgz -L "${SDC_URL}"
         break
     done
 
