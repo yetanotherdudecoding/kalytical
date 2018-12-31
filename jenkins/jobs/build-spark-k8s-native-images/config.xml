@@ -1,5 +1,4 @@
-<?xml version='1.1' encoding='UTF-8'?>
-<project>
+<?xml version="1.1" encoding="UTF-8"?><project>
   <actions/>
   <description>Builds spark images used for kubernetes deployment</description>
   <keepDependencies>false</keepDependencies>
@@ -8,13 +7,13 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>DOCKER_REGISTRY</name>
-          <description></description>
+          <description/>
           <defaultValue>instance-1.us-east1-b.c.sandbox-224519.internal:8080</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SPARK_ARTIFACT_URL</name>
-          <description></description>
+          <description/>
           <defaultValue>http://instance-1.us-east1-b.c.sandbox-224519.internal/repository/raw-artifacts/oss/spark-2.3.1-bin-hadoop2.7.tgz</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>

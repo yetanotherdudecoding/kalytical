@@ -1,5 +1,4 @@
-<?xml version='1.1' encoding='UTF-8'?>
-<project>
+<?xml version="1.1" encoding="UTF-8"?><project>
   <actions/>
   <description>Deploy spark cluster against kubernetes</description>
   <keepDependencies>false</keepDependencies>
@@ -38,19 +37,19 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WORKER_IMAGE_NAME</name>
-          <description></description>
+          <description/>
           <defaultValue>sparkworker</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WORKER_SHAPE_MEM</name>
-          <description></description>
+          <description/>
           <defaultValue>4096M</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WORKER_SHAPE_CPU</name>
-          <description></description>
+          <description/>
           <defaultValue>1</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
@@ -96,7 +95,7 @@
       <skipPush>false</skipPush>
       <createFingerprint>true</createFingerprint>
       <skipTagLatest>false</skipTagLatest>
-      <buildAdditionalArgs></buildAdditionalArgs>
+      <buildAdditionalArgs/>
       <forceTag>false</forceTag>
     </com.cloudbees.dockerpublish.DockerBuilder>
     <com.cloudbees.dockerpublish.DockerBuilder plugin="docker-build-publish@1.3.2">
@@ -115,7 +114,7 @@
       <skipPush>false</skipPush>
       <createFingerprint>true</createFingerprint>
       <skipTagLatest>false</skipTagLatest>
-      <buildAdditionalArgs></buildAdditionalArgs>
+      <buildAdditionalArgs/>
       <forceTag>false</forceTag>
     </com.cloudbees.dockerpublish.DockerBuilder>
     <com.microsoft.jenkins.kubernetes.KubernetesDeploy plugin="kubernetes-cd@0.2.3">
@@ -123,21 +122,21 @@
         <kubeconfigId>k8s-kube-config-secret</kubeconfigId>
         <credentialsType>KubeConfig</credentialsType>
         <ssh>
-          <sshServer></sshServer>
+          <sshServer/>
           <sshCredentialsId>*</sshCredentialsId>
         </ssh>
         <kubeConfig>
-          <path></path>
+          <path/>
         </kubeConfig>
         <textCredentials>
           <serverUrl>https://</serverUrl>
-          <certificateAuthorityData></certificateAuthorityData>
-          <clientCertificateData></clientCertificateData>
-          <clientKeyData></clientKeyData>
+          <certificateAuthorityData/>
+          <clientCertificateData/>
+          <clientKeyData/>
         </textCredentials>
         <configs>spark/spark-cluster-deploy.yaml</configs>
         <enableConfigSubstitution>true</enableConfigSubstitution>
-        <secretName></secretName>
+        <secretName/>
       </context>
     </com.microsoft.jenkins.kubernetes.KubernetesDeploy>
   </builders>

@@ -24,6 +24,12 @@
           <defaultValue>bsavoy</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SDC_URL</name>
+          <description></description>
+          <defaultValue>http://instance-1.us-east1-b.c.sandbox-224519.internal:8081/repository/raw-artifacts/oss/streamsets-datacollector-all-3.6.1.tgz</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -66,7 +72,7 @@
       <skipPush>false</skipPush>
       <createFingerprint>true</createFingerprint>
       <skipTagLatest>false</skipTagLatest>
-      <buildAdditionalArgs></buildAdditionalArgs>
+      <buildAdditionalArgs>--build-arg DOCKER_REGISTRY=$DOCKER_REGISTRY --build-arg SDC_URL=$SDC_URL</buildAdditionalArgs>
       <forceTag>false</forceTag>
     </com.cloudbees.dockerpublish.DockerBuilder>
     <com.microsoft.jenkins.kubernetes.KubernetesDeploy plugin="kubernetes-cd@0.2.3">
