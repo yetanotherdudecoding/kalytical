@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-FROM alpine:3.6
+ARG DOCKER_REGISTRY=instance-1.us-east1-b.c.sandbox-224519.internal:8080
+FROM ${DOCKER_REGISTRY}/alpine:3.6
 LABEL maintainer="Adam Kunicki <adam@streamsets.com>"
 
 # glibc installation courtesy https://github.com/jeanblanchard/docker-alpine-glibc

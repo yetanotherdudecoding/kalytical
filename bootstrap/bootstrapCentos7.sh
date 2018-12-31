@@ -20,9 +20,23 @@ EOF
 setenforce 0
 sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
+
+yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2 -y
+yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo -y
+yum install docker-ce -y
+cat << EOF | /usr/bin/tee /etc/docker/daemon.json
+{
+        "insecure-registries" : [ "0.0.0.0/0" ]
+}
+EOF
+
 yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
 systemctl disable firewalld && systemctl stop firewalld
-cat << EOF | sudo /usr/bin/tee /etc/sysconfig/docker
+cat << EOF | /usr/bin/tee /etc/sysconfig/docker
 INSECURE_REGISTRY="--insecure-registry=0.0.0.0/0"
 EOF
 systemctl enable docker && systemctl start docker

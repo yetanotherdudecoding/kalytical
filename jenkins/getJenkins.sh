@@ -18,3 +18,5 @@ RUN apt-get install apt-transport-https ca-certificates curl gnupg2 software-pro
 RUN rm -rf /var/lib/apt/lists/*
 USER \${user}
 EOF
+sed -i '1s/^/ARG DOCKER_REGISTRY=instance-1.us-east1-b.c.sandbox-224519.internal:8080\n/' ./docker/Dockerfile
+sed -i 's/openjdk:8-jdk/${DOCKER_REGISTRY}\/openjdk:8-jdk/g' ./docker/Dockerfile

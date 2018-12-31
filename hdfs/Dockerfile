@@ -1,8 +1,10 @@
-FROM $DOCKER_REGISTRY/openjdk:8-jdk
+ARG DOCKER_REGISTRY=instance-1.us-east1-b.c.sandbox-224519.internal:8080
+FROM ${DOCKER_REGISTRY}/openjdk:8-jdk
+ARG HADOOP_ARTIFACT_URL=http://instance-1.us-east1-b.c.sandbox-224519.internal/repository/raw-artifacts/oss/hadoop-2.7.7.tar.gz
 USER root
 WORKDIR /opt
 RUN apt-get update -y && apt-get install vim net-tools telnet -y
-RUN curl -O $HADOOP_ARTIFACT_URL
+RUN curl -O ${HADOOP_ARTIFACT_URL}
 RUN tar -xzf hadoop-2.7.7.tar.gz
 COPY hdfs-site.xml hadoop-2.7.7/etc/hadoop/hdfs-site.xml
 COPY core-site.xml hadoop-2.7.7/etc/hadoop/core-site.xml
