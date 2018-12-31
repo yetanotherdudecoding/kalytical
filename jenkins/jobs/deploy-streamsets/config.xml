@@ -30,6 +30,12 @@
           <defaultValue>http://instance-1.us-east1-b.c.sandbox-224519.internal:8081/repository/raw-artifacts/oss/streamsets-datacollector-all-3.6.1.tgz</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SDC_SERVICE_URL</name>
+          <description></description>
+          <defaultValue>http://instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30530</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -82,6 +88,9 @@ sed -i &apos;s/${DOCKER_REGISTRY}/&apos;&quot;$DOCKER_REGISTRY&quot;&apos;/g&apo
 sed -i &apos;s/${IMAGE_NAME}/&apos;&quot;$IMAGE_NAME&quot;&apos;/g&apos; streamsets/sdc-deploy.yaml
 sed -i &apos;s/${BUILD_NUMBER}/&apos;&quot;$BUILD_NUMBER&quot;&apos;/g&apos; streamsets/sdc-deploy.yaml
 kubectl apply -f streamsets/sdc-deploy.yaml -n $K8S_NAMESPACE --kubeconfig /home/.kube/config</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>streamsets/importSdcPipelines.sh $SDC_SERVICE_URL</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
