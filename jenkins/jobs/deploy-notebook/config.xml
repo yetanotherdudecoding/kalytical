@@ -72,7 +72,7 @@
       <skipPush>false</skipPush>
       <createFingerprint>true</createFingerprint>
       <skipTagLatest>false</skipTagLatest>
-      <buildAdditionalArgs></buildAdditionalArgs>
+      <buildAdditionalArgs>--build-arg DOCKER_REGISTRY=$DOCKER_REGISTRY</buildAdditionalArgs>
       <forceTag>false</forceTag>
     </com.cloudbees.dockerpublish.DockerBuilder>
     <com.microsoft.jenkins.kubernetes.KubernetesDeploy plugin="kubernetes-cd@0.2.3">

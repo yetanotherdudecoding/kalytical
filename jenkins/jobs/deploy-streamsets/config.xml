@@ -1,5 +1,4 @@
-<?xml version='1.1' encoding='UTF-8'?>
-<project>
+<?xml version="1.1" encoding="UTF-8"?><project>
   <actions/>
   <description>deploy single streamsets to kubernetes</description>
   <keepDependencies>false</keepDependencies>
@@ -26,13 +25,13 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SDC_URL</name>
-          <description></description>
+          <description/>
           <defaultValue>http://instance-1.us-east1-b.c.sandbox-224519.internal/repository/raw-artifacts/oss/streamsets-datacollector-all-3.6.1.tgz</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SDC_SERVICE_URL</name>
-          <description></description>
+          <description/>
           <defaultValue>http://instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30530</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
@@ -83,10 +82,10 @@
     </com.cloudbees.dockerpublish.DockerBuilder>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-sed -i &apos;s/${K8S_NAMESPACE}/&apos;&quot;$K8S_NAMESPACE&quot;&apos;/g&apos; streamsets/sdc-deploy.yaml
-sed -i &apos;s/${DOCKER_REGISTRY}/&apos;&quot;$DOCKER_REGISTRY&quot;&apos;/g&apos; streamsets/sdc-deploy.yaml
-sed -i &apos;s/${IMAGE_NAME}/&apos;&quot;$IMAGE_NAME&quot;&apos;/g&apos; streamsets/sdc-deploy.yaml
-sed -i &apos;s/${BUILD_NUMBER}/&apos;&quot;$BUILD_NUMBER&quot;&apos;/g&apos; streamsets/sdc-deploy.yaml
+sed -i 's/${K8S_NAMESPACE}/'"$K8S_NAMESPACE"'/g' streamsets/sdc-deploy.yaml
+sed -i 's/${DOCKER_REGISTRY}/'"$DOCKER_REGISTRY"'/g' streamsets/sdc-deploy.yaml
+sed -i 's/${IMAGE_NAME}/'"$IMAGE_NAME"'/g' streamsets/sdc-deploy.yaml
+sed -i 's/${BUILD_NUMBER}/'"$BUILD_NUMBER"'/g' streamsets/sdc-deploy.yaml
 kubectl apply -f streamsets/sdc-deploy.yaml -n $K8S_NAMESPACE --kubeconfig /home/.kube/config</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
