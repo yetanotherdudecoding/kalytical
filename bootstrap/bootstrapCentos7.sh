@@ -60,7 +60,11 @@ echo "Applying minimum necessary setup for bootstrapping the rest of the cluster
 kubectl taint nodes --all node-role.kubernetes.io/master-
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
 kubectl create namespace bsavoy
-
+kubectl create secret docker-registry regcred --docker-server=instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30880 --docker-username=docker --docker-password=dockerpass
+kubectl -n bsavoy create secret docker-registry regcred --docker-server=instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30880 --docker-username=docker --docker-password=dockerpass
+#This by default will enable image pulls for any pod using these service accounts
+kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "regcred"}]}'
+kubectl patch serviceaccount default -n bsavoy -p '{"imagePullSecrets": [{"name": "regcred"}]}'
 mkdir -p /k8s-pvs/{jenkins_home,sdc_data,nexus-data}
 chmod 777 -R /k8s-pvs
 chown -R 200 /k8s-pvs/nexus-data
