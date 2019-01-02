@@ -9,7 +9,7 @@
         <hudson.model.StringParameterDefinition>
           <name>DOCKER_REGISTRY</name>
           <description>docker registry adddress (i.e. myregistry:8080 )</description>
-          <defaultValue>instance-1.us-east1-b.c.sandbox-224519.internal:8080</defaultValue>
+          <defaultValue>instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30880</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -31,7 +31,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://zerodown524@bitbucket.org/zerodown524/kalytical.git</url>
+        <url>https://github.com/yetanotherdudecoding/kalytical.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>

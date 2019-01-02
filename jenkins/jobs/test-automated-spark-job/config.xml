@@ -1,4 +1,5 @@
-<?xml version="1.1" encoding="UTF-8"?><project>
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>Run spark application on kubernetes</description>
   <keepDependencies>false</keepDependencies>
@@ -8,32 +9,38 @@
         <hudson.model.StringParameterDefinition>
           <name>NUM_EXECUTORS</name>
           <description>Number of spark executors</description>
-          <defaultValue>2</defaultValue>
+          <defaultValue>1</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>K8S_NAMESPACE</name>
-          <description/>
+          <description></description>
           <defaultValue>bsavoy</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.TextParameterDefinition>
           <name>SUBMIT_PARAMS</name>
-          <description/>
+          <description></description>
           <defaultValue>--master k8s://https://kubernetes.default:443 \
 --deploy-mode cluster \
 --name spark-pi \
 --class org.apache.spark.examples.SparkPi \
 --conf spark.executor.instances=1 \
---conf spark.kubernetes.container.image=instance-1.us-east1-b.c.sandbox-224519.internal:8080/spark:2.3.1 \
+--conf spark.kubernetes.container.image=instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30880/spark:2.3.1 \
 --conf spark.kubernetes.namespace=bsavoy
-http://instance-1.us-east1-b.c.sandbox-224519.internal/repository/dataproducts/examples/spark-examples_2.11-2.3.1.jar</defaultValue>
+http://instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30881/repository/raw-artifacts/dataproducts/examples/spark-examples_2.11-2.3.1.jar</defaultValue>
           <trim>false</trim>
         </hudson.model.TextParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SUBMIT_POD_IMAGE</name>
           <description>Pod used to submit spark job to kubernetes</description>
-          <defaultValue>instance-1.us-east1-b.c.sandbox-224519.internal:8080/submitpod:201812263</defaultValue>
+          <defaultValue>submitpod</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>DOCKER_REGISTRY</name>
+          <description></description>
+          <defaultValue>instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30880</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -43,7 +50,7 @@ http://instance-1.us-east1-b.c.sandbox-224519.internal/repository/dataproducts/e
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://zerodown524@bitbucket.org/zerodown524/kalytical.git</url>
+        <url>https://github.com/yetanotherdudecoding/kalytical.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -62,8 +69,27 @@ http://instance-1.us-east1-b.c.sandbox-224519.internal/repository/dataproducts/e
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <com.cloudbees.dockerpublish.DockerBuilder plugin="docker-build-publish@1.3.2">
+      <server plugin="docker-commons@1.13"/>
+      <registry plugin="docker-commons@1.13">
+        <url>http://$DOCKER_REGISTRY</url>
+      </registry>
+      <repoName>$SUBMIT_POD_IMAGE</repoName>
+      <noCache>false</noCache>
+      <forcePull>true</forcePull>
+      <buildContext>spark/submitPod</buildContext>
+      <dockerfilePath>spark/submitPod/Dockerfile</dockerfilePath>
+      <skipBuild>false</skipBuild>
+      <skipDecorate>false</skipDecorate>
+      <repoTag>$BUILD_NUMBER</repoTag>
+      <skipPush>false</skipPush>
+      <createFingerprint>true</createFingerprint>
+      <skipTagLatest>false</skipTagLatest>
+      <buildAdditionalArgs>--build-arg DOCKER_REGISTRY=$DOCKER_REGISTRY</buildAdditionalArgs>
+      <forceTag>false</forceTag>
+    </com.cloudbees.dockerpublish.DockerBuilder>
     <hudson.tasks.Shell>
-      <command>sed -i 's/$K8S_NAMESPACE/bsavoy/g' spark/spark-rbac.yaml
+      <command>sed -i &apos;s/$K8S_NAMESPACE/bsavoy/g&apos; spark/spark-rbac.yaml
 kubectl apply -f spark/spark-rbac.yaml -n bsavoy --kubeconfig /home/.kube/config</command>
     </hudson.tasks.Shell>
     <com.microsoft.jenkins.kubernetes.KubernetesDeploy plugin="kubernetes-cd@0.2.3">
@@ -71,21 +97,21 @@ kubectl apply -f spark/spark-rbac.yaml -n bsavoy --kubeconfig /home/.kube/config
         <kubeconfigId>k8s-kube-config-secret</kubeconfigId>
         <credentialsType>KubeConfig</credentialsType>
         <ssh>
-          <sshServer/>
+          <sshServer></sshServer>
           <sshCredentialsId>*</sshCredentialsId>
         </ssh>
         <kubeConfig>
-          <path/>
+          <path></path>
         </kubeConfig>
         <textCredentials>
           <serverUrl>https://</serverUrl>
-          <certificateAuthorityData/>
-          <clientCertificateData/>
-          <clientKeyData/>
+          <certificateAuthorityData></certificateAuthorityData>
+          <clientCertificateData></clientCertificateData>
+          <clientKeyData></clientKeyData>
         </textCredentials>
         <configs>spark/spark-job.yaml</configs>
         <enableConfigSubstitution>true</enableConfigSubstitution>
-        <secretName/>
+        <secretName></secretName>
       </context>
     </com.microsoft.jenkins.kubernetes.KubernetesDeploy>
     <hudson.tasks.Shell>
