@@ -34,7 +34,7 @@ cat << EOF | /usr/bin/tee /etc/docker/daemon.json
 }
 EOF
 
-yum install -y docker kubelet kubeadm kubectl jq --disableexcludes=kubernetes
+yum install -y docker kubelet kubeadm kubectl jq groovy --disableexcludes=kubernetes
 systemctl disable firewalld && systemctl stop firewalld
 cat << EOF | /usr/bin/tee /etc/sysconfig/docker
 INSECURE_REGISTRY="--insecure-registry=0.0.0.0/0"
@@ -56,12 +56,17 @@ mkdir -p $HOME/.kube
 cp -if /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
 
-echo "Applying minimum necessary setup for bootstrapping the rest of the cluster from jenkins"
+echo "Applying minimum necessary setup for bootstrapping the rest of the cluster from jenkins and nexus"
 kubectl taint nodes --all node-role.kubernetes.io/master-
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
 kubectl create namespace bsavoy
-mkdir -p /k8s-pvs/{jenkins_home,sdc_data}
+
+mkdir -p /k8s-pvs/{jenkins_home,sdc_data,nexus-data}
 chmod 777 -R /k8s-pvs
+chown -R 200 /k8s-pvs/nexus-data
+kubectl apply -f nexus/nexus-deploy.yaml
+nexus/configureNexusDeployment.sh http://$(hostname -f):30881 $(hostname -f):30880
+
 kubectl create secret generic jenkins-k8s-kube-config --from-file=/root/.kube/config -n bsavoy
 kubectl create secret generic jenkins-docker-config --from-file=jenkins/config.json -n bsavoy
 kubectl apply -f jenkins/jenkins-deploy.yaml

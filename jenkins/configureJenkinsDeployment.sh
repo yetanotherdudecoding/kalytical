@@ -6,7 +6,7 @@ if [ -z $JENKINS_URL ]; then
         exit 1
 fi
 ATTEMPTS=0
-while [ "200" != "$(curl -sL -w %{http_code} $JENKINS_URL/ -o /dev/null)" -a "$ATTEMPTS" != "15" ]; do
+while [ "200" != "$(curl --connect-timeout 5 -sL -w %{http_code} $JENKINS_URL/ -o /dev/null)" -a "$ATTEMPTS" != "15" ]; do
         ((ATTEMPTS++))
         echo "WARN: Jenkins was not up, wait 10 seconds then try again. Attempt $ATTEMPTS/15"
         sleep 10

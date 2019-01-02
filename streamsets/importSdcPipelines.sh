@@ -10,7 +10,7 @@ fi
 #Initial delay since old streamsets could be running
 sleep 5
 ATTEMPTS=0
-while [ "200" != "$(curl -sL -w %{http_code} $SDC_URL/ -o /dev/null)" -a "$ATTEMPTS" != "5" ]; do
+while [ "200" != "$(curl --connect-timeout 5 -sL -w %{http_code} $SDC_URL/ -o /dev/null)" -a "$ATTEMPTS" != "5" ]; do
 	((ATTEMPTS++))
 	echo "WARN: SDC was not up, wait 20 seconds then try again. Attempt $ATTEMPTS/5"
 	sleep 20

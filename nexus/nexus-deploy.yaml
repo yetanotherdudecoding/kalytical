@@ -1,0 +1,97 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nexus-docker-service
+  namespace: bsavoy
+spec:
+  type: NodePort
+  selector:
+    app: nexus
+  ports:
+  - protocol: TCP
+    port: 8080
+    nodePort: 30880
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nexus-api-service
+  namespace: bsavoy
+spec:
+  type: NodePort
+  selector:
+    app: nexus
+  ports:
+  - protocol: TCP
+    port: 8081
+    nodePort: 30881
+    
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: nexus-deployment
+  namespace: bsavoy
+  labels:
+    app: nexus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nexus
+  template:
+    metadata:
+      labels:
+        app: nexus
+    spec:
+      containers:
+      - name: nexus-og
+        image: sonatype/nexus3
+        env:
+        - name: JAVA_OPTS
+          value: "-DXmx=4096M -DXms=2048M"
+        - name: DOCKER_CONFIG
+          value: "/home/.docker"
+        volumeMounts:
+        - name: nexus-home
+          mountPath: /nexus-data
+        resources:
+          limits:
+            cpu: "2000m"
+            memory: "4096Mi"
+          requests:
+            cpu: "2000m"
+            memory: "2048Mi"
+      volumes:
+      - name: nexus-home
+        persistentVolumeClaim:
+          claimName: nexus-home-pvc
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: nexus-home-pv
+  namespace: bsavoy
+spec:
+  capacity:
+    storage: 256Gi
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    namespace: bsavoy
+    name: nexus-home-pvc
+  hostPath:
+   path: /k8s-pvs/nexus-data
+   type: Directory
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nexus-home-pvc
+  namespace: bsavoy
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 256Gi
