@@ -8,9 +8,7 @@ spec:
     spec:
       containers:
       - name: spark-submitter-${JOB_NAME}-${BUILD_NUMBER}
-        image: ${SUBMIT_POD_IMAGE}
-        imagePullSecrets:
-        - name: regcred
+        image: ${DOCKER_REGISTRY}/${SUBMIT_POD_IMAGE}:${BUILD_NUMBER}
         env:
         - name: SPARK_SUBMIT_ARGS
           value: "${SUBMIT_PARAMS}"
