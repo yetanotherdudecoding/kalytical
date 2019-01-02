@@ -13,9 +13,9 @@ Reasons to do this:
 
 		Kubernetes is platform agnostic - i.e. cloud provider or on premises agnostic - making it an ideal target platform
 	
-		Big data platforms are rife with underutilizing resources - trying to consolidate resources will help with cost
+		Big data platforms are rife with underutilized resources - this can serve as an attempt to consolidate applications and determine if this helps
 
-		Automating this will provide a lower bar of entry to trying advanced analytics
+		Automating this will provide a lower bar of entry to trying advanced analytics and guide individuals into a sustainable SDLC process to deploy and upgrade ML models or data munging jobs
 
 		Developers will be able to experiment with the entire stack on their local machine
           
