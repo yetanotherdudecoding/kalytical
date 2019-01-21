@@ -21,5 +21,5 @@ fi
 echo "INFO: Run configure Nexus users and repository"
 cd nexus
 ./provision.sh $NEXUS_URL
-./preloadNexus.sh $NEXUS_DOCKER_URL $NEXUS_URL/repository
+./preloadNexus.sh $NEXUS_DOCKER_URL $NEXUS_URL
 echo "INFO: Finished setting up nexus"

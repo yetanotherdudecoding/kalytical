@@ -19,10 +19,10 @@ for i in ${ARTIFACT_LIST[@]}; do
 	if [ ! -r $ITEM_NAME ]; then
 		curl -LO $i
 	fi
-	curl -v -u admin:admin123 --upload-file $ITEM_NAME $NEXUS_RAW_URL/raw-arifacts/oss/$ITEM_NAME
+	curl -v -u admin:admin123 --upload-file $ITEM_NAME $NEXUS_RAW_URL/repository/raw-artifacts/oss/$ITEM_NAME
 done
 
 #For sample purposes
 tar -xzvf spark-2.3.1-bin-hadoop2.7.tgz spark-2.3.1-bin-hadoop2.7/examples/jars/spark-examples_2.11-2.3.1.jar
-curl -v -u admin:admin123 --upload-file spark-2.3.1-bin-hadoop2.7/examples/jars/spark-examples_2.11-2.3.1.jar $NEXUS_RAW_URL/dataproducts/examples/spark-examples_2.11-2.3.1.jar
+curl -v -u admin:admin123 --upload-file spark-2.3.1-bin-hadoop2.7/examples/jars/spark-examples_2.11-2.3.1.jar $NEXUS_RAW_URL/repository/dataproducts/examples/spark-examples_2.11-2.3.1.jar
 rm -rf spark-2.3.1-bin-hadoop2.7

@@ -1,5 +1,4 @@
-<?xml version='1.1' encoding='UTF-8'?>
-<project>
+<?xml version="1.1" encoding="UTF-8"?><project>
   <actions/>
   <description>deploy jupyter notebook to kubernetes</description>
   <keepDependencies>false</keepDependencies>
@@ -80,21 +79,21 @@
         <kubeconfigId>k8s-kube-config-secret</kubeconfigId>
         <credentialsType>KubeConfig</credentialsType>
         <ssh>
-          <sshServer></sshServer>
+          <sshServer/>
           <sshCredentialsId>*</sshCredentialsId>
         </ssh>
         <kubeConfig>
-          <path></path>
+          <path/>
         </kubeConfig>
         <textCredentials>
           <serverUrl>https://</serverUrl>
-          <certificateAuthorityData></certificateAuthorityData>
-          <clientCertificateData></clientCertificateData>
-          <clientKeyData></clientKeyData>
+          <certificateAuthorityData/>
+          <clientCertificateData/>
+          <clientKeyData/>
         </textCredentials>
         <configs>jupyter/jupyter-deploy.yaml</configs>
         <enableConfigSubstitution>true</enableConfigSubstitution>
-        <secretName></secretName>
+        <secretName/>
       </context>
     </com.microsoft.jenkins.kubernetes.KubernetesDeploy>
   </builders>

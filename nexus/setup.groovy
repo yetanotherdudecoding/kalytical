@@ -31,4 +31,12 @@ repository.createRawHosted('raw-artifacts', rawStore.name)
 
 log.info('Created raw-artifact repository')
 
+// create a new blob store dedicated to usage of data product artifacts 
+def dpStore = blobStore.createFileBlobStore('dataproducts', 'default')
+
+// and create a first raw hosted repository for documentation using the new blob store
+repository.createRawHosted('dataproducts', dpStore.name)
+
+log.info('Created dataproducts repository')
+
 log.info('Script completed successfully')
