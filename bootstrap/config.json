@@ -1,0 +1,10 @@
+{
+	"auths": {
+		"instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30880": {
+			"auth": "ZG9ja2VyOmRvY2tlcnBhc3M="
+		}
+	},
+	"HttpHeaders": {
+		"User-Agent": "Docker-Client/18.09.0 (linux)"
+	}
+}

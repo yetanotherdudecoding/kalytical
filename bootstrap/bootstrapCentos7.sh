@@ -56,12 +56,18 @@ mkdir -p $HOME/.kube
 cp -if /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
 
+HOST=$(hostname -f)
+DOCKER_REGISTRY="$HOST:30880"
+NEXUS_ARTIFACT_URL="http://$HOST:30881"
+JENKINS_URL="$HOST:30080"
+
+sudo cp bootstrap/config.json /var/lib/kubelet/
 echo "Applying minimum necessary setup for bootstrapping the rest of the cluster from jenkins and nexus"
 kubectl taint nodes --all node-role.kubernetes.io/master-
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
 kubectl create namespace bsavoy
-kubectl create secret docker-registry regcred --docker-server=instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30880 --docker-username=docker --docker-password=dockerpass
-kubectl -n bsavoy create secret docker-registry regcred --docker-server=instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30880 --docker-username=docker --docker-password=dockerpass
+kubectl create secret docker-registry regcred --docker-server=$DOCKER_REGISTRY --docker-username=docker --docker-password=dockerpass
+kubectl -n bsavoy create secret docker-registry regcred --docker-server=$DOCKER_REGISTRY --docker-username=docker --docker-password=dockerpass
 #This by default will enable image pulls for any pod using these service accounts
 kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "regcred"}]}'
 kubectl patch serviceaccount default -n bsavoy -p '{"imagePullSecrets": [{"name": "regcred"}]}'
@@ -69,13 +75,15 @@ mkdir -p /k8s-pvs/{jenkins_home,sdc_data,nexus-data}
 chmod 777 -R /k8s-pvs
 chown -R 200 /k8s-pvs/nexus-data
 kubectl apply -f nexus/nexus-deploy.yaml
-nexus/configureNexusDeployment.sh http://$(hostname -f):30881 $(hostname -f):30880
-
+nexus/configureNexusDeployment.sh $NEXUS_ARTIFACT_URL $DOCKER_REGISTRY
+sed -i "s/DOCKER_REG/$DOCKER_REGISTRY/g" jenkins/jenkins-deploy.yaml
+jenkins/build.sh $DOCKER_REGISTRY
 kubectl create secret generic jenkins-k8s-kube-config --from-file=/root/.kube/config -n bsavoy
 kubectl create secret generic jenkins-docker-config --from-file=jenkins/config.json -n bsavoy
 kubectl apply -f jenkins/jenkins-deploy.yaml
+sed -i "s/$DOCKER_REGISTRY/DOCKER_REG/g" jenkins/jenkins-deploy.yaml
 #Give jenkins a chance to pull and start initializing
-jenkins/configureJenkinsDeployment.sh http://$(hostname):30080
-echo "At this point, you should navigate to http://$(hostname):30080 and use jenkins to bootstrap the rest of the resources"
+jenkins/configureJenkinsDeployment.sh $JENKINS_URL
+echo "At this point, you should navigate to $JENKINS_URL and use jenkins to bootstrap the rest of the resources"
 echo "I would not reccomend bringing additional nodes into the cluster at this time since hostpath is used for persistence"
 #kubeadm token create --print-join-command
