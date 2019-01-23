@@ -9,6 +9,7 @@ fi
 ATTEMPTS=0
 while [ "true" != "$(curl --max-time 5 -u admin:admin123 $NEXUS_URL/service/metrics/healthcheck | jq '.deadlocks.healthy')" -a "$ATTEMPTS" != "15" ]; do
         ((ATTEMPTS++))
+	echo "$(curl --max-time 5 -u admin:admin123 $NEXUS_URL/service/metrics/healthcheck | jq '.deadlocks.healthy')"
         echo "WARN: Nexus artifact repository was not up, wait 10 seconds then try again. Attempt $ATTEMPTS/15"
         sleep 10
 done
