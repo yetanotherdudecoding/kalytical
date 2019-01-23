@@ -43,6 +43,18 @@ NEXUS_URL/repository/dataproducts/examples/spark-examples_2.11-2.3.1.jar</defaul
           <defaultValue>DOCKER_REG_URL</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH</name>
+          <description></description>
+          <defaultValue>DEFAULT_JENKINS_BUILD_BRANCH</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SPARK_ARTIFACT_URL</name>
+          <description></description>
+          <defaultValue>NEXUS_URL/repository/raw-artifacts/oss/spark-2.3.1-bin-hadoop2.7.tgz</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -55,7 +67,7 @@ NEXUS_URL/repository/dataproducts/examples/spark-examples_2.11-2.3.1.jar</defaul
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>*/initial</name>
+        <name>*/</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -85,7 +97,7 @@ NEXUS_URL/repository/dataproducts/examples/spark-examples_2.11-2.3.1.jar</defaul
       <skipPush>false</skipPush>
       <createFingerprint>true</createFingerprint>
       <skipTagLatest>false</skipTagLatest>
-      <buildAdditionalArgs>--build-arg DOCKER_REGISTRY=$DOCKER_REGISTRY</buildAdditionalArgs>
+      <buildAdditionalArgs>--build-arg DOCKER_REGISTRY=$DOCKER_REGISTRY --build-arg SPARK_ARTIFACT_URL=$SPARK_ARTIFACT_URL</buildAdditionalArgs>
       <forceTag>false</forceTag>
     </com.cloudbees.dockerpublish.DockerBuilder>
     <hudson.tasks.Shell>

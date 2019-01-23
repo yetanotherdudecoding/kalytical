@@ -51,6 +51,7 @@ EOF
 sysctl --system
 systemctl enable kubelet && systemctl start kubelet
 kubeadm init --pod-network-cidr=10.244.0.0/16
+
 echo "Setup kubernetes credentials"
 mkdir -p $HOME/.kube
 cp -if /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -62,15 +63,19 @@ NEXUS_SED_URL="http:\/\/$HOST:30881"
 NEXUS_ARTIFACT_URL="http://$HOST:30881"
 JENKINS_URL="$HOST:30080"
 SDC_URL="$HOST:30530"
+GIT_BRANCH=$(git branch | grep \* | awk '{print $2}' | sed 's/\//\\\//')
+
 sed -i "s/DOCKER_REG_URL/$DOCKER_REGISTRY/g" jenkins/jenkins-deploy.yaml bootstrap/config.json jenkins/jobs/*/config.xml
 sed -i "s/NEXUS_URL/$NEXUS_SED_URL/g" jenkins/jobs/*/config.xml
 sed -i "s/STREAMSETS_URL/$SDC_URL/g" jenkins/jobs/*/config.xml
+sed -i "s/DEFAULT_JENKINS_BUILD_BRANCH/$GIT_BRANCH/g" jenkins/jobs/*/config.xml
 
 cp bootstrap/config.json /var/lib/kubelet/
 cp bootstrap/config.json jenkins/
 mkdir ~/.docker
 cp bootstrap/config.json ~/.docker/
 kubectl taint nodes --all node-role.kubernetes.io/master-
+
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
 kubectl create namespace bsavoy
 kubectl create secret docker-registry regcred --docker-server=$DOCKER_REGISTRY --docker-username=docker --docker-password=dockerpass
@@ -97,6 +102,7 @@ rm jenkins/config.json
 sed -i "s/$DOCKER_REGISTRY/DOCKER_REG_URL/g" jenkins/jobs/*/config.xml jenkins/jenkins-deploy.yaml bootstrap/config.json
 sed -i "s/$NEXUS_SED_URL/NEXUS_URL/g" jenkins/jobs/*/config.xml
 sed -i "s/$SDC_URL/STREAMSETS_URL/g" jenkins/jobs/*/config.xml
+sed -i "s/$GIT_BRANCH/DEFAULT_JENKINS_BUILD_BRANCH/g" jenkins/jobs/*/config.xml
 
 echo "At this point, you should navigate to $JENKINS_URL and use jenkins to bootstrap the rest of the resources"
 echo "I would not reccomend bringing additional nodes into the cluster at this time since hostpath is used for persistence"
