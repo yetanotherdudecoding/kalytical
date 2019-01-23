@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: jenkins-og
-        image: DOCKER_REG/jenkins:latest
+        image: DOCKER_REG_URL/jenkins:latest
         env:
         - name: JAVA_OPTS
           value: "-Djenkins.install.runSetupWizard=false -DXmx=4096M -DXms=2048M"

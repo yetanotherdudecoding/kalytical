@@ -8,7 +8,7 @@
         <hudson.model.StringParameterDefinition>
           <name>DOCKER_REGISTRY</name>
           <description>docker registry adddress (i.e. myregistry:8080 )</description>
-          <defaultValue>instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30880</defaultValue>
+          <defaultValue>DOCKER_REG_URL</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
