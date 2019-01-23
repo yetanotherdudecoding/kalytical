@@ -20,7 +20,7 @@ EOF
 setenforce 0
 sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
-
+yum update -y
 yum install -y yum-utils \
   device-mapper-persistent-data \
   lvm2 -y
@@ -34,7 +34,7 @@ cat << EOF | /usr/bin/tee /etc/docker/daemon.json
 }
 EOF
 
-yum install -y docker kubelet kubeadm kubectl jq groovy --disableexcludes=kubernetes
+yum install -y kubelet kubeadm kubectl jq groovy --disableexcludes=kubernetes
 systemctl disable firewalld && systemctl stop firewalld
 cat << EOF | /usr/bin/tee /etc/sysconfig/docker
 INSECURE_REGISTRY="--insecure-registry=0.0.0.0/0"
@@ -68,7 +68,8 @@ sed -i "s/SDC_URL/$SDC_URL/g" jenkins/jobs/*/config.xml
 
 cp bootstrap/config.json /var/lib/kubelet/
 cp bootstrap/config.json jenkins/
-
+mkdir ~/.docker
+cp bootstrap/config.json ~/.docker/
 kubectl taint nodes --all node-role.kubernetes.io/master-
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
 kubectl create namespace bsavoy

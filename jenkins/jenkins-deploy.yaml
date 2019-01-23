@@ -48,13 +48,13 @@ spec:
         - name: dockerconfigsecret
           mountPath: /home/.docker
           readOnly: true
-        resources:
-          limits:
-            cpu: "2000m"
-            memory: "4096Mi"
-          requests:
-            cpu: "2000m"
-            memory: "2048Mi"
+#        resources:
+#          limits:
+#            cpu: "2000m"
+#            memory: "4096Mi"
+#          requests:
+#            cpu: "2000m"
+#            memory: "2048Mi"
       volumes:
       - name: jenkins-home
         persistentVolumeClaim:
