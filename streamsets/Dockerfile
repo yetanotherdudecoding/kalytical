@@ -13,7 +13,7 @@
 # limitations under the License.
 #
 ARG DOCKER_REGISTRY=instance-1.us-east1-b.c.sandbox-224519.internal:8080
-FROM openjdk:8-jre-alpine
+FROM ${DOCKER_REGISTRY}/openjdk:8-jre-alpine
 LABEL maintainer="Adam Kunicki <adam@streamsets.com>"
 
 # glibc installation courtesy https://github.com/jeanblanchard/docker-alpine-glibc

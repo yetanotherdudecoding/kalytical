@@ -2,7 +2,7 @@
 DOCKER_REGISTRY=$1
 NEXUS_RAW_URL=$2
 
-IMAGES=('alpine:3.6' 'sonatype/nexus3' 'openjdk:8-jdk' 'centos:7' 'jupyter/all-spark-notebook')
+IMAGES=('alpine:3.6' 'sonatype/nexus3' 'openjdk:8-jdk' 'openjdk:8-jdk-alpine' 'centos:7' 'jupyter/all-spark-notebook')
 #speed up bootstrapping
 #IMAGES=('alpine:3.6' 'sonatype/nexus3' 'openjdk:8-jdk' 'centos:7')
 for i in ${IMAGES[@]}; do
