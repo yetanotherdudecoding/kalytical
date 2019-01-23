@@ -13,7 +13,7 @@
 # limitations under the License.
 #
 ARG DOCKER_REGISTRY=instance-1.us-east1-b.c.sandbox-224519.internal:8080
-FROM ${DOCKER_REGISTRY}/alpine:3.6
+FROM openjdk:8-jre-alpine
 LABEL maintainer="Adam Kunicki <adam@streamsets.com>"
 
 # glibc installation courtesy https://github.com/jeanblanchard/docker-alpine-glibc
@@ -32,30 +32,6 @@ RUN apk add --update curl && \
   apk del curl && \
   rm -rf glibc.apk glibc-bin.apk /var/cache/apk/*
 
-# JRE installation courtesy https://github.com/jeanblanchard/docker-java
-# Java Version
-ENV JAVA_VERSION_MAJOR 8
-ENV JAVA_VERSION_MINOR 191
-ENV JAVA_VERSION_BUILD 12
-ENV JAVA_PACKAGE server-jre
-ENV JAVA_SHA256_SUM 8d6ead9209fd2590f3a8778abbbea6a6b68e02b8a96500e2e77eabdbcaaebcae
-ENV JAVA_URL_ELEMENT 2787e4a523244c269598db4e85c51e0c
-
-# Download and unarchive Java
-RUN apk add --update curl && \
-  mkdir -p /opt && \
-  curl -jkLH "Cookie: oraclelicense=accept-securebackup-cookie" -o java.tar.gz\
-    http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/${JAVA_URL_ELEMENT}/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz && \
-  echo "$JAVA_SHA256_SUM  java.tar.gz" | sha256sum -c - && \
-  gunzip -c java.tar.gz | tar -xf - -C /opt && rm -f java.tar.gz && \
-  ln -s /opt/jdk1.${JAVA_VERSION_MAJOR}.0_${JAVA_VERSION_MINOR} /opt/jdk && \
-  apk del curl && \
-  rm -rf /var/cache/apk/*
-
-# Set environment
-ENV JAVA_HOME /opt/jdk
-ENV PATH ${PATH}:${JAVA_HOME}/bin
-
 # We set a UID/GID for the SDC user because certain test environments require these to be consistent throughout
 # the cluster. We use 20159 because it's above the default value of YARN's min.user.id property.
 ARG SDC_UID=20159
@@ -69,8 +45,8 @@ RUN apk --no-cache add bash \
     sed
 
 # Begin Data Collector installation
-ARG SDC_VERSION=3.6.1
-ARG SDC_URL=http://instance-1.us-east1-b.c.sandbox-224519.internal:8081/repository/raw-artifacts/oss/streamsets-datacollector-all-3.6.1.tgz
+ARG SDC_VERSION=3.7.1
+ARG SDC_URL=http://instance-1.us-east1-b.c.sandbox-224519.internal:8081/repository/raw-artifacts/oss/streamsets-datacollector-all-3.7.1.tgz
 ARG SDC_USER=sdc
 # SDC_HOME is where executables and related files are installed. Used in setup_mapr script.
 ARG SDC_HOME="/opt/streamsets-datacollector-${SDC_VERSION}"

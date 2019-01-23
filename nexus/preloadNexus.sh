@@ -2,9 +2,9 @@
 DOCKER_REGISTRY=$1
 NEXUS_RAW_URL=$2
 
-#IMAGES=('alpine:3.6' 'sonatype/nexus3' 'openjdk:8-jdk' 'centos:7' 'jupyter/all-spark-notebook')
+IMAGES=('alpine:3.6' 'sonatype/nexus3' 'openjdk:8-jdk' 'centos:7' 'jupyter/all-spark-notebook')
 #speed up bootstrapping
-IMAGES=('alpine:3.6' 'sonatype/nexus3' 'openjdk:8-jdk' 'centos:7')
+#IMAGES=('alpine:3.6' 'sonatype/nexus3' 'openjdk:8-jdk' 'centos:7')
 for i in ${IMAGES[@]}; do
 	sudo docker pull $i
 	sudo docker tag $i $DOCKER_REGISTRY/$i
@@ -12,8 +12,8 @@ for i in ${IMAGES[@]}; do
 done
 
 #speed up bootstrapping
-#ARTIFACT_LIST=('http://ftp.naz.com/apache/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz' 'https://archive.apache.org/dist/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz' 'https://archives.streamsets.com/datacollector/3.6.1/tarball/streamsets-datacollector-all-3.6.1.tgz')
-ARTIFACT_LIST=('http://ftp.naz.com/apache/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz' 'https://archive.apache.org/dist/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz')
+ARTIFACT_LIST=('http://ftp.naz.com/apache/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz' 'https://archive.apache.org/dist/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz' 'https://archives.streamsets.com/datacollector/3.7.1/tarball/streamsets-datacollector-all-3.7.1.tgz')
+#ARTIFACT_LIST=('http://ftp.naz.com/apache/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz' 'https://archive.apache.org/dist/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz')
 for i in ${ARTIFACT_LIST[@]}; do
         ITEM_NAME=$(echo $i | awk 'BEGIN {FS="/"}; {print $NF}')
 	echo $ITEM_NAME

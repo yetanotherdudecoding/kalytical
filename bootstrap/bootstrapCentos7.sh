@@ -64,7 +64,7 @@ JENKINS_URL="$HOST:30080"
 SDC_URL="$HOST:30530"
 sed -i "s/DOCKER_REG_URL/$DOCKER_REGISTRY/g" jenkins/jenkins-deploy.yaml bootstrap/config.json jenkins/jobs/*/config.xml
 sed -i "s/NEXUS_URL/$NEXUS_SED_URL/g" jenkins/jobs/*/config.xml
-sed -i "s/SDC_URL/$SDC_URL/g" jenkins/jobs/*/config.xml
+sed -i "s/STREAMSETS_URL/$SDC_URL/g" jenkins/jobs/*/config.xml
 
 cp bootstrap/config.json /var/lib/kubelet/
 cp bootstrap/config.json jenkins/
@@ -96,7 +96,7 @@ rm jenkins/config.json
 
 sed -i "s/$DOCKER_REGISTRY/DOCKER_REG_URL/g" jenkins/jobs/*/config.xml jenkins/jenkins-deploy.yaml bootstrap/config.json
 sed -i "s/$NEXUS_SED_URL/NEXUS_URL/g" jenkins/jobs/*/config.xml
-sed -i "s/$SDC_URL/SDC_URL/g" jenkins/jobs/*/config.xml
+sed -i "s/$SDC_URL/STREAMSETS_URL/g" jenkins/jobs/*/config.xml
 
 echo "At this point, you should navigate to $JENKINS_URL and use jenkins to bootstrap the rest of the resources"
 echo "I would not reccomend bringing additional nodes into the cluster at this time since hostpath is used for persistence"
