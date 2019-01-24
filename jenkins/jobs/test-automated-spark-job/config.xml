@@ -67,7 +67,7 @@ NEXUS_URL/repository/dataproducts/examples/spark-examples_2.11-2.3.1.jar</defaul
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>*/</name>
+        <name>*/$BRANCH</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>

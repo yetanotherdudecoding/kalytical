@@ -28,6 +28,7 @@ yum-config-manager \
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo -y
 yum install docker-ce -y
+mkdir -p /etc/docker/ && touch /etc/docker/daemon.json
 cat << EOF | /usr/bin/tee /etc/docker/daemon.json
 {
         "insecure-registries" : [ "0.0.0.0/0" ]
