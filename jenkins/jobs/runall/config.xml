@@ -13,7 +13,7 @@
   <builders/>
   <publishers>
     <hudson.tasks.BuildTrigger>
-      <childProjects>deploy-hdfs, deploy-mysql, deploy-notebook, deploy-streamsets, test-automated-spark-job</childProjects>
+      <childProjects>build-spark-k8s-native-images,deploy-hdfs, deploy-mysql, deploy-notebook, deploy-streamsets, test-automated-spark-job</childProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
