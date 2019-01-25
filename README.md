@@ -21,19 +21,19 @@ This should bootstrap properly on any Centos or Rhel 7 system.
 
         Run kubectl get services -n bsavoy to see other services
 
-        You can tinker and explore - much more is to come. Try running "watch kubectl get pods -n bsavoy" in a shell then testing the spark job in jenkins to see k8s spark scheduling :)
+        You can tinker and explore - much more is to come. 
+        
+        Try running "watch kubectl get pods -n bsavoy" in a shell then testing the spark job in jenkins to see k8s spark scheduling :)
 
 
-Kalytical is a pet project aimed at providing an out-of-the-box advanced analytical environment - on premises and on cloud
+Kalytical is a big data platform built on Kubernetes. It’s goal is to provide data engineers and scientists a place to play - a platform they can bring up completely automatically, or tear down at will. 
 
-Kalytical is configured for demo purposes only and is not production ready without several security measures and high availability measures put in place - but it aims to be a representation of the assets and their respective roles in an analytics platform (i.e. it could in theory be scaled up and locked down enough to be production grade)
+Usually organizations spend tons-o-money building some variation of this platform, making it out of reach for everyday people to play with. I hope you find it useful and at least interesting. If you already have a platform or are looking to build one, consider some strategies taken here upon which to draw inspiration.
 
-The platform handles both data ingestion pipelines, data product and machine learning pipelines in a single SDLC process
+I’m not selling anything - the entire stack is open source. The stack I chose attempts to be as agnostic and functional as possible, but can be augmented very easily to use, say, cloud storage rather than HDFS, Postgres in place of MySQL... It can bootstrap on a local machine with internet access or a VM on cloud (multi node support is upcoming)
 
-Each of these pipeline types are capable of some degree of CI/CD process to automate
+For data engineers and scientists, the sample data pipeline and ML model deployments should give some idea of how I expected the platform to be utilized
 
-Of particular interest is the machine learning lifecycle, where models exist as ephemeral containers handling streaming inference workloads from Kafka. These are managed as deployments in Kubernetes and are managed accordingy.
+For Devops or SRE or Admin types, the infrastructure automation is simplified greatly by Kubernetes. This also gives a working example of how Kubernetes and containers can be used as a platform.
 
-![Proposed Architecture](resources/kalitical_proposed_architecture.jpeg)
-
-
+If you’re feeling froggy, jump on an issue. Devopsy and data engineery type issues to be worked on. The end goal would be to have a full platform, with log aggregation, self healing, effective dummy data and several pipelines running through the platform.
