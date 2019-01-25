@@ -55,13 +55,13 @@ spec:
         volumeMounts:
         - name: nexus-home
           mountPath: /nexus-data
-        resources:
-          limits:
-            cpu: "2000m"
-            memory: "4096Mi"
-          requests:
-            cpu: "2000m"
-            memory: "2048Mi"
+#        resources:
+#          limits:
+#            cpu: "2000m"
+#            memory: "4096Mi"
+#          requests:
+#            cpu: "2000m"
+#            memory: "2048Mi"
       volumes:
       - name: nexus-home
         persistentVolumeClaim:

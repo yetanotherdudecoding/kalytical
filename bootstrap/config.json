@@ -1,6 +1,6 @@
 {
 	"auths": {
-		"instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30880": {
+		"DOCKER_REG_URL": {
 			"auth": "ZG9ja2VyOmRvY2tlcnBhc3M="
 		}
 	},

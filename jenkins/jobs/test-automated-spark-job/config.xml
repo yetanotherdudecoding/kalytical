@@ -26,9 +26,9 @@
 --name spark-pi \
 --class org.apache.spark.examples.SparkPi \
 --conf spark.executor.instances=1 \
---conf spark.kubernetes.container.image=instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30880/spark:2.3.1 \
+--conf spark.kubernetes.container.image=DOCKER_REG_URL/spark:2.3.1 \
 --conf spark.kubernetes.namespace=bsavoy
-http://instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30881/repository/dataproducts/examples/spark-examples_2.11-2.3.1.jar</defaultValue>
+NEXUS_URL/repository/dataproducts/examples/spark-examples_2.11-2.3.1.jar</defaultValue>
           <trim>false</trim>
         </hudson.model.TextParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -40,7 +40,19 @@ http://instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30881/repo
         <hudson.model.StringParameterDefinition>
           <name>DOCKER_REGISTRY</name>
           <description></description>
-          <defaultValue>instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30880</defaultValue>
+          <defaultValue>DOCKER_REG_URL</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH</name>
+          <description></description>
+          <defaultValue>DEFAULT_JENKINS_BUILD_BRANCH</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SPARK_ARTIFACT_URL</name>
+          <description></description>
+          <defaultValue>NEXUS_URL/repository/raw-artifacts/oss/spark-2.3.1-bin-hadoop2.7.tgz</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -55,7 +67,7 @@ http://instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30881/repo
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>*/initial</name>
+        <name>*/$BRANCH</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -85,7 +97,7 @@ http://instance-3.northamerica-northeast1-a.c.sandbox-224519.internal:30881/repo
       <skipPush>false</skipPush>
       <createFingerprint>true</createFingerprint>
       <skipTagLatest>false</skipTagLatest>
-      <buildAdditionalArgs>--build-arg DOCKER_REGISTRY=$DOCKER_REGISTRY</buildAdditionalArgs>
+      <buildAdditionalArgs>--build-arg DOCKER_REGISTRY=$DOCKER_REGISTRY --build-arg SPARK_ARTIFACT_URL=$SPARK_ARTIFACT_URL</buildAdditionalArgs>
       <forceTag>false</forceTag>
     </com.cloudbees.dockerpublish.DockerBuilder>
     <hudson.tasks.Shell>

@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: jenkins-og
-        image: instance-1.us-east1-b.c.sandbox-224519.internal:8080/jenkins:201812281
+        image: DOCKER_REG_URL/jenkins:latest
         env:
         - name: JAVA_OPTS
           value: "-Djenkins.install.runSetupWizard=false -DXmx=4096M -DXms=2048M"
@@ -48,13 +48,13 @@ spec:
         - name: dockerconfigsecret
           mountPath: /home/.docker
           readOnly: true
-        resources:
-          limits:
-            cpu: "2000m"
-            memory: "4096Mi"
-          requests:
-            cpu: "2000m"
-            memory: "2048Mi"
+#        resources:
+#          limits:
+#            cpu: "2000m"
+#            memory: "4096Mi"
+#          requests:
+#            cpu: "2000m"
+#            memory: "2048Mi"
       volumes:
       - name: jenkins-home
         persistentVolumeClaim:
