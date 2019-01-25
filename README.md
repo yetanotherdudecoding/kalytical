@@ -5,7 +5,7 @@ This should bootstrap properly on any Centos or Rhel 7 system.
 
         I reccomend 8 cores with at least 16GB of RAM.
 
-        While you could use a VM, the bootstrapping of the platform is pretty network heavy as it loads several large docker images and tar files into nexus
+        While you could use a local VM, the bootstrapping of the platform is pretty network heavy as it loads several large docker images and tar files into nexus - cloud VMs have much more network bandwidth
 
         You can get $300 in free credits with Google Cloud - thats what I use and reccomend. You can also provision the box with 100GB of SSD in the free version - I highly reccomend that as well.
 
