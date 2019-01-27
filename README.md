@@ -29,3 +29,4 @@ This should bootstrap properly on any Centos or Rhel 7 system.
 10. You can tinker and explore - much more is to come.   
 11. Try running "watch kubectl get pods -n bsavoy" in a shell then testing the spark job in jenkins to see k8s spark scheduling :)  
 
+![](https://github.com/yetanotherdudecoding/kalytical/blob/master/resources/kalytical_proposed_arch.PNG)
