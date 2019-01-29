@@ -20,8 +20,8 @@ This should bootstrap properly on any Centos or Rhel 7 system.
 2. While you could use a local VM, the bootstrapping of the platform is pretty network heavy as it loads several large docker images and tar files into nexus - cloud VMs have much more network bandwidth  
 3. You can get $300 in free credits with Google Cloud - thats what I use and reccomend. You can also provision the box with 100GB of SSD in the free version - I highly reccomend that as well.  
 4. Once you've provisioned the box, clone this repo.  
-5. Execute  "sudo bootstrap/bootstrap/bootstrapCentos7.sh" - this will take up to 30 minutes  
-  5.1 If you're using a cloud VM, ensure that you have internet egress to ports 30000-32767, or some other way to reach the box (perhaps through a jump host)
+5. cd to the repo folder. Execute  "sudo bootstrap/bootstrapCentos7.sh" - this will take up to 30 minutes  
+  5.1 If you're using a cloud VM, ensure that you have internet ingress to ports 30000-32767, or some other way to reach the box (perhaps through a jump host)
 6. Navigate to the instance IP at port 30080 to reach jenkins, 30881 to reach Nexus.  
 7. Execute the run-all jenkins job to bring up the remaining resources.  
 8. Streamsets can be reached at port 30530, and a pipeline started to write to HDFS  
