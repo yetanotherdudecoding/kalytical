@@ -12,6 +12,16 @@ For Devops or SRE or Admin types, the infrastructure automation is simplified gr
 
 If you’re feeling froggy, jump on an issue. Devopsy and data engineery type issues to be worked on. The end goal would be to have a full platform, with log aggregation, self healing, effective dummy data and several pipelines running through the platform.
 
+Features:
+==========
+* Self contained environment- HDFS for data “lake” and Nexus for artifact and repo hosting. Use your own Git for hosting pipleline or infra code
+* Spark utilizing kubernetes scheduler (no yarn or mesos)
+* Bootstraps on its own - provides Streamsets for visual pipeline development and Apache Spark for more sophisticated pipeline work. Apache Zeppelin for interactive pyspark sessions.
+* Mysql to act as warm data storage - after massaging/munging data 
+* Extensible - Kubernetes, Nexus and Jenkins are fully exposed. Add tools (like hive, presto or whatever). I’ll be adding more as time permits
+* Working examples - sample dummy data pipelines from Streamsets and Spark job submission to Kubernetes scheduler in Jenkins. More to come
+
+
 Quickstart:
 ==========
 This should bootstrap properly on any Centos or Rhel 7 system.
